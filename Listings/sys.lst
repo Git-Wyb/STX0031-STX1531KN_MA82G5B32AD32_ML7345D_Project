@@ -1,0 +1,81 @@
+C51 COMPILER V9.60.0.0   SYS                                                               03/18/2022 11:19:26 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SYS
+OBJECT MODULE PLACED IN .\Objects\sys.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\src\sys.c OPTIMIZE(0,SPEED) BROWSE INCDIR(.\include;.\user\inc) DEB
+                    -UG OBJECTEXTEND PRINT(.\Listings\sys.lst) OBJECT(.\Objects\sys.obj)
+
+line level    source
+
+   1          #include "sys.h"
+   2          
+   3          
+   4          void Init_Clock(void)
+   5          {
+   6   1      #if (MCU_SYSCLK == 16000000)
+                  CLK_SetCKCON0(IHRCO_12MHz|ENABLE_CKM|CKM_OSCIN_DIV_2|CPUCLK_SYSCLK_DIV_1|SYSCLK_MCKDO_DIV_1);
+                  CLK_SetCKCON2(ENABLE_IHRCO|MCK_CKMI_X533|OSCIn_IHRCO);  
+                  CLK_SetCKCON3(0x06);                                    //12MHz/2*5.33/2 = 16MHz 
+              #endif
+  11   1       
+  12   1      #if (MCU_SYSCLK == 24000000)
+                      // SysClk=24MHz CpuClk=24MHz
+                      CLK_SetCKCON0(IHRCO_12MHz|ENABLE_CKM|CKM_OSCIN_DIV_2|CPUCLK_SYSCLK_DIV_1|SYSCLK_MCKDO_DIV_1);
+                      DelayXus(100);
+                      // IHRCO, MCK=CKMIx4, OSCin=IHRCO
+                      CLK_SetCKCON2(ENABLE_IHRCO|MCK_CKMI_X4|OSCIn_IHRCO);
+              #endif
+  19   1          
+  20   1      #if (MCU_SYSCLK == 4000000)
+                  CLK_SetCKCON0(IHRCO_12MHz|ENABLE_CKM|CKM_OSCIN_DIV_2|CPUCLK_SYSCLK_DIV_1|SYSCLK_MCKDO_DIV_1);
+                  DelayXus(100);
+                  CLK_SetCKCON2(ENABLE_IHRCO|MCK_CKMI_X533|OSCIn_IHRCO);  
+                  DelayXus(100);
+                  CLK_SetCKCON3(0x0E);                                    //12MHz/2*5.33/8 = 4MHz 
+              #endif
+  27   1      
+  28   1      #if (MCU_SYSCLK == 6000000)
+                  CLK_SetCKCON2(ENABLE_IHRCO);
+                  DelayXus(100);
+                  CLK_SetCKCON3(0x06);                                    //12MHz/2
+                  DelayXus(100);
+              #endif
+  34   1      
+  35   1      #if (MCU_SYSCLK == 3000000)
+  36   1          CLK_SetCKCON2(ENABLE_IHRCO);
+  37   1          DelayXus(100);
+  38   1          CLK_SetCKCON3(0x0A);                                    //12MHz/4
+  39   1          DelayXus(100);
+  40   1      #endif
+  41   1      }
+  42          
+  43          
+  44          void Init_WDT(void)
+  45          {
+  46   1          PCON1 |= WDTF;
+  47   1          WDT_SetClock_32K_DIV_16_256ms();
+  48   1          WDT_EnReset();
+  49   1              WDT_Enable();           // 使能看门狗
+  50   1      }
+  51          
+  52          void ClearWDT(void)
+  53          {
+  54   1          WDT_Clear();
+C51 COMPILER V9.60.0.0   SYS                                                               03/18/2022 11:19:26 PAGE 2   
+
+  55   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     91    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

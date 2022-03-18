@@ -1,0 +1,95 @@
+C51 COMPILER V9.60.0.0   ADC                                                               03/18/2022 11:19:30 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE ADC
+OBJECT MODULE PLACED IN .\Objects\adc.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\src\adc.c OPTIMIZE(0,SPEED) BROWSE INCDIR(.\include;.\user\inc) DEB
+                    -UG OBJECTEXTEND PRINT(.\Listings\adc.lst) OBJECT(.\Objects\adc.obj)
+
+line level    source
+
+   1          #include "adc.h"
+   2          
+   3          
+   4          void Init_Adc(void)
+   5          {
+   6   1          PORT_SetP1AInputOnly(BIT0);                 //设置P10仅输入，做ADC输入通道
+   7   1          
+   8   1              ADC_Enable();                                           // 使能ADC
+   9   1              ADC_SetClock_SYSCLKDiv2();                      // ADC转换时钟为 SYSCLK       转换率= ADC_CLK/30
+  10   1          //ADC_SetClock_SYSCLKDiv4();
+  11   1              ADC_SetMode_SetADCS();                          // ADC启动模式, 置ADCS
+  12   1              ADC_SetRightJustified();                        // ADC转换数据右对齐
+  13   1      
+  14   1              //ADC_SetVREF_IVR24();                          // 设置VREF+ 为内部2.4V
+  15   1          ADC_SetVREF_VDDA();
+  16   1      
+  17   1              ADC_SetChannel_AIN0();                          // 选择通道为AIN0(P10)
+  18   1      
+  19   1          INT_EnADC();                        // 开启中断
+  20   1      }
+  21          
+  22          
+  23          
+  24          void INT_ADC(void) interrupt INT_VECTOR_ADC
+  25          {
+  26   1          xdata WordTypeDef wAdcValue;
+  27   1          wAdcValue.B.BHigh = ADCDH;
+  28   1          wAdcValue.B.BLow = ADCDL;
+  29   1          RAM_BAT_SUM += (wAdcValue.W & 0x0FFF);
+  30   1          RAM_BAT_CNT++;
+  31   1          ADCON0 = ADCON0 & (~ADCI);                                  // 清标志位
+  32   1          ADC_SoftStart();
+  33   1          if(RAM_BAT_CNT >= 20)
+  34   1          {
+  35   2              INT_DisADC();                               //关闭ADC中断
+  36   2              ADC_Disable();                              //关闭ADC
+  37   2                      RAM_BAT_CNT = 0;
+  38   2                      RAM_BAT_AVG = RAM_BAT_SUM / 20;
+  39   2              BAT_Voltage_value = 921600 / RAM_BAT_AVG;   //采集电压0.9V.
+  40   2                      RAM_BAT_SUM = 0;
+  41   2          }
+  42   1      }
+  43          
+  44          
+  45          void Adc_Start(void)
+  46          {
+  47   1          ADC_SoftStart();
+  48   1      }
+  49          
+  50          void AD_control(void)
+  51          {
+  52   1          if(TIME_power_on_AD)
+  53   1          {
+  54   2            if(BAT_Voltage_value>2400)BAT_out=0;
+C51 COMPILER V9.60.0.0   ADC                                                               03/18/2022 11:19:30 PAGE 2   
+
+  55   2            else if((BAT_Voltage_value<=2400)&&(BAT_Voltage_value>2200))BAT_out=1;
+  56   2            else BAT_out=2; 
+  57   2          }
+  58   1      }
+  59          /*
+  60          u16 Get_Adc_Value(void)
+  61          {
+  62                  xdata WordTypeDef wAdcValue;
+  63                  ADCON0 = ADCON0|ADCS;                                                   // 置位ADCS,启动ADC
+  64              while((ADCON0&ADCI)==0);                                    // 等待ADC转换完成
+  65              wAdcValue.B.BHigh=ADCDH;
+  66              wAdcValue.B.BLow=ADCDL;
+  67                  ADCON0 = ADCON0&(~ADCI);                                        // 清标志位
+  68                  return wAdcValue.W&0x0FFF;
+  69          }*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    379    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      2    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

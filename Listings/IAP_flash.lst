@@ -1,0 +1,334 @@
+C51 COMPILER V9.60.0.0   IAP_FLASH                                                         03/18/2022 11:19:28 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE IAP_FLASH
+OBJECT MODULE PLACED IN .\Objects\IAP_flash.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\src\IAP_flash.c OPTIMIZE(0,SPEED) BROWSE INCDIR(.\include;.\user\in
+                    -c) DEBUG OBJECTEXTEND PRINT(.\Listings\IAP_flash.lst) OBJECT(.\Objects\IAP_flash.obj)
+
+line level    source
+
+   1          #include "IAP_flash.h"
+   2          
+   3          /* 
+   4          
+   5          IAP Flash空间: 1024Byte -> 0x7600 ~ 0x79FF.
+   6          255个ID: 255 * 3 = 765byte -> 0x7600 ~ 0x78FC; 普通ID
+   7          Addr_rf_offset -> 0x79FA; 射频偏移量
+   8          ID_SCX1801_DATA -> 0x79FB ~ 0x79FD; 通信ID
+   9          ID_DATA_PCS -> 0x79FE ~ 0X79FF. ID数量
+  10          
+  11          */
+  12          
+  13          
+  14          
+  15          
+  16          void Init_IAP_flash(void)
+  17          {
+  18   1          /* IAP时基设置 */
+  19   1          CLK_SetIAPTimeBase(12);     //12MHz
+  20   1          
+  21   1          /* 设置IAP起始地址 */
+  22   1          IAP_WritePPage(IAPLB_P,IAP_ADDRESS/256);
+  23   1      }
+  24          
+  25          
+  26          
+  27          /***********************************************************************************
+  28          函数名称:void IAP_WritePPage(u8 PsfrAddr,u8 PsfrData)
+  29          功能描述:写P页特殊功能器
+  30          输入参数:   
+  31                           u8 PsfrAddr: P页地址,u8 PsfrData:  P页内容
+  32          返回参数:     
+  33          *************************************************************************************/
+  34          void IAP_WritePPage(u8 PsfrAddr,u8 PsfrData)
+  35          {
+  36   1              bit bEA=EA;
+  37   1              EA = 0;                                         //关中断
+  38   1              IFADRH = 0;                             //IFADRH必须为0
+  39   1              IFADRL= PsfrAddr;                       //送P页地址;
+  40   1              IFD= PsfrData;                          //送P页内容
+  41   1              IFMT = ISP_WRITE_P;
+  42   1              ISPCR = 0x80;                           //设置等待时间, 允许ISP/IAP操作
+  43   1              //CheckTrapFlag();
+  44   1              SCMD = 0x46;
+  45   1              //CheckTrapFlag();
+  46   1              SCMD = 0xB9;
+  47   1              nop();
+  48   1              IFMT=0;
+  49   1              ISPCR = 0;                                      //清ISP/IAP特殊寄存器，防止误操作
+  50   1              EA = bEA;                                       //恢复中断
+  51   1      }
+  52          
+  53          
+  54          /***********************************************************************************
+C51 COMPILER V9.60.0.0   IAP_FLASH                                                         03/18/2022 11:19:28 PAGE 2   
+
+  55          函数名称:   u8 IAP_ReadPPage(u8 PsfrAddr)
+  56          功能描述:读取P页特殊功能器内容
+  57          输入参数:   
+  58                           u8 PsfrAddr: P页地址
+  59          返回参数:     
+  60                           u8: P页内容
+  61          *************************************************************************************/
+  62          /*
+  63          u8 IAP_ReadPPage(u8 PsfrAddr)
+  64          {
+  65                  bit bEA=EA;
+  66                  EA = 0;                                         //关中断
+  67                  IFADRH = 0;                             //IFADRH必须为0
+  68                  IFADRL= PsfrAddr;                       //送P页地址;
+  69                  IFMT = ISP_READ_P;
+  70                  ISPCR = 0x80;                           //设置等待时间, 允许ISP/IAP操作
+  71                  //CheckTrapFlag();
+  72                  SCMD = 0x46;
+  73                  //CheckTrapFlag();
+  74                  SCMD = 0xB9;
+  75                  nop();
+  76                  IFMT=0;
+  77                  ISPCR = 0;                                      //清ISP/IAP特殊寄存器，防止误操作
+  78                  EA = bEA;                                       //恢复中断
+  79                  return IFD;
+  80          }*/
+  81          
+  82          
+  83          
+  84          
+  85          /***********************************************************************************
+  86          函数名称:void IAP_ErasePage(u8 ByteAddr)
+  87          功能描述:页面擦除, 擦除指定地址所在的页面。
+  88                          擦除一个页面大约需要30ms
+  89          输入参数:   8
+  90                           u8 ByteAddr: 指定的页面地址高8位 IAP_ErasePage((IAP_ADDRESS)/256);擦除后值为0xFF
+  91          *************************************************************************************/
+  92          /*
+  93          void IAP_ErasePage(u8 ByteAddr)
+  94          {
+  95                          bit bEA=EA; 
+  96                          IFADRH = ByteAddr;              //送地址高字节
+  97                          IFADRL= 0x00;                   //送地址低字节;
+  98                          EA = 0;                                 //关中断
+  99                          IFMT = ISP_ERASE;
+ 100                          ISPCR = 0x80;                   //允许ISP/IAP操作
+ 101                          //CheckTrapFlag();
+ 102                          SCMD = 0x46;
+ 103                          //CheckTrapFlag();
+ 104                          SCMD = 0xB9;
+ 105                          nop();
+ 106                          IFMT=0;
+ 107                          ISPCR = 0;                                      //清ISP/IAP特殊寄存器，防止误操作
+ 108                          EA = bEA;                                       //恢复中断
+ 109          }*/
+ 110          
+ 111          
+ 112          
+ 113          
+ 114          /***********************************************************************************
+ 115          函数名称:               u8 IAP_WriteBuf_With_Protect_Verify(u16 ByteAddr,u8 *pBuf,u16 Cnt)
+ 116          功能描述:               写一串数据到IAP指定地址
+C51 COMPILER V9.60.0.0   IAP_FLASH                                                         03/18/2022 11:19:28 PAGE 3   
+
+ 117                                  会使用到512字节XDATA保存扇区原有数据
+ 118                                  写入一个字节数据大约需要80us
+ 119          输入参数:   
+ 120                                  u16 ByteAddr: 指定的IAP地址, u8 *pBuf: 待写入数据Buf地址，u16 Cnt: 待写入个数
+ 121          返回参数:     
+ 122                                  u8 0：成功,     other:失败
+ 123          *************************************************************************************/
+ 124          u8 IAP_WriteBuf_With_Protect_Verify(u16 ByteAddr,u8 *pBuf,u16 Cnt)
+ 125          {
+ 126   1                      xdata u8 TempBuf[512]; 
+ 127   1                      xdata u16 i;
+ 128   1                      xdata u8 ErrCnt;
+ 129   1                      xdata WordTypeDef SectorAddr;
+ 130   1                      bit bEA = EA;
+ 131   1                      // 读取待烧录扇区原有数据到临时缓冲
+ 132   1                      EA = 0;
+ 133   1                      ErrCnt = 0;
+ 134   1                      
+ 135   1                      SectorAddr.W=ByteAddr&0xFE00;
+ 136   1                      for(i = 0;i < 512; i++)
+ 137   1                      {
+ 138   2                              IFADRH = SectorAddr.B.BHigh;//送地址高字节
+ 139   2                              IFADRL= SectorAddr.B.BLow;      //送地址低字节;
+ 140   2                              IFMT = ISP_READ;
+ 141   2                              ISPCR = 0x80;                           //允许ISP/IAP操作
+ 142   2                              SCMD = 0x46;
+ 143   2                              SCMD = 0xB9;
+ 144   2                              IFMT = 0;
+ 145   2                              ISPCR = 0;                                      //清ISP/IAP特殊寄存器，防止误操作
+ 146   2                              SectorAddr.W++;
+ 147   2                              TempBuf[i] = IFD;
+ 148   2                  ClearWDT();
+ 149   2                      }
+ 150   1                      // 更改需写入的数据
+ 151   1                      i = ByteAddr & 0x01FF;
+ 152   1                      while(Cnt != 0)
+ 153   1                      {
+ 154   2                              TempBuf[i] = *pBuf;
+ 155   2                              pBuf++;
+ 156   2                              i++;
+ 157   2                              Cnt--;
+ 158   2                      }
+ 159   1              Err_Loop:
+ 160   1                      // 擦除扇区
+ 161   1                      SectorAddr.W = ByteAddr&0xFE00;
+ 162   1                      IFADRH = SectorAddr.B.BHigh;    //送地址高字节
+ 163   1                      IFADRL= 0x00;                                   //送地址低字节;
+ 164   1                      IFMT = ISP_ERASE;
+ 165   1                      ISPCR = 0x80;                                   //允许ISP/IAP操作
+ 166   1                      //CheckTrapFlag();
+ 167   1                      SCMD = 0x46;
+ 168   1                      //CheckTrapFlag();
+ 169   1                      SCMD = 0xB9;
+ 170   1                      nop();
+ 171   1                      IFMT = 0;
+ 172   1                      ISPCR = 0;                                              //清ISP/IAP特殊寄存器，防止误操作
+ 173   1                      // 将更改后的数据写入IAP
+ 174   1                      for(i = 0;i < 512; i++)
+ 175   1                      {
+ 176   2                              IFD = TempBuf[i];                       //送所要写的数据        
+ 177   2                              IFADRH = SectorAddr.B.BHigh;    //送地址高字节
+ 178   2                              IFADRL= SectorAddr.B.BLow;      //送地址低字节;
+C51 COMPILER V9.60.0.0   IAP_FLASH                                                         03/18/2022 11:19:28 PAGE 4   
+
+ 179   2                              IFMT = ISP_WRITE;
+ 180   2                              ISPCR = 0x80;               //允许ISP/IAP操作
+ 181   2                              //CheckTrapFlag();
+ 182   2                              SCMD = 0x46;
+ 183   2                              //CheckTrapFlag();
+ 184   2                              SCMD = 0xB9;
+ 185   2                              nop();
+ 186   2                              IFMT = 0;
+ 187   2                              ISPCR = 0;                                      //清ISP/IAP特殊寄存器，防止误操作
+ 188   2                              SectorAddr.W++;
+ 189   2                  ClearWDT();
+ 190   2                      }
+ 191   1                      // 校验数据是否正确
+ 192   1                      SectorAddr.W=ByteAddr&0xFE00;
+ 193   1                      for(i = 0;i < 512; i++)
+ 194   1                      {
+ 195   2                              IFADRH = SectorAddr.B.BHigh;//送地址高字节
+ 196   2                              IFADRL= SectorAddr.B.BLow;      //送地址低字节;
+ 197   2                              IFMT = ISP_READ;
+ 198   2                              ISPCR = 0x80;                           //允许ISP/IAP操作
+ 199   2                              //CheckTrapFlag();
+ 200   2                              SCMD = 0x46;
+ 201   2                              //CheckTrapFlag();
+ 202   2                              SCMD = 0xB9;
+ 203   2                              IFMT = 0;
+ 204   2                              ISPCR = 0;                                      //清ISP/IAP特殊寄存器，防止误操作
+ 205   2                              SectorAddr.W++;
+ 206   2                  ClearWDT();
+ 207   2                              if(TempBuf[i] != IFD)
+ 208   2                              {
+ 209   3                                      ErrCnt++;
+ 210   3                                      if(ErrCnt<ERR_CNT_MAX)
+ 211   3                                      {
+ 212   4                                              goto Err_Loop;
+ 213   4                                      }
+ 214   3                                      else
+ 215   3                                      {
+ 216   4                                              goto Err_Return;
+ 217   4                                      }
+ 218   3                              }
+ 219   2                      }
+ 220   1                      ErrCnt = 0;
+ 221   1              Err_Return:
+ 222   1                      EA = bEA;                                       //恢复中断
+ 223   1                      return ErrCnt;          
+ 224   1      }
+ 225          
+ 226          /*
+ 227          void IAP_Write_Byte(u16 Addr, u8 wdata)
+ 228          {
+ 229              bit bEA = EA;
+ 230              EA = 0;
+ 231              IFD = wdata;                            //送所要写的数据    
+ 232              IFADRH = (Addr >> 8) & 0xff;        //送地址高字节
+ 233              IFADRL = Addr & 0xff;           //送地址低字节;
+ 234              IFMT = ISP_WRITE;
+ 235              ISPCR = 0x80;               //允许ISP/IAP操作
+ 236              SCMD = 0x46;
+ 237              SCMD = 0xB9;
+ 238              nop();
+ 239              IFMT = 0;
+ 240              ISPCR = 0;  
+C51 COMPILER V9.60.0.0   IAP_FLASH                                                         03/18/2022 11:19:28 PAGE 5   
+
+ 241              EA = bEA;    
+ 242          }*/
+ 243          
+ 244          
+ 245          void eeprom_sys_load(void)
+ 246          {
+ 247   1          xdata uni_rom_id Init_ID_data;
+ 248   1          idata u8 offset = 0;
+ 249   1          
+ 250   1          rom_KeyOpt = IAP_ReadByteByMOVC(addr_eeprom_sys + Addr_rom_KeyOpt);
+ 251   1          if(rom_KeyOpt > 1)  rom_KeyOpt = 0;
+ 252   1          
+ 253   1              Init_ID_data.IDB[0] = 0;
+ 254   1              Init_ID_data.IDB[1] = IAP_ReadByteByMOVC(addr_eeprom_sys + 0x3FB);
+ 255   1              Init_ID_data.IDB[2] = IAP_ReadByteByMOVC(addr_eeprom_sys + 0x3FC);
+ 256   1              Init_ID_data.IDB[3] = IAP_ReadByteByMOVC(addr_eeprom_sys + 0x3FD);
+ 257   1              if ((Init_ID_data.IDC == 0) || (Init_ID_data.IDC == 0xFFFFFF))  Init_ID_data.IDC = 0;
+ 258   1              ID_data.IDC = Init_ID_data.IDC;
+ 259   1          
+ 260   1          offset = IAP_ReadByteByMOVC(addr_eeprom_sys + Addr_rf_offset);
+ 261   1          if(0 < offset && offset <= 10)
+ 262   1          {
+ 263   2              rf_offset = offset;
+ 264   2              PROFILE_CH_FREQ_32bit_200002EC = 426075000 + 150 * offset;
+ 265   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_426_075);
+ 266   2      
+ 267   2              PROFILE_CH_FREQ_32bit_200002EC = 426750000 + 150 * offset;
+ 268   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_426_750);
+ 269   2      
+ 270   2              PROFILE_CH_FREQ_32bit_200002EC = 429175000 + 150 * offset;
+ 271   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_429_175);
+ 272   2      
+ 273   2              PROFILE_CH_FREQ_32bit_200002EC = 429350000 + 150 * offset;
+ 274   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_429_350);
+ 275   2      
+ 276   2              PROFILE_CH_FREQ_32bit_200002EC = 429550000 + 150 * offset;
+ 277   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_429_550);
+ 278   2          }
+ 279   1          else if(10 < offset && offset <= 20)
+ 280   1          {
+ 281   2              rf_offset = offset;
+ 282   2              offset = offset - 10;
+ 283   2              PROFILE_CH_FREQ_32bit_200002EC = 426075000 - 150 * offset;
+ 284   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_426_075);
+ 285   2      
+ 286   2              PROFILE_CH_FREQ_32bit_200002EC = 426750000 - 150 * offset;
+ 287   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_426_750);
+ 288   2      
+ 289   2              PROFILE_CH_FREQ_32bit_200002EC = 429175000 - 150 * offset;
+ 290   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_429_175);
+ 291   2      
+ 292   2              PROFILE_CH_FREQ_32bit_200002EC = 429350000 - 150 * offset;
+ 293   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_429_350);
+ 294   2      
+ 295   2              PROFILE_CH_FREQ_32bit_200002EC = 429550000 - 150 * offset;
+ 296   2              ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC,Fre_429_550);
+ 297   2          }
+ 298   1          else {}
+ 299   1          
+ 300   1      }
+
+
+C51 COMPILER V9.60.0.0   IAP_FLASH                                                         03/18/2022 11:19:28 PAGE 6   
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1528    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =    521    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      9    ----
+   IDATA SIZE       =      1    ----
+   BIT SIZE         =      2    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

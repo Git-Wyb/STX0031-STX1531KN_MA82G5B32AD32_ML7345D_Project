@@ -1,0 +1,386 @@
+C51 COMPILER V9.60.0.0   UART                                                              03/18/2022 11:19:27 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE UART
+OBJECT MODULE PLACED IN .\Objects\uart.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\src\uart.c OPTIMIZE(0,SPEED) BROWSE INCDIR(.\include;.\user\inc) DE
+                    -BUG OBJECTEXTEND PRINT(.\Listings\uart.lst) OBJECT(.\Objects\uart.obj)
+
+line level    source
+
+   1          #include "uart.h"
+   2          
+   3          #if (MCU_SYSCLK == 16000000)
+              #define BAUD_RATE    0x98
+              #endif
+   6          
+   7          #if (MCU_SYSCLK == 6000000)
+              #define BAUD_RATE     0xD9
+              #endif
+  10          
+  11          #if (MCU_SYSCLK == 4000000)
+              #define BAUD_RATE     0xE6
+              #endif
+  14          
+  15          #if (MCU_SYSCLK == 3000000)
+  16          #define BAUD_RATE     0xED
+  17          #endif
+  18          
+  19          
+  20          xdata u8 uart0_rx_len = 0;
+  21          xdata u8 uart0_tx_len = 0;
+  22          
+  23          xdata u8 UartStatus = FrameHeadSataus;
+  24          xdata u8 UartLen = 0;
+  25          xdata u8 UartCount = 0;
+  26          xdata u8 UART_DATA_buffer[UartBuff_MaxLength] = {0};
+  27          xdata u8 UART_DATA_ID98[41] = {0};
+  28          
+  29          xdata __Databits_t Databits_t = {0};
+  30          xdata __U1Statues U1Statues = {0};
+  31          xdata u8 ACKBack[3] = {0x02, 0x03, 0x00};
+  32          xdata u8 U1AckTimer = 0;
+  33          
+  34          xdata u8 FLAG_testNo91=0;
+  35          xdata u8 FLAG_testBEEP=0;
+  36          xdata u8 FLAG_testNo91_step=0;
+  37          xdata u8 FLAG_testNo91SendUart=0;
+  38          
+  39          
+  40          /***********************************************************************************
+  41          函数名称:   void InitUart0_S1BRG(void)
+  42          功能描述:   Uart0初始化
+  43                           使用S1BRG作为波特率来源
+  44          输入参数:   
+  45          返回参数:     
+  46          *************************************************************************************/
+  47          /*
+  48          void Init_Uart0_S1BRG(void)
+  49          {
+  50                  //PORT_SetP3QuasiBi(BIT0|BIT1|BIT3|BIT4|BIT5);          // 设置 P30,P31作为准双向口
+  51              
+  52                  UART0_SetMode8bitUARTVar();                     // 8位 可变波特率
+  53                  UART0_EnReception();                            // 使能UART1接收数据
+  54                  
+C51 COMPILER V9.60.0.0   UART                                                              03/18/2022 11:19:27 PAGE 2   
+
+  55                  UART0_SetBRGFromS1BRG();                        // 设置波特率来源为 S1BRG
+  56                  UART0_SetS1BRGBaudRateX2();                     // 设置2x波特率
+  57                  UART1_SetS1BRGSelSYSCLK();                      // 设置S1BRG时钟输入为Sysclk
+  58          
+  59              // 设置波特率
+  60                  UART1_SetS1BRGValue(S1BRG_BRGRL_9600_2X_24000000_1T); 
+  61                  
+  62                  UART1_EnS1BRG();                                        // 开启S1BRG时钟
+  63          }
+  64          */
+  65          
+  66          //P119; 波特率baud: TH1 = 256 - (SYSCLK / (baud / ((2^SMOD1 * 2^(SMOD2*2))/32)))
+  67          void Init_Uart0_T1(void)
+  68          {
+  69   1          UART0_SetMode8bitUARTVar();                 // 8位 可变波特率
+  70   1              UART0_EnReception();                            // 使能UART0接收数据
+  71   1              
+  72   1              UART0_SetBRGFromT1();                           // 设置波特率来源为 T1
+  73   1              UART0_SetT1BaudRateX2();                        // 设置2x波特率,SMOD1=1,SMOD2=0
+  74   1      
+  75   1              TM_SetT1Mode_2_8BIT_AUTORELOAD();
+  76   1              TM_SetT1Clock_SYSCLK();
+  77   1              TM_SetT1Gate_Disable(); 
+  78   1      
+  79   1          // 设置波特率
+  80   1              TM_SetT1HighByte(BAUD_RATE);
+  81   1              TM_SetT1LowByte(BAUD_RATE);
+  82   1      
+  83   1              TM_EnableT1();
+  84   1          INT_EnUART0();                      //      使能串口中断
+  85   1      }
+  86          
+  87          void UART1_end(void)
+  88          {
+  89   1          TM_DisableT1();
+  90   1          INT_DisUART0();
+  91   1      }
+  92          /*
+  93          //P119; 波特率baud: TH1 = 256 - (SYSCLK / (baud / ((2^SMOD1 * 2^(SMOD2*2))/32)))
+  94          void Init_Uart0_T1_ODD(void)
+  95          {
+  96              UART0_SetMode9bitUARTVar();                 // 9位 可变波特率
+  97                  UART0_EnReception();                            // 使能UART0接收数据
+  98                   
+  99                  UART0_SetBRGFromT1();                           // 设置波特率来源为 T1
+ 100                  UART0_SetT1BaudRateX2();                        // 设置2x波特率,SMOD1=1,SMOD2=0
+ 101          
+ 102                  TM_SetT1Mode_2_8BIT_AUTORELOAD();   // 定时器1工作在8位自动重载定时器/计数模式
+ 103                  TM_SetT1Clock_SYSCLK();             // T1X12=1,
+ 104                  TM_SetT1Gate_Disable(); 
+ 105          
+ 106              // 设置波特率
+ 107          #if (MCU_SYSCLK == 16000000)
+ 108              TM_SetT1HighByte(T1_BRGRL_9600_2X_16000000_1T);
+ 109                  TM_SetT1LowByte(T1_BRGRL_9600_2X_16000000_1T);
+ 110          #endif
+ 111              
+ 112          #if (MCU_SYSCLK == 24000000)
+ 113                  TM_SetT1HighByte(T1_BRGRL_9600_2X_24000000_1T);
+ 114                  TM_SetT1LowByte(T1_BRGRL_9600_2X_24000000_1T);
+ 115          #endif
+ 116          
+C51 COMPILER V9.60.0.0   UART                                                              03/18/2022 11:19:27 PAGE 3   
+
+ 117                  TM_EnableT1();
+ 118              INT_EnUART0();                      //      使能串口中断
+ 119          }
+ 120          */
+ 121          
+ 122          
+ 123          /***********************************************************************************
+ 124          函数名称:   void INT_UART0(void)
+ 125          功能描述:UART0 中断服务程序
+ 126                           
+ 127          输入参数:   
+ 128          返回参数:     
+ 129          *************************************************************************************/
+ 130          void INT_UART0(void) interrupt INT_VECTOR_UART0
+ 131          {
+ 132   1          idata u8 dat = 0;
+ 133   1              _push_(SFRPI);             //保护SFRPI寄存器值
+ 134   1      
+ 135   1              SFR_SetPage(0);            /*设置0页寄存器*/  //S0CON仅0页操作
+ 136   1              if(TI0)                                 //发送中断内容
+ 137   1              { 
+ 138   2                 TI0 = 0;        
+ 139   2              }
+ 140   1              if(RI0)                                 //接收中断内容
+ 141   1              {
+ 142   2                      RI0 = 0;                                //清除中断标志
+ 143   2              dat = S0BUF;
+ 144   2              if(dat == '(') SIO_cnt = 0;
+ 145   2              SIO_buff[SIO_cnt] = dat;
+ 146   2              SIO_cnt = (SIO_cnt + 1) & 0x1F;
+ 147   2              if (dat == ')')
+ 148   2              {
+ 149   3                  for (dat = 0; dat < SIO_cnt; dat++)
+ 150   3                  {
+ 151   4                      SIO_DATA[dat] = SIO_buff[dat];
+ 152   4                  }
+ 153   3                  BIT_SIO = 1; // 标志
+ 154   3                  //SIO_TOT = 20;
+ 155   3              }
+ 156   2              }
+ 157   1              _pop_(SFRPI);              //恢复SFRPI寄存器值
+ 158   1      }
+ 159          
+ 160          /***********************************************************************************
+ 161          函数名称:void Uart0SendByte(u8 tByte)
+ 162          功能描述:Uart0发送数据
+ 163          输入参数:u8 tByte: 待发送的数据
+ 164          返回参数:     
+ 165          *************************************************************************************/
+ 166          void Uart0SendByte(u8 tByte)
+ 167          {
+ 168   1              bit bES;
+ 169   1              bES = ES0;
+ 170   1              ES0 = 0;
+ 171   1              S0BUF = tByte;
+ 172   1          //TB80 = P;   //校验位
+ 173   1              while(TI0 == 0);
+ 174   1              TI0 = 0;
+ 175   1              ES0 = bES;
+ 176   1      }
+ 177          
+ 178          /* 发送数据 */
+C51 COMPILER V9.60.0.0   UART                                                              03/18/2022 11:19:27 PAGE 4   
+
+ 179          void Send_Data(u8 *buff,u8 len)
+ 180          {
+ 181   1          xdata u8 i = 0;
+ 182   1          for(i=0; i<len; i++)
+ 183   1          {
+ 184   2              Uart0SendByte(buff[i]);
+ 185   2          }
+ 186   1      }
+ 187          
+ 188          unsigned char asc_hex(unsigned char asc) // HEX
+ 189          {
+ 190   1              xdata u8 i;
+ 191   1              if (asc < 0x3A)
+ 192   1                      i = asc & 0x0F;
+ 193   1              else
+ 194   1                      i = asc - 0x37;
+ 195   1              return i;
+ 196   1      }
+ 197          
+ 198          unsigned char hex_asc(unsigned char hex)
+ 199          {
+ 200   1              xdata u8 i;
+ 201   1              hex = hex & 0x0F;
+ 202   1              if (hex < 0x0A)
+ 203   1                      i = hex | 0x30;
+ 204   1              else
+ 205   1                      i = hex + 0x37;
+ 206   1              return i;
+ 207   1      }
+ 208          
+ 209          unsigned char asc_hex_2(unsigned char asc1, unsigned char asc0)
+ 210          {
+ 211   1              unsigned char i;
+ 212   1              i = (asc_hex(asc1) << 4) + (asc_hex(asc0) & 0x0F);
+ 213   1              return i;
+ 214   1      }
+ 215          
+ 216          
+ 217          /*************************************************
+ 218          函数名称: char putchar (char c)   
+ 219          功能描述: 用于printf 的串口输出程序
+ 220          输入参数:     char c
+ 221          输出参数:     
+ 222          *************************************************/
+ 223          /*
+ 224          char putchar (char c)   
+ 225          {      
+ 226                  bit bES;
+ 227                  bES=ES0;
+ 228              ES0=0;        
+ 229              S0BUF = c;        
+ 230              while(TI0==0);        
+ 231              TI0=0;        
+ 232              ES0=bES;        
+ 233              return 0;
+ 234          }*/
+ 235          
+ 236          xdata u32 PROFILE_CH_FREQ_32bit_200002EC_uart = 0;
+ 237          void PC_PRG(void)                                                               // ???????
+ 238          {
+ 239   1          xdata uni_rom_id UART_ID_data;
+ 240   1          xdata u8 send_ok[4] = {'(','O','K',')'};
+C51 COMPILER V9.60.0.0   UART                                                              03/18/2022 11:19:27 PAGE 5   
+
+ 241   1          xdata u8 re_byte = 0;
+ 242   1          xdata u8 send_ack[10] = {0x28,0x57,0x47,0x29,0x00,0x00,0x00,0x00,0x00,0x00};
+ 243   1              
+ 244   1              if (BIT_SIO){
+ 245   2                      BIT_SIO = 0;
+ 246   2                      //SIO_TOT = 20;
+ 247   2                      switch (SIO_DATA[1])
+ 248   2                      {
+ 249   3                      case 'W': 
+ 250   3                              //==================================== ID?葷?
+ 251   3                              if (SIO_DATA[2]=='G')                           // (WGd1d2d3) 
+ 252   3                              {
+ 253   4                                      UART_ID_data.IDB[0]=0;
+ 254   4                                      UART_ID_data.IDB[1] = asc_hex_2(SIO_buff[3],SIO_buff[4]);;
+ 255   4                                      UART_ID_data.IDB[2] = asc_hex_2(SIO_buff[5],SIO_buff[6]);;
+ 256   4                                      UART_ID_data.IDB[3] = asc_hex_2(SIO_buff[7],SIO_buff[8]);;               
+ 257   4                      ID_data.IDC= UART_ID_data.IDC;  
+ 258   4                      IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+0x3FB,&UART_ID_data.IDB[1],3);           
+             -     
+ 259   4                                      Send_Data(send_ok,4);
+ 260   4                              }                                 
+ 261   3                          break;
+ 262   3                      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 263   3                      //%                 ??????              %
+ 264   3                      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 265   3                      case 'R':   
+ 266   3                              //==================================== ID?葷?    //(RGx)
+ 267   3                              if (SIO_DATA[2]=='G')                 //????    // (RG)d1d2d3 
+ 268   3                              {
+ 269   4                                      send_ack[0] = 0x28;
+ 270   4                                      send_ack[1] = 0x52;
+ 271   4                                      send_ack[2] = 0x47;
+ 272   4                                      send_ack[3] = 0x29;
+ 273   4                                      
+ 274   4                                      send_ack[4] = hex_asc(ID_data.IDB[1] / 16);
+ 275   4                                      send_ack[5] = hex_asc(ID_data.IDB[1] % 16);
+ 276   4                                      send_ack[6] = hex_asc(ID_data.IDB[2] / 16);
+ 277   4                                      send_ack[7] = hex_asc(ID_data.IDB[2] % 16);
+ 278   4                                      send_ack[8] = hex_asc(ID_data.IDB[3] / 16);
+ 279   4                                      send_ack[9] = hex_asc(ID_data.IDB[3] % 16);
+ 280   4                                      Send_Data(send_ack,10);
+ 281   4                              }                                 
+ 282   3                          break;
+ 283   3                      case 'S':
+ 284   3                              FG_test_mode = 0;
+ 285   3                              dd_set_ML7345D_Power_on();
+ 286   3                  PROFILE_CH_FREQ_32bit_200002EC = 429175000;
+ 287   3                              RF_ML7345_Init(Fre_429_175,0x15,12);
+ 288   3                  Tx_Data_Test(0);
+ 289   3                              Send_Data(send_ok,4);
+ 290   3                              break;
+ 291   3                      case 'E':
+ 292   3                              if(SIO_DATA[2] == 'N' && SIO_DATA[3] == 'D')
+ 293   3                              {
+ 294   4                      ML7345_SetAndGet_State(Force_TRX_OFF);
+ 295   4                      SpiGpio_UnInit();
+ 296   4                                      ML7345D_POWER = FG_NOT_allow_out;
+ 297   4                                      FG_test_mode = 0; 
+ 298   4                                      Send_Data(send_ok,4);
+ 299   4                              }
+ 300   3                              break;
+ 301   3                      case 'F':
+C51 COMPILER V9.60.0.0   UART                                                              03/18/2022 11:19:27 PAGE 6   
+
+ 302   3                              if(SIO_DATA[2]=='M')
+ 303   3                              {
+ 304   4                                      FG_test_mode = 1;
+ 305   4                      dd_set_ML7345D_Power_on();
+ 306   4                      PROFILE_CH_FREQ_32bit_200002EC = 429175000;
+ 307   4                      RF_ML7345_Init(Fre_429_175,0x15,12);
+ 308   4                      Tx_Data_Test(1);
+ 309   4                                      Send_Data(send_ok,4);
+ 310   4                              }
+ 311   3                              else if (SIO_DATA[2]=='C' && SIO_DATA[3]=='?')
+ 312   3                              {
+ 313   4                                      send_ack[0] = '(';
+ 314   4                                      send_ack[1] = 'F';
+ 315   4                                      send_ack[2] = 'C';
+ 316   4                                      send_ack[3] = ')';
+ 317   4                                      send_ack[4] = hex_asc(rf_offset / 16);
+ 318   4                                      send_ack[5] = hex_asc(rf_offset % 16);
+ 319   4                                      Send_Data(send_ack,6);
+ 320   4                              }
+ 321   3                              else if (SIO_DATA[2]=='C' && FG_test_mode == 1)
+ 322   3                              {
+ 323   4                                      re_byte = asc_hex_2(SIO_buff[3],SIO_buff[4]);   
+ 324   4                      ML7345_SetAndGet_State(Force_TRX_OFF);                          
+ 325   4                                      if(re_byte <= 10) //frequency +
+ 326   4                      {
+ 327   5                          rf_offset = re_byte;
+ 328   5                          IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rf_offset,&rf_offset,1);
+ 329   5                          PROFILE_CH_FREQ_32bit_200002EC_uart = 429175000 + 150 * re_byte;
+ 330   5                          ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_429_175);
+ 331   5                          ML7345_Frequency_Set(Fre_429_175,1);
+ 332   5                          Send_Data(send_ok,4);
+ 333   5                      }
+ 334   4                      else if(10 < re_byte && re_byte <= 20) //frequency -
+ 335   4                      {
+ 336   5                          rf_offset = re_byte;
+ 337   5                          IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rf_offset,&rf_offset,1);
+ 338   5                          re_byte = re_byte - 10;
+ 339   5                          PROFILE_CH_FREQ_32bit_200002EC_uart = 429175000 - 150 * re_byte;
+ 340   5                          ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_429_175);
+ 341   5                          ML7345_Frequency_Set(Fre_429_175,1);
+ 342   5                          Send_Data(send_ok,4);
+ 343   5                      }
+ 344   4                      Tx_Data_Test(1);
+ 345   4                              }
+ 346   3                              break;
+ 347   3                      default:
+ 348   3                              break;          
+ 349   3                      }
+ 350   2              }
+ 351   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1502    ----
+   CONSTANT SIZE    =     14    ----
+   XDATA SIZE       =    126    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10    ----
+   IDATA SIZE       =      1    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
