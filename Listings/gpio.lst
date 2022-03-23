@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   GPIO                                                              03/18/2022 11:19:26 PAGE 1   
+C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 11:00:31 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE GPIO
@@ -60,9 +60,9 @@ line level    source
   50   1          PIN_POWER_CONTROL = 0;
   51   1          ML7345D_POWER = FG_NOT_allow_out;
   52   1          
-  53   1          PORT_SetP2OpenDrain(BIT2|BIT3|BIT4|BIT6);
+  53   1          PORT_SetP2OpenDrain(BIT2|BIT3|BIT4|BIT6);           //未用IO口全部设为输入
   54   1          P22=1;P23=1;P24=1;P26=1;
-C51 COMPILER V9.60.0.0   GPIO                                                              03/18/2022 11:19:26 PAGE 2   
+C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 11:00:31 PAGE 2   
 
   55   1          PORT_SetP3InputOnly(BIT2);
   56   1          PORT_SetP4OpenDrain(BIT1);
@@ -79,8 +79,7 @@ line level    source
   67          
   68          void SpiGpio_UnInit(void)
   69          {
-  70   1          PORT_SetP1OpenDrain(BIT4|BIT5|BIT6|BIT7);                                   // 设置P15(MOSI),P17(SPICLK)为准双向口                                          // 设置P16(M
-             -ISO)为准双向口
+  70   1          PORT_SetP1OpenDrain(BIT4|BIT5|BIT6|BIT7);
   71   1          P16 = 1;                                            // 输入
   72   1          P14 = 1;P15 = 1;P17 = 1;
   73   1              //PORT_EnP14P15P16P17PullHigh();
@@ -126,9 +125,9 @@ line level    source
  113          输入参数:   
  114          返回参数: 
  115          
-C51 COMPILER V9.60.0.0   GPIO                                                              03/18/2022 11:19:26 PAGE 3   
-
  116          用于ML7345D发送接收完成中断。
+C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 11:00:31 PAGE 3   
+
  117          
  118          *************************************************************************************/
  119          void INT_INT0(void)             interrupt INT_VECTOR_INT0
@@ -190,9 +189,9 @@ line level    source
  175              }
  176              return 0;    
  177          }*/
-C51 COMPILER V9.60.0.0   GPIO                                                              03/18/2022 11:19:26 PAGE 4   
-
  178          
+C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 11:00:31 PAGE 4   
+
  179          
 
 

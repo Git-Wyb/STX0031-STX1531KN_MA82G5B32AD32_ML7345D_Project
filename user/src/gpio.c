@@ -50,7 +50,7 @@ void Init_Port(void)
     PIN_POWER_CONTROL = 0;
     ML7345D_POWER = FG_NOT_allow_out;
     
-    PORT_SetP2OpenDrain(BIT2|BIT3|BIT4|BIT6);
+    PORT_SetP2OpenDrain(BIT2|BIT3|BIT4|BIT6);           //未用IO口全部设为输入
     P22=1;P23=1;P24=1;P26=1;
     PORT_SetP3InputOnly(BIT2);
     PORT_SetP4OpenDrain(BIT1);
@@ -67,7 +67,7 @@ void SpiGpio_Init(void)
 
 void SpiGpio_UnInit(void)
 {
-    PORT_SetP1OpenDrain(BIT4|BIT5|BIT6|BIT7);					// 设置P15(MOSI),P17(SPICLK)为准双向口						// 设置P16(MISO)为准双向口
+    PORT_SetP1OpenDrain(BIT4|BIT5|BIT6|BIT7);
     P16 = 1;                                            // 输入
     P14 = 1;P15 = 1;P17 = 1;
 	//PORT_EnP14P15P16P17PullHigh();

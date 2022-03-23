@@ -4,7 +4,7 @@
 //#include <stdbool.h> /* For true/false definition                      */
 //#include <stdio.h>
 #include "spi.h"
-#include "gpio.h" // 芯片引脚定于
+#include "gpio.h"
 #include "ram.h"
 #include "ID_Decode.h"
 #include "Type.h"

@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   SYS                                                               03/18/2022 11:19:26 PAGE 1   
+C51 COMPILER V9.60.0.0   SYS                                                               03/23/2022 11:00:30 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SYS
@@ -62,7 +62,7 @@ line level    source
   52          void ClearWDT(void)
   53          {
   54   1          WDT_Clear();
-C51 COMPILER V9.60.0.0   SYS                                                               03/18/2022 11:19:26 PAGE 2   
+C51 COMPILER V9.60.0.0   SYS                                                               03/23/2022 11:00:30 PAGE 2   
 
   55   1      }
 

@@ -16,7 +16,7 @@
 void main()
 {
     Init_WDT();
-    Init_Clock();
+    Init_Clock(); 
     Init_IAP_flash();
     Init_Timer0();
     eeprom_sys_load();
@@ -30,7 +30,7 @@ void main()
     INT_EnAll();
     Adc_Start();
     TIME_power_on_AD = 30;
-
+    
     while(1) 
     {
         ClearWDT();
