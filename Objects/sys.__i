@@ -1,0 +1,1 @@
+"user\src\sys.c" OPTIMIZE (0,SPEED) BROWSE INCDIR(.\include;.\user\inc) DEBUG OBJECTEXTEND PRINT(.\Listings\sys.lst) OBJECT(.\Objects\sys.obj)

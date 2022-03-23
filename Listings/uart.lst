@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 11:00:33 PAGE 1   
+C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 17:17:43 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE UART
@@ -62,7 +62,7 @@ line level    source
   52                  UART0_SetMode8bitUARTVar();                     // 8位 可变波特率
   53                  UART0_EnReception();                            // 使能UART1接收数据
   54                  
-C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 11:00:33 PAGE 2   
+C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 17:17:43 PAGE 2   
 
   55                  UART0_SetBRGFromS1BRG();                        // 设置波特率来源为 S1BRG
   56                  UART0_SetS1BRGBaudRateX2();                     // 设置2x波特率
@@ -126,7 +126,7 @@ line level    source
  114                  TM_SetT1LowByte(T1_BRGRL_9600_2X_24000000_1T);
  115          #endif
  116          
-C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 11:00:33 PAGE 3   
+C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 17:17:43 PAGE 3   
 
  117                  TM_EnableT1();
  118              INT_EnUART0();                      //      使能串口中断
@@ -190,7 +190,7 @@ line level    source
  176   1      }
  177          
  178          /* 发送数据 */
-C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 11:00:33 PAGE 4   
+C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 17:17:43 PAGE 4   
 
  179          void Send_Data(u8 *buff,u8 len)
  180          {
@@ -254,7 +254,7 @@ line level    source
  238          {
  239   1          xdata uni_rom_id UART_ID_data;
  240   1          xdata u8 send_ok[4] = {'(','O','K',')'};
-C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 11:00:33 PAGE 5   
+C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 17:17:43 PAGE 5   
 
  241   1          xdata u8 re_byte = 0;
  242   1          xdata u8 send_ack[10] = {0x28,0x57,0x47,0x29,0x00,0x00,0x00,0x00,0x00,0x00};
@@ -302,8 +302,8 @@ line level    source
  283   3                      case 'S':
  284   3                              FG_test_mode = 0;
  285   3                              dd_set_ML7345D_Power_on();
- 286   3                  PROFILE_CH_FREQ_32bit_200002EC = 429175000;
- 287   3                              RF_ML7345_Init(Fre_429_175,0x15,12);
+ 286   3                  PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+ 287   3                              RF_ML7345_Init(Fre_426_075,0x15,12);
  288   3                  Tx_Data_Test(0);
  289   3                              Send_Data(send_ok,4);
  290   3                              break;
@@ -318,14 +318,14 @@ line level    source
  299   4                              }
  300   3                              break;
  301   3                      case 'F':
-C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 11:00:33 PAGE 6   
+C51 COMPILER V9.60.0.0   UART                                                              03/23/2022 17:17:43 PAGE 6   
 
  302   3                              if(SIO_DATA[2]=='M')
  303   3                              {
  304   4                                      FG_test_mode = 1;
  305   4                      dd_set_ML7345D_Power_on();
- 306   4                      PROFILE_CH_FREQ_32bit_200002EC = 429175000;
- 307   4                      RF_ML7345_Init(Fre_429_175,0x15,12);
+ 306   4                      PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+ 307   4                      RF_ML7345_Init(Fre_426_075,0x15,12);
  308   4                      Tx_Data_Test(1);
  309   4                                      Send_Data(send_ok,4);
  310   4                              }
@@ -347,9 +347,9 @@ line level    source
  326   4                      {
  327   5                          rf_offset = re_byte;
  328   5                          IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rf_offset,&rf_offset,1);
- 329   5                          PROFILE_CH_FREQ_32bit_200002EC_uart = 429175000 + 150 * re_byte;
- 330   5                          ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_429_175);
- 331   5                          ML7345_Frequency_Set(Fre_429_175,1);
+ 329   5                          PROFILE_CH_FREQ_32bit_200002EC_uart = 426075000 + 150 * re_byte;
+ 330   5                          ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_426_075);
+ 331   5                          ML7345_Frequency_Set(Fre_426_075,1);
  332   5                          Send_Data(send_ok,4);
  333   5                      }
  334   4                      else if(10 < re_byte && re_byte <= 20) //frequency -
@@ -357,9 +357,9 @@ line level    source
  336   5                          rf_offset = re_byte;
  337   5                          IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rf_offset,&rf_offset,1);
  338   5                          re_byte = re_byte - 10;
- 339   5                          PROFILE_CH_FREQ_32bit_200002EC_uart = 429175000 - 150 * re_byte;
- 340   5                          ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_429_175);
- 341   5                          ML7345_Frequency_Set(Fre_429_175,1);
+ 339   5                          PROFILE_CH_FREQ_32bit_200002EC_uart = 426075000 - 150 * re_byte;
+ 340   5                          ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_426_075);
+ 341   5                          ML7345_Frequency_Set(Fre_426_075,1);
  342   5                          Send_Data(send_ok,4);
  343   5                      }
  344   4                      Tx_Data_Test(1);

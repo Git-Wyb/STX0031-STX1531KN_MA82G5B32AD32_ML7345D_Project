@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 11:00:31 PAGE 1   
+C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 17:17:42 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE GPIO
@@ -44,7 +44,7 @@ line level    source
   34   1          P20 = 0;
   35   1      
   36   1          /* ML7345_RESETN:P34; ML7345D_POWER:P35; */
-  37   1          PORT_SetP3PushPull(BIT4|BIT5);                      // 设置P34/P35 为推挽输出
+  37   1          PORT_SetP3PushPull(BIT5);                      // 设置P34/P35 为推挽输出
   38   1          
   39   1          /* PIN_POWER_CONTROL:P40 */
   40   1          PORT_SetP4PushPull(BIT0);                           // 设置P40为推挽输出
@@ -62,7 +62,7 @@ line level    source
   52   1          
   53   1          PORT_SetP2OpenDrain(BIT2|BIT3|BIT4|BIT6);           //未用IO口全部设为输入
   54   1          P22=1;P23=1;P24=1;P26=1;
-C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 11:00:31 PAGE 2   
+C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 17:17:42 PAGE 2   
 
   55   1          PORT_SetP3InputOnly(BIT2);
   56   1          PORT_SetP4OpenDrain(BIT1);
@@ -75,128 +75,130 @@ line level    source
   63   1              PORT_SetP1OpenDrain(BIT6);                                                      // 设置P16(MISO)为准双向口
   64   1          P16 = 1;                                            // 输入
   65   1              PORT_EnP14P15P16P17PullHigh();
-  66   1      }
-  67          
-  68          void SpiGpio_UnInit(void)
-  69          {
-  70   1          PORT_SetP1OpenDrain(BIT4|BIT5|BIT6|BIT7);
-  71   1          P16 = 1;                                            // 输入
-  72   1          P14 = 1;P15 = 1;P17 = 1;
-  73   1              //PORT_EnP14P15P16P17PullHigh();
-  74   1      }
-  75          
-  76          
-  77          /***********************************************************************************
-  78          函数名称:   void InitINT0(void)
-  79          功能描述:   INT0初始化
-  80          输入参数:   
-  81          返回参数:  
-  82          用于ML7345D 发送接收完成中断。
-  83          *************************************************************************************/
-  84          /*
-  85          void Init_INT0(void)
-  86          {
-  87                  INT_SetINT0P32();                                               //设置INT0引脚P32
-  88                  INT_SetINT0_DetectFallingEdge();                //设置INT0外部中断检测方式为下降沿检测
-  89                  //INT_SetINT0_DetectRisingEdge();
-  90              INT_SetINT0Filter_Sysclk_x3();                      //设置INT0滤波为（sysclk）*3
-  91          }
-  92          */
-  93          
-  94          /***********************************************************************************
-  95          函数名称:   void InitINT1(void)
-  96          功能描述:   INT1初始化
-  97          输入参数:   
-  98          返回参数:   
-  99          ML7345D BER测试。
- 100          *************************************************************************************/
- 101          void Init_INT1(void)
- 102          {
- 103   1              INT_SetINT1P33();                                               //设置INT1引脚P33
- 104   1              //INT_SetINT1_DetectRisingEdge();               
- 105   1          INT_SetINT1_DetectFallingEdge();        //设置INT1外部中断检测方式为下降沿检测
- 106   1              INT_SetINT1Filter_Sysclk_x3();                  //设置INT1滤波为（sysclk）*3
- 107   1      }
- 108          
- 109          
- 110          /***********************************************************************************
- 111          函数名称:   void INT_INT0(void) 
- 112          功能描述:INT0中断服务程序
- 113          输入参数:   
- 114          返回参数: 
- 115          
- 116          用于ML7345D发送接收完成中断。
-C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 11:00:31 PAGE 3   
+  66   1          PORT_SetP3PushPull(BIT4);
+  67   1      }
+  68          
+  69          void SpiGpio_UnInit(void)
+  70          {
+  71   1          PORT_SetP1OpenDrain(BIT4|BIT5|BIT6|BIT7);
+  72   1          P16 = 0;                                            // 输入
+  73   1          P14 = 0;P15 = 0;P17 = 0;
+  74   1          
+  75   1          PORT_SetP3InputOnly(BIT4);
+  76   1      }
+  77          
+  78          
+  79          /***********************************************************************************
+  80          函数名称:   void InitINT0(void)
+  81          功能描述:   INT0初始化
+  82          输入参数:   
+  83          返回参数:  
+  84          用于ML7345D 发送接收完成中断。
+  85          *************************************************************************************/
+  86          /*
+  87          void Init_INT0(void)
+  88          {
+  89                  INT_SetINT0P32();                                               //设置INT0引脚P32
+  90                  INT_SetINT0_DetectFallingEdge();                //设置INT0外部中断检测方式为下降沿检测
+  91                  //INT_SetINT0_DetectRisingEdge();
+  92              INT_SetINT0Filter_Sysclk_x3();                      //设置INT0滤波为（sysclk）*3
+  93          }
+  94          */
+  95          
+  96          /***********************************************************************************
+  97          函数名称:   void InitINT1(void)
+  98          功能描述:   INT1初始化
+  99          输入参数:   
+ 100          返回参数:   
+ 101          ML7345D BER测试。
+ 102          *************************************************************************************/
+ 103          void Init_INT1(void)
+ 104          {
+ 105   1              INT_SetINT1P33();                                               //设置INT1引脚P33
+ 106   1              //INT_SetINT1_DetectRisingEdge();               
+ 107   1          INT_SetINT1_DetectFallingEdge();        //设置INT1外部中断检测方式为下降沿检测
+ 108   1              INT_SetINT1Filter_Sysclk_x3();                  //设置INT1滤波为（sysclk）*3
+ 109   1      }
+ 110          
+ 111          
+ 112          /***********************************************************************************
+ 113          函数名称:   void INT_INT0(void) 
+ 114          功能描述:INT0中断服务程序
+ 115          输入参数:   
+ 116          返回参数: 
+C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 17:17:42 PAGE 3   
 
  117          
- 118          *************************************************************************************/
- 119          void INT_INT0(void)             interrupt INT_VECTOR_INT0
- 120          {
- 121   1          ML7345_TRX_Del();
- 122   1      }
- 123          
- 124          
- 125          /***********************************************************************************
- 126          函数名称:   void INT_INT1(void) 
- 127          功能描述:INT1中断服务程序
- 128          输入参数:   
- 129          返回参数:    
- 130          
- 131          ML7345D BER测试。
+ 118          用于ML7345D发送接收完成中断。
+ 119          
+ 120          *************************************************************************************/
+ 121          void INT_INT0(void)             interrupt INT_VECTOR_INT0
+ 122          {
+ 123   1          ML7345_TRX_Del();
+ 124   1      }
+ 125          
+ 126          
+ 127          /***********************************************************************************
+ 128          函数名称:   void INT_INT1(void) 
+ 129          功能描述:INT1中断服务程序
+ 130          输入参数:   
+ 131          返回参数:    
  132          
- 133          *************************************************************************************/
- 134          void INT_INT1(void)             interrupt INT_VECTOR_INT1
- 135          {
- 136   1          ML7345_TRX_Del();
- 137   1      }
- 138          
- 139          
- 140          /***********************************************************************************
- 141          函数名称:   void InitInterrupt(void)
- 142          功能描述:   中断初始化
- 143          输入参数:    
- 144          返回参数:     
- 145          *************************************************************************************/
- 146          void Init_Interrupt(void)
- 147          {
- 148   1          Init_INT1();
- 149   1              INT_EnINT1();                   //      使能INT1中断
- 150   1      }
- 151          
- 152          
- 153          /*
- 154          u8 key_scan(void)
- 155          {
- 156              if((PIN_KEY_OPEN==0 | PIN_KEY_STOP==0 | PIN_KEY_CLOSE==0 | PIN_KEY_LOGIN==0))
- 157              {
- 158                  delay_ms(50);
- 159                  if((PIN_KEY_OPEN==0 | PIN_KEY_STOP==0 | PIN_KEY_CLOSE==0 | PIN_KEY_LOGIN==0) && key_flag == 0)
- 160                  {
- 161                      key_flag = 1;
- 162                      if(PIN_KEY_OPEN==0)         return 2;
- 163                      else if (PIN_KEY_STOP==0)   return 3;
- 164                      else if (PIN_KEY_CLOSE==0)  return 4;
- 165                      else if (PIN_KEY_LOGIN==0)  return 5;
- 166                      else return 1;
- 167                  }
- 168                  else return 0;
- 169                      
- 170              }
- 171              else if(PIN_KEY_OPEN==1 && PIN_KEY_STOP==1 && PIN_KEY_CLOSE==1 && PIN_KEY_LOGIN==1)
- 172              {
- 173                  key_flag = 0;
- 174                  return 0;
- 175              }
- 176              return 0;    
- 177          }*/
- 178          
-C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 11:00:31 PAGE 4   
+ 133          ML7345D BER测试。
+ 134          
+ 135          *************************************************************************************/
+ 136          void INT_INT1(void)             interrupt INT_VECTOR_INT1
+ 137          {
+ 138   1          ML7345_TRX_Del();
+ 139   1      }
+ 140          
+ 141          
+ 142          /***********************************************************************************
+ 143          函数名称:   void InitInterrupt(void)
+ 144          功能描述:   中断初始化
+ 145          输入参数:    
+ 146          返回参数:     
+ 147          *************************************************************************************/
+ 148          void Init_Interrupt(void)
+ 149          {
+ 150   1          Init_INT1();
+ 151   1              INT_EnINT1();                   //      使能INT1中断
+ 152   1      }
+ 153          
+ 154          
+ 155          /*
+ 156          u8 key_scan(void)
+ 157          {
+ 158              if((PIN_KEY_OPEN==0 | PIN_KEY_STOP==0 | PIN_KEY_CLOSE==0 | PIN_KEY_LOGIN==0))
+ 159              {
+ 160                  delay_ms(50);
+ 161                  if((PIN_KEY_OPEN==0 | PIN_KEY_STOP==0 | PIN_KEY_CLOSE==0 | PIN_KEY_LOGIN==0) && key_flag == 0)
+ 162                  {
+ 163                      key_flag = 1;
+ 164                      if(PIN_KEY_OPEN==0)         return 2;
+ 165                      else if (PIN_KEY_STOP==0)   return 3;
+ 166                      else if (PIN_KEY_CLOSE==0)  return 4;
+ 167                      else if (PIN_KEY_LOGIN==0)  return 5;
+ 168                      else return 1;
+ 169                  }
+ 170                  else return 0;
+ 171                      
+ 172              }
+ 173              else if(PIN_KEY_OPEN==1 && PIN_KEY_STOP==1 && PIN_KEY_CLOSE==1 && PIN_KEY_LOGIN==1)
+ 174              {
+ 175                  key_flag = 0;
+ 176                  return 0;
+ 177              }
+ 178              return 0;    
+C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 17:17:42 PAGE 4   
 
- 179          
+ 179          }*/
+ 180          
+ 181          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    233    ----
+   CODE SIZE        =    245    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

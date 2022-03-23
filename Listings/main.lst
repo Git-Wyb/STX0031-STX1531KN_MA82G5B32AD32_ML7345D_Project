@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              03/23/2022 11:00:30 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              03/23/2022 17:17:40 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   50   4                      else if((FG_Complex_Single_shot==0)&&(m_KeyNo>=1)&&(m_KeyNo<=4)){
   51   5                          key_check();
   52   5                          ClearWDT(); // Service the WDT
-C51 COMPILER V9.60.0.0   MAIN                                                              03/23/2022 11:00:30 PAGE 2   
+C51 COMPILER V9.60.0.0   MAIN                                                              03/23/2022 17:17:40 PAGE 2   
 
   53   5                      }
   54   4                  }

@@ -1,1 +1,0 @@
-"user\src\timer.c" OPTIMIZE (0,SPEED) BROWSE INCDIR(.\include;.\user\inc) DEBUG OBJECTEXTEND PRINT(.\Listings\timer.lst) OBJECT(.\Objects\timer.obj)
