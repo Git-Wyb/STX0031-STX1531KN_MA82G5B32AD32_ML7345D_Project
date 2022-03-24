@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 17:17:42 PAGE 1   
+C51 COMPILER V9.60.0.0   GPIO                                                              03/24/2022 16:15:32 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE GPIO
@@ -42,7 +42,7 @@ line level    source
   32   1          PORT_EnP20P21P22P23PullHigh();                      // 使能 P20,P21,P22,P23 上拉
   33   1              PORT_EnP24P25P26P27PullHigh();                              // 使能 P24,P25,P26,P27 上拉
   34   1          P20 = 0;
-  35   1      
+  35   1          
   36   1          /* ML7345_RESETN:P34; ML7345D_POWER:P35; */
   37   1          PORT_SetP3PushPull(BIT5);                      // 设置P34/P35 为推挽输出
   38   1          
@@ -61,12 +61,12 @@ line level    source
   51   1          ML7345D_POWER = FG_NOT_allow_out;
   52   1          
   53   1          PORT_SetP2OpenDrain(BIT2|BIT3|BIT4|BIT6);           //未用IO口全部设为输入
-  54   1          P22=1;P23=1;P24=1;P26=1;
-C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 17:17:42 PAGE 2   
+  54   1          P22=0;P23=0;P24=0;P26=0;
+C51 COMPILER V9.60.0.0   GPIO                                                              03/24/2022 16:15:32 PAGE 2   
 
   55   1          PORT_SetP3InputOnly(BIT2);
   56   1          PORT_SetP4OpenDrain(BIT1);
-  57   1          P41=1;
+  57   1          P41=0;
   58   1      }
   59          
   60          void SpiGpio_Init(void)
@@ -81,7 +81,7 @@ line level    source
   69          void SpiGpio_UnInit(void)
   70          {
   71   1          PORT_SetP1OpenDrain(BIT4|BIT5|BIT6|BIT7);
-  72   1          P16 = 0;                                            // 输入
+  72   1          P16 = 0;                                           
   73   1          P14 = 0;P15 = 0;P17 = 0;
   74   1          
   75   1          PORT_SetP3InputOnly(BIT4);
@@ -126,7 +126,7 @@ line level    source
  114          功能描述:INT0中断服务程序
  115          输入参数:   
  116          返回参数: 
-C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 17:17:42 PAGE 3   
+C51 COMPILER V9.60.0.0   GPIO                                                              03/24/2022 16:15:32 PAGE 3   
 
  117          
  118          用于ML7345D发送接收完成中断。
@@ -190,7 +190,7 @@ line level    source
  176                  return 0;
  177              }
  178              return 0;    
-C51 COMPILER V9.60.0.0   GPIO                                                              03/23/2022 17:17:42 PAGE 4   
+C51 COMPILER V9.60.0.0   GPIO                                                              03/24/2022 16:15:32 PAGE 4   
 
  179          }*/
  180          

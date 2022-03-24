@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   EXIT_FUN                                                          03/23/2022 17:17:51 PAGE 1   
+C51 COMPILER V9.60.0.0   EXIT_FUN                                                          03/24/2022 16:15:37 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE EXIT_FUN
@@ -51,83 +51,85 @@ line level    source
   41   1          if(m_RegMode==0)
   42   1          {
   43   2              SetTxData(0,ID_data,Control_code);
-  44   2              txphase_end = 12;
-  45   2          }
-  46   1          else 
-  47   1          {
-  48   2              SetTxData(0,ID_data,0x80);
-  49   2              if(m_RegMode==1)    SetTxData(12,ID_data_add,0xFF);    //"1"是追加
-  50   2              else SetTxData(12,ID_data_add,0);    //"2"是抹消
-  51   2              txphase_end = 24;
-  52   2          }
-  53   1          FLAG_APP_TX = 1;
-  54   1          ML7345_AutoTx_Data(m_RFNormalBuf,txphase_end);
-C51 COMPILER V9.60.0.0   EXIT_FUN                                                          03/23/2022 17:17:51 PAGE 2   
+  44   2              m_RFNormalBuf[12] = 0xFF;
+  45   2              txphase_end = 13;
+  46   2          }
+  47   1          else 
+  48   1          {
+  49   2              SetTxData(0,ID_data,0x80);
+  50   2              if(m_RegMode==1)    SetTxData(12,ID_data_add,0xFF);    //"1"是追加
+  51   2              else SetTxData(12,ID_data_add,0);    //"2"是抹消
+  52   2              m_RFNormalBuf[24] = 0xFF;
+  53   2              txphase_end = 25;
+  54   2          }
+C51 COMPILER V9.60.0.0   EXIT_FUN                                                          03/24/2022 16:15:37 PAGE 2   
 
-  55   1          Time_Tx_Out = 550;
-  56   1          txphase_Repeat = 1;
-  57   1      }
-  58          
-  59          void SetTxData(u8 count_set ,uni_rom_id ID_data_set,u8 Control_code_set)
-  60          {
-  61   1          idata uni_i unii,unij,unik;
-  62   1              /*      ID set  */
-  63   1              unii.ui = SetFixedLengthCode(ID_data_set.IDB[3]) ;
-  64   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
-  65   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
-  66   1              unii.ui = SetFixedLengthCode(ID_data_set.IDB[2]) ;
-  67   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
-  68   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
-  69   1              unii.ui = SetFixedLengthCode(ID_data_set.IDB[1]) ;
-  70   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
-  71   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
-  72   1              /*      Control code set        */
-  73   1              unii.ui = SetFixedLengthCode(Control_code_set) ;
-  74   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
-  75   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
-  76   1              /*      SUM set */
-  77   1              unii.uc[1] = ID_data_set.IDB[1] ;
-  78   1              unii.uc[0] = Control_code_set;
-  79   1              unij.uc[1] = ID_data_set.IDB[3] ;
-  80   1              unij.uc[0] = ID_data_set.IDB[2] ;
-  81   1              unik.ui = unii.ui + unij.ui ;
-  82   1              unii.ui = SetFixedLengthCode(unik.uc[1]) ;
-  83   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
-  84   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
-  85   1              unii.ui = SetFixedLengthCode(unik.uc[0]) ;
-  86   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
-  87   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;    
-  88   1      }
-  89          
-  90          u16 SetFixedLengthCode(u8 Data)
-  91          {
-  92   1              idata u16 Code;
-  93   1              idata u8 i;
-  94   1      
-  95   1              for     (i=0; i<8; i++)
-  96   1              {
-  97   2                      Code <<=2 ;
-  98   2                      if      ( Data & 0x01)          // '1' ?
-  99   2                      {                                       // Yes
- 100   3                              Code |= 0x0002 ;
- 101   3                      }
- 102   2                      else
- 103   2                      {
- 104   3                              Code |= 0x0001 ;      // '0'
- 105   3      
- 106   3                      }
- 107   2                      Data >>= 1 ;
- 108   2              }
- 109   1              return(Code) ;
- 110   1      }
+  55   1          FLAG_APP_TX = 1;
+  56   1          ML7345_AutoTx_Data(m_RFNormalBuf,txphase_end);
+  57   1          Time_Tx_Out = 550;
+  58   1          txphase_Repeat = 1;
+  59   1      }
+  60          
+  61          void SetTxData(u8 count_set ,uni_rom_id ID_data_set,u8 Control_code_set)
+  62          {
+  63   1          idata uni_i unii,unij,unik;
+  64   1              /*      ID set  */
+  65   1              unii.ui = SetFixedLengthCode(ID_data_set.IDB[3]) ;
+  66   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
+  67   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
+  68   1              unii.ui = SetFixedLengthCode(ID_data_set.IDB[2]) ;
+  69   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
+  70   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
+  71   1              unii.ui = SetFixedLengthCode(ID_data_set.IDB[1]) ;
+  72   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
+  73   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
+  74   1              /*      Control code set        */
+  75   1              unii.ui = SetFixedLengthCode(Control_code_set) ;
+  76   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
+  77   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
+  78   1              /*      SUM set */
+  79   1              unii.uc[1] = ID_data_set.IDB[1] ;
+  80   1              unii.uc[0] = Control_code_set;
+  81   1              unij.uc[1] = ID_data_set.IDB[3] ;
+  82   1              unij.uc[0] = ID_data_set.IDB[2] ;
+  83   1              unik.ui = unii.ui + unij.ui ;
+  84   1              unii.ui = SetFixedLengthCode(unik.uc[1]) ;
+  85   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
+  86   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;
+  87   1              unii.ui = SetFixedLengthCode(unik.uc[0]) ;
+  88   1              m_RFNormalBuf[count_set++] = unii.uc[0] ;
+  89   1              m_RFNormalBuf[count_set++] = unii.uc[1] ;    
+  90   1      }
+  91          
+  92          u16 SetFixedLengthCode(u8 Data)
+  93          {
+  94   1              idata u16 Code;
+  95   1              idata u8 i;
+  96   1      
+  97   1              for     (i=0; i<8; i++)
+  98   1              {
+  99   2                      Code <<=2 ;
+ 100   2                      if      ( Data & 0x01)          // '1' ?
+ 101   2                      {                                       // Yes
+ 102   3                              Code |= 0x0002 ;
+ 103   3                      }
+ 104   2                      else
+ 105   2                      {
+ 106   3                              Code |= 0x0001 ;      // '0'
+ 107   3      
+ 108   3                      }
+ 109   2                      Data >>= 1 ;
+ 110   2              }
+ 111   1              return(Code) ;
+ 112   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    741    ----
+   CODE SIZE        =    753    ----
+C51 COMPILER V9.60.0.0   EXIT_FUN                                                          03/24/2022 16:15:37 PAGE 3   
+
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
-C51 COMPILER V9.60.0.0   EXIT_FUN                                                          03/23/2022 17:17:51 PAGE 3   
-
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      7    ----
    IDATA SIZE       =      9    ----

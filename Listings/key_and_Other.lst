@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 1   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE KEY_AND_OTHER
@@ -43,7 +43,7 @@ line level    source
   33   2          
   34   2          if(TIME_BEEP_on)
   35   2          {
-  36   3              --TIME_BEEP_on;
+  36   3              //--TIME_BEEP_on;
   37   3              if(FG_beep_on==0)
   38   3              {
   39   4                  FG_beep_on=1;FG_beep_off=0;Beep_On();//BEEP_CSR2_BEEPEN=1; //2015.3.11修正
@@ -52,7 +52,7 @@ line level    source
   42   3          }
   43   2          else if(TIME_BEEP_off)
   44   2          {
-  45   3              --TIME_BEEP_off;
+  45   3              //--TIME_BEEP_off;
   46   3              if(FG_beep_off==0)
   47   3              {
   48   4                  FG_beep_off=1;FG_beep_on=0;Beep_Off();//BEEP_CSR2_BEEPEN=0;  //2015.3.11修正
@@ -62,7 +62,7 @@ line level    source
   52   2          else if(TIME_BEEP_freq)
   53   2          {
   54   3              --TIME_BEEP_freq;
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 2   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 2   
 
   55   3              TIME_BEEP_on=BASE_TIME_BEEP_on;
   56   3              TIME_BEEP_off=BASE_TIME_BEEP_off;
@@ -126,7 +126,7 @@ line level    source
  114          //              ||++++++ Stop
  115          //              |+++++++ Open
  116          //              ++++++++ 1
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 3   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 3   
 
  117          //
  118          const   uchar   ct_KeyDataTable[]
@@ -190,7 +190,7 @@ line level    source
  176   1              _SwIn( PIN_KEY_LOGIN ) ;        
  177   1              /*      Auto Tx Auto Tx Start sw                */
  178   1              _SwIn( 1 ) ;    
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 4   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 4   
 
  179   1              /*      Auto TxAuto Tx Stop sw          */
  180   1              _SwIn( 1 ) ;    
@@ -254,7 +254,7 @@ line level    source
  238   2              }
  239   1              key_Value=i;   // 2015.1.31修正3
  240   1              if(FG_10s==1)return;   // 2015.1.31修正3
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 5   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 5   
 
  241   1              
  242   1              if      ( i == 17)                      // Found ?
@@ -318,7 +318,7 @@ line level    source
  299   2              }
  300   1      }
  301          /*----------------------------------*/
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 6   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 6   
 
  302          /*                                                                      */
  303          /*              Open + Stop(5) function         */
@@ -382,7 +382,7 @@ line level    source
  361   3                      }
  362   2                      return ;
  363   2              }
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 7   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 7   
 
  364   1              
  365   1              _Pass3secKey( d_ReqCloseReg ) ;
@@ -446,7 +446,7 @@ line level    source
  423   2              }
  424   1      }
  425          /*------------------------------------------*/
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 8   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 8   
 
  426          /*                                                                                      */
  427          /*              Open/Stop/Close/Vent. function          */
@@ -510,7 +510,7 @@ line level    source
  485   4                                              if      ( mb_OpenSw || mb_CloseSw )                             // Close sw ?
  486   4                                              {
  487   5                                                      m_KeyOptSetMode = 10 ;                          // Yes
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 9   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 9   
 
  488   5                                                      //_ReqBuzzer( d_BuzOpt5 ) ;
  489   5                                                      //_ReqBuzzer(103,103,100);
@@ -574,7 +574,7 @@ line level    source
  547   1      //          /********2015.1.31追加  按2次模式********/
  548   1      //      if      ( rom_KeyOpt || m_KindOfKey == d_VentKey  )// Single push option or Vent. key ?        
  549   1              {                                                                                               // Yes
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 10  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 10  
 
  550   2                      _DupliFuncClear() ;                                                     // Duplicate key function clear
  551   2                      _ReqTxdEdit( m_KeyNo,m_KeyNo ) ;
@@ -638,7 +638,7 @@ line level    source
  609   3                              }
  610   2                              break;
  611   2                                              
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 11  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 11  
 
  612   2              }  
  613   1      }
@@ -702,7 +702,7 @@ line level    source
  671          {
  672   1              m_KeyOptSetMode = d_Idle ;
  673   1              m_KeyOpenCount = 2 ;
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 12  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 12  
 
  674   1              m_KeyCloseCount = 2 ;
  675   1              //mb_OpenSw = d_Off ;
@@ -766,7 +766,7 @@ line level    source
  733   3                          Control_code=0x04;    //stop
  734   3                      break ;
  735   3                  case 3 :    
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 13  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 13  
 
  736   3                          Control_code=0x02;    //close
  737   3                      break ;
@@ -813,10 +813,10 @@ line level    source
  778   3          //                  TIME_BEEP_freq=2;
  779   3                      break ;
  780   3                  case 4 :    
- 781   3                        _ReqBuzzer(500,1,0);
+ 781   3                        _ReqBuzzer(500,10,0);
  782   3                        break ;
  783   3                  case 20 :   
- 784   3                         _ReqBuzzer(1000,1,0);
+ 784   3                         _ReqBuzzer(1000,10,0);
  785   3          //                  BASE_TIME_BEEP_on=1000;
  786   3          //                        BASE_TIME_BEEP_off=1;
  787   3          //                  TIME_BEEP_freq=0;
@@ -830,7 +830,7 @@ line level    source
  795   2        }
  796   1        else PIN_LED=0;
  797   1      }
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 14  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 14  
 
  798          
  799          //
@@ -894,7 +894,7 @@ line level    source
  857   3                              }
  858   2                              
  859   2                              if      ( m_KeyOptSetOpenStop )                         // Setting by stop ?
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 15  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 15  
 
  860   2                              {                                                                               // Yes
  861   3                                      if      ( m_KindOfKey == d_StopKey )
@@ -958,7 +958,7 @@ line level    source
  919   3                                      if      ( m_KindOfKey == d_StopKey )
  920   3                                      {
  921   4                                              m_KeyDupliSetTimeout = d_DupliTime1s ;
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 16  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 16  
 
  922   4                                              ++m_KeyOptSetMode ;
  923   4                                              mb_NoPushWait = d_On ;
@@ -1022,7 +1022,7 @@ line level    source
  981   4                                      }
  982   3                                      else
  983   3                                      {                                                                       // Error
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 17  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 17  
 
  984   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
  985   4                                              return ;
@@ -1086,7 +1086,7 @@ line level    source
 1043   5                                              }
 1044   4                                              ++m_KeyOptSetMode ;
 1045   4                                      }
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 18  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 18  
 
 1046   3                                      else
 1047   3                                      {                                                                       // Error
@@ -1150,7 +1150,7 @@ line level    source
 1105          /*                        out : none                            */
 1106          /*                                                                              */
 1107          /****************************************/
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 19  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 19  
 
 1108          //
 1109          void    _RegistrationMode( void )
@@ -1214,13 +1214,13 @@ line level    source
 1167   2      /*********************************/
 1168   2                              m_TimerRegMode = d_Time1min ;                   // 1min. set (1s base)
 1169   2                              break ;
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 20  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 20  
 
 1170   2                              
 1171   2                      case    d_CloseKey :
 1172   2                              _IdClear() ;                                                    // ID clear
 1173   2                              //_ReqBuzzer(d_BuzReg) ;
-1174   2                              _ReqBuzzer(1000,1,0);
+1174   2                              _ReqBuzzer(1000,10,0);
 1175   2                              m_TimerRegMode = d_Time1min ;                   // 1min. set (1s base)
 1176   2                              break ;
 1177   2                              
@@ -1278,7 +1278,7 @@ line level    source
 1229          /*                                                                                              */
 1230          /************************************************/
 1231          //
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 21  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 21  
 
 1232          void    _SetRegistrationMode( uchar mode )
 1233          {
@@ -1301,7 +1301,7 @@ line level    source
 1250   1      //      mb_LedOnOff = d_On ;
 1251   1      //      
 1252   1      //      _ReqBuzzer(d_BuzReg) ;
-1253   1              _ReqBuzzer(1000,1,0);
+1253   1              _ReqBuzzer(1000,10,0);
 1254   1              m_TimerRegMode = d_Time1min ;                           // 1min. set (1s base)
 1255   1      }
 1256          u8 _GetRegMode(void)
@@ -1342,7 +1342,7 @@ line level    source
 1291          {
 1292   1              m_KeyNew<<= 1 ;
 1293   1              if      ( sw )
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 22  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 22  
 
 1294   1              {
 1295   2                      m_KeyNew |= d_On ;
@@ -1406,7 +1406,7 @@ line level    source
 1353   3                  FG_test_mode = 1;
 1354   3              }
 1355   2              if(PIN_KEY_CLOSE == 1)    FG_KEY_CLOSE=0;  
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/23/2022 17:17:49 PAGE 23  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     03/24/2022 16:15:36 PAGE 23  
 
 1356   2      
 1357   2              PC_PRG();              // PC控制  
@@ -1425,7 +1425,7 @@ line level    source
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   5463    ----
+   CODE SIZE        =   5443    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
