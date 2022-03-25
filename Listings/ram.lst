@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   RAM                                                               03/24/2022 16:15:35 PAGE 1   
+C51 COMPILER V9.60.0.0   RAM                                                               03/25/2022 14:05:31 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE RAM
@@ -13,111 +13,112 @@ line level    source
    3          
    4          idata Mark_Un mark0_stu = {0};
    5          idata Mark_Un mark1_stu = {0};
-   6          
-   7          xdata u8 write_flash_buffer[8] = {0};
-   8          xdata u32 PROFILE_CH_FREQ_32bit_200002EC = 426075000ul;
-   9          //xdata const u32 PROFILE_CH1_FREQ_32bit_429HighSpeed=429350000;//429350000;//429225000;
-  10          //xdata const u32 PROFILE_CH2_FREQ_32bit_429HighSpeed=429550000;//429550000;//429237500;
-  11          
-  12          idata RAM_OP1 RAM_OP1_type = {0};
-  13          idata RAM_OP2 RAM_OP2_type = {0};
-  14          idata RAM_RegSW RAM_RegSW_type = {0};
-  15          idata RAM_SW RAM_SW_type = {0};
-  16          
-  17          xdata u8 TB_51s = 0;
-  18          xdata u8 TB_sum_5s = 0;
-  19          
+   6          xdata Mark_Un Key_Sta = {0};
+   7          
+   8          xdata u8 write_flash_buffer[8] = {0};
+   9          xdata u32 PROFILE_CH_FREQ_32bit_200002EC = 426075000ul;
+  10          //xdata const u32 PROFILE_CH1_FREQ_32bit_429HighSpeed=429350000;//429350000;//429225000;
+  11          //xdata const u32 PROFILE_CH2_FREQ_32bit_429HighSpeed=429550000;//429550000;//429237500;
+  12          
+  13          idata RAM_OP1 RAM_OP1_type = {0};
+  14          idata RAM_OP2 RAM_OP2_type = {0};
+  15          idata RAM_RegSW RAM_RegSW_type = {0};
+  16          idata RAM_SW RAM_SW_type = {0};
+  17          
+  18          xdata u8 TB_51s = 0;
+  19          xdata u8 TB_sum_5s = 0;
   20          
-  21          //xdata u8  m_RFNormalBuf[35];
-  22          xdata u8  m_RFNormalBuf[40] = {0};
-  23          xdata uni_rom_id ID_data = {0};
-  24          xdata uni_rom_id ID_data_add = {0};
-  25          xdata u8 Control_code = 0;
-  26          xdata u16 txphase = 0;
-  27          xdata u8 txphase_Repeat = 0;
-  28          xdata u8 ID_INT_CODE = 0;
-  29          xdata u16 txphase_end = 0;
-  30          
-  31          xdata u16 TIME_BEEP_on = 0;
-  32          xdata u8 TIME_BEEP_off = 0;
-  33          xdata u16 BASE_TIME_BEEP_on = 0;
-  34          xdata u8 BASE_TIME_BEEP_off = 0;
-  35          xdata u8 TIME_BEEP_freq = 0;
-  36          
-  37          xdata u8 TB_976us = 0;
-  38          xdata u8 TB_100ms = 0;
-  39          xdata u8 TB_5s = 0;
-  40          
-  41          xdata u8 SIO_cnt = 0;
-  42          xdata u8 SIO_buff[16] = {0};
-  43          xdata u8 SIO_DATA[16] = {0};
-  44          
-  45          //xdata u16 BAT_value;
-  46          
+  21          
+  22          //xdata u8  m_RFNormalBuf[35];
+  23          xdata u8  m_RFNormalBuf[40] = {0};
+  24          xdata uni_rom_id ID_data = {0};
+  25          xdata uni_rom_id ID_data_add = {0};
+  26          xdata u8 Control_code = 0;
+  27          xdata u16 txphase = 0;
+  28          xdata u8 txphase_Repeat = 0;
+  29          xdata u8 ID_INT_CODE = 0;
+  30          xdata u16 txphase_end = 0;
+  31          
+  32          xdata u16 TIME_BEEP_on = 0;
+  33          xdata u8 TIME_BEEP_off = 0;
+  34          xdata u16 BASE_TIME_BEEP_on = 0;
+  35          xdata u8 BASE_TIME_BEEP_off = 0;
+  36          xdata u8 TIME_BEEP_freq = 0;
+  37          
+  38          xdata u8 TB_976us = 0;
+  39          xdata u8 TB_100ms = 0;
+  40          xdata u8 TB_5s = 0;
+  41          
+  42          xdata u8 SIO_cnt = 0;
+  43          xdata u8 SIO_buff[16] = {0};
+  44          xdata u8 SIO_DATA[16] = {0};
+  45          
+  46          //xdata u16 BAT_value;
   47          
-  48          xdata u8 m_KeyNew = 0;
-  49          xdata u8 m_KindOfKey = 0;
-  50          xdata u8 m_KeyOld = 0;
-  51          xdata u16 m_ChatterCount = 0;
-  52          xdata u16 m_TimerKey = 0;
-  53          xdata u8 m_KeyNo = 0;
-  54          xdata u8 m_KeyOptSetMode = 0;
-C51 COMPILER V9.60.0.0   RAM                                                               03/24/2022 16:15:35 PAGE 2   
+  48          
+  49          xdata u8 m_KeyNew = 0;
+  50          xdata u8 m_KindOfKey = 0;
+  51          xdata u8 m_KeyOld = 0;
+  52          xdata u16 m_ChatterCount = 0;
+  53          xdata u16 m_TimerKey = 0;
+  54          xdata u8 m_KeyNo = 0;
+C51 COMPILER V9.60.0.0   RAM                                                               03/25/2022 14:05:31 PAGE 2   
 
-  55          xdata u8 m_KeyOpenCount = 0;
-  56          xdata u8 m_KeyCloseCount = 0;
-  57          xdata u16 m_KeyDupli1stTimer = 0;
-  58          xdata u16 m_KeyDupliSetTimeout = 0;
-  59          xdata u8 rom_KeyOpt = 0;
-  60          xdata u16 time_led = 0;
-  61          xdata u16 m_TimerKeyMonitor = 0;
-  62          xdata u8 m_KeyCount = 0;
-  63          xdata u8 m_RegMode = 0;
-  64          xdata u8 m_RegID[9] = {0};
-  65          xdata u8 m_RegDigit = 0;
-  66          xdata u16 m_TimerRegMode = 0;
-  67          
-  68          xdata u8 AD_DATA_BUFF[2] = {0};         // A/D Buffers
-  69          xdata u32 RAM_BAT_SUM = 0;
-  70          xdata u16 RAM_BAT_AVG = 0;
-  71          xdata u8 RAM_BAT_CNT = 0;
-  72          xdata u8 BAT_out = 0;
-  73          xdata u32 BAT_Voltage_value = 0;
-  74          
-  75          xdata u16 TIME_Once_twice_switch = 0;   //2015.1.31??4
-  76          xdata u16 TIME_10s = 0;   //2015.1.31??3
-  77          xdata u16 key_Value = 0;   //2015.1.31??3
-  78          
-  79          xdata u8 TIME_2s_RestTX = 0;  //2015.4.13??
-  80          xdata u16 TIME_power_on_AD = 0;
-  81          
-  82          void _Init_RAM(void)
-  83          {
-  84   1        TB_100ms = BASE_100ms;
-  85   1        //TB_5s=TB_50s;//50;
-  86   1        TB_51s=26;//69;
-  87   1        TB_5s=TB_51s-1;
-  88   1        
-  89   1              /*              Timer           */
-  90   1                                                                      // General 1s timer
-  91   1              
-  92   1              /*              Key             */
-  93   1              _SetKeyChatterCount() ;                                                                 // Chatter counter set
-  94   1              m_KeyNew = m_KeyOld = d_KeyNoPush ;
-  95   1              m_KindOfKey          = d_IdleKey ;
-  96   1              //mb_Keycheck          = d_Clear ;
-  97   1              mb_NoPush            = d_On ;
-  98   1              mb_NoPushWait        = d_Clear ;
-  99   1              _ClearSpecialMultiKeyState() ;
- 100   1              m_TimerKey = d_Clear ;
- 101   1              m_TimerKeyMonitor = d_Clear ;
- 102   1      }
+  55          xdata u8 m_KeyOptSetMode = 0;
+  56          xdata u8 m_KeyOpenCount = 0;
+  57          xdata u8 m_KeyCloseCount = 0;
+  58          xdata u16 m_KeyDupli1stTimer = 0;
+  59          xdata u16 m_KeyDupliSetTimeout = 0;
+  60          xdata u8 rom_KeyOpt = 0;
+  61          xdata u16 time_led = 0;
+  62          xdata u16 m_TimerKeyMonitor = 0;
+  63          xdata u8 m_KeyCount = 0;
+  64          xdata u8 m_RegMode = 0;
+  65          xdata u8 m_RegID[9] = {0};
+  66          xdata u8 m_RegDigit = 0;
+  67          xdata u16 m_TimerRegMode = 0;
+  68          
+  69          xdata u8 AD_DATA_BUFF[2] = {0};         // A/D Buffers
+  70          xdata u32 RAM_BAT_SUM = 0;
+  71          xdata u16 RAM_BAT_AVG = 0;
+  72          xdata u8 RAM_BAT_CNT = 0;
+  73          xdata u8 BAT_out = 0;
+  74          xdata u32 BAT_Voltage_value = 0;
+  75          
+  76          xdata u16 TIME_Once_twice_switch = 0;   //2015.1.31??4
+  77          xdata u16 TIME_10s = 0;   //2015.1.31??3
+  78          xdata u16 key_Value = 0;   //2015.1.31??3
+  79          
+  80          xdata u8 TIME_2s_RestTX = 0;  //2015.4.13??
+  81          xdata u16 TIME_power_on_AD = 0;
+  82          
+  83          void _Init_RAM(void)
+  84          {
+  85   1        TB_100ms = BASE_100ms;
+  86   1        //TB_5s=TB_50s;//50;
+  87   1        TB_51s=26;//69;
+  88   1        TB_5s=TB_51s-1;
+  89   1        
+  90   1              /*              Timer           */
+  91   1                                                                      // General 1s timer
+  92   1              
+  93   1              /*              Key             */
+  94   1              _SetKeyChatterCount() ;                                                                 // Chatter counter set
+  95   1              m_KeyNew = m_KeyOld = d_KeyNoPush ;
+  96   1              m_KindOfKey          = d_IdleKey ;
+  97   1              //mb_Keycheck          = d_Clear ;
+  98   1              mb_NoPush            = d_On ;
+  99   1              mb_NoPushWait        = d_Clear ;
+ 100   1              _ClearSpecialMultiKeyState() ;
+ 101   1              m_TimerKey = d_Clear ;
+ 102   1              m_TimerKeyMonitor = d_Clear ;
+ 103   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
    CODE SIZE        =     89    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =    169    ----
+   XDATA SIZE       =    170    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =      6    ----
