@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              03/25/2022 15:04:14 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              03/28/2022 17:38:17 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -33,7 +33,7 @@ line level    source
   22   1          eeprom_sys_load();
   23   1          Init_Port();
   24   1          Init_Spi();
-  25   1          Init_Adc();
+  25   1          Init_Adc(); 
   26   1          _Init_RAM();
   27   1          Init_Beep();
   28   1          test_mode_control();
@@ -62,7 +62,7 @@ line level    source
   50   4                      else if((FG_Complex_Single_shot==0)&&(m_KeyNo>=1)&&(m_KeyNo<=4)){
   51   5                          key_check();
   52   5                          ClearWDT(); // Service the WDT
-C51 COMPILER V9.60.0.0   MAIN                                                              03/25/2022 15:04:14 PAGE 2   
+C51 COMPILER V9.60.0.0   MAIN                                                              03/28/2022 17:38:17 PAGE 2   
 
   53   5                      }
   54   4                  }
