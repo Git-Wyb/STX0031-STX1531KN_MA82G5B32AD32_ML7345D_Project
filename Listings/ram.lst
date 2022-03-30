@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   RAM                                                               03/28/2022 17:38:19 PAGE 1   
+C51 COMPILER V9.60.0.0   RAM                                                               03/30/2022 10:07:12 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE RAM
@@ -62,7 +62,7 @@ line level    source
   52          xdata u16 m_ChatterCount = 0;
   53          xdata u16 m_TimerKey = 0;
   54          xdata u8 m_KeyNo = 0;
-C51 COMPILER V9.60.0.0   RAM                                                               03/28/2022 17:38:19 PAGE 2   
+C51 COMPILER V9.60.0.0   RAM                                                               03/30/2022 10:07:12 PAGE 2   
 
   55          xdata u8 m_KeyOptSetMode = 0;
   56          xdata u8 m_KeyOpenCount = 0;
