@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   ML7345                                                            03/30/2022 10:07:13 PAGE 1   
+C51 COMPILER V9.60.0.0   ML7345                                                            04/11/2022 14:25:25 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE ML7345
@@ -62,7 +62,7 @@ line level    source
   52   2          }
   53   1          ML7345_Write_Reg(0x00,0x11);    /* Bank0 Set */
   54   1          ML7345_Write_Reg(0x01,0xff);    /* Software Reset */
-C51 COMPILER V9.60.0.0   ML7345                                                            03/30/2022 10:07:13 PAGE 2   
+C51 COMPILER V9.60.0.0   ML7345                                                            04/11/2022 14:25:25 PAGE 2   
 
   55   1          ML7345_Write_Reg(0x02,0x9f);    /* Clk Enable */
   56   1          ML7345_Write_Reg(0x03,0xc3);    /* TCXO_EN */
@@ -99,7 +99,7 @@ line level    source
              -=1 ED value acquired at SyncWord detection timing*/
   86   1      
   87   1          ML7345_Write_Reg(0x42,0x00);    //TX前导码长度高八位
-  88   1          ML7345_Write_Reg(0x43,0x34);    //TX前导码长度低八位,不等少于16个位,TX preamble length =
+  88   1          ML7345_Write_Reg(0x43,0x30);    //TX前导码长度低八位,不等少于16个位,TX preamble length =
              - (specified value x2) bits
   89   1          //----------------------------------------------------------------------------------------------------
              --
@@ -126,7 +126,7 @@ line level    source
  107   1          ML7345_Write_Reg(0x6e,0x5b);    /*5b VCO calibration setting or status indication */
  108   1      
  109   1          ML7345_Write_Reg(0x7a,0x00);    //发送包长度高八位
-C51 COMPILER V9.60.0.0   ML7345                                                            03/30/2022 10:07:13 PAGE 3   
+C51 COMPILER V9.60.0.0   ML7345                                                            04/11/2022 14:25:25 PAGE 3   
 
  110   1          ML7345_Write_Reg(0x7b,0x0c);    //发送包长度低八位
  111   1      
@@ -159,175 +159,180 @@ line level    source
  138   1          ML7345_Write_Reg(0x23,0x08);    /* 25KHz,Channel space setting (high byte) */
  139   1          ML7345_Write_Reg(0x24,0x88);    /* Channel space setting (low byte) */
  140   1          /* SyncWord 0x00005515 */
- 141   1          ML7345_Write_Reg(0x25,0x08);    /* SyncWord length setting */
+ 141   1          ML7345_Write_Reg(0x25,0x10);    /* SyncWord length setting */
  142   1          ML7345_Write_Reg(0x26,0x0f);    /* SyncWord enable setting */
  143   1          ML7345_Write_Reg(0x27,0x00);    /* SyncWord #1 setting (bit24 to 31) */
  144   1          ML7345_Write_Reg(0x28,0x00);    /* SyncWord #1 setting (bit16 to 23) */
- 145   1          ML7345_Write_Reg(0x29,0x00);    /* SyncWord #1 setting (bit8 to 15) */
- 146   1          ML7345_Write_Reg(0x2a,sync);    /* SyncWord #1 setting (bit0 to 7) */
- 147   1      
- 148   1          ML7345_Write_Reg(0x2f,0x08);    /* GFSK clock setting x8 clock,GFSK/FSK modulation timing resolution s
+ 145   1      #if (BUNKA_STX == 1)
+                  ML7345_Write_Reg(0x29,0x55);    /* SyncWord #1 setting (bit8 to 15) */
+                  ML7345_Write_Reg(0x2a,sync);    /* SyncWord #1 setting (bit0 to 7) */
+              #else
+ 149   1          ML7345_Write_Reg(0x29,0x54);    /* SyncWord #1 setting (bit8 to 15) */
+ 150   1          ML7345_Write_Reg(0x2a,0x56);    /* SyncWord #1 setting (bit0 to 7) */
+ 151   1      #endif
+ 152   1          ML7345_Write_Reg(0x2f,0x08);    /* GFSK clock setting x8 clock,GFSK/FSK modulation timing resolution s
              -etting */
- 149   1          ML7345_Write_Reg(0x30,0x00);    /* GFSK frequency deviation setting (high 6bits) */
- 150   1          
- 151   1          //GFSK frequency deviation: 0xAE=2.0kHz; 0xC0=2.2kHz
- 152   1          ML7345_Write_Reg(0x31,0xC0);    /* P71  GFSK frequency deviation:2.2KHz,GFSK frequency deviation setti
+ 153   1          ML7345_Write_Reg(0x30,0x00);    /* GFSK frequency deviation setting (high 6bits) */
+ 154   1          
+ 155   1          //GFSK frequency deviation: 0xAE=2.0kHz; 0xC0=2.2kHz
+ 156   1          ML7345_Write_Reg(0x31,0xC0);    /* P71  GFSK frequency deviation:2.2KHz,GFSK frequency deviation setti
              -ng (low byte) */
- 153   1      
- 154   1          /*(Channel#0 frequency-400khz)426.075:0x23 0x07 0x91 0x11;
- 155   1          426.25:0x23 0x07 0xcc 0xcc */
- 156   1          ML7345_Write_Reg(0x4d,freq[4]);    /* VCO calibration low limit frequency setting (I counter),p254 */
- 157   1          ML7345_Write_Reg(0x4e,freq[5]);    /* VCO calibration low limit frequency setting (F counter high 4bit
+ 157   1      
+ 158   1          /*(Channel#0 frequency-400khz)426.075:0x23 0x07 0x91 0x11;
+ 159   1          426.25:0x23 0x07 0xcc 0xcc */
+ 160   1          ML7345_Write_Reg(0x4d,freq[4]);    /* VCO calibration low limit frequency setting (I counter),p254 */
+ 161   1          ML7345_Write_Reg(0x4e,freq[5]);    /* VCO calibration low limit frequency setting (F counter high 4bit
              -s) */
- 158   1          ML7345_Write_Reg(0x4f,freq[6]);    /* VCO calibration low limit frequency setting (F counter middle by
+ 162   1          ML7345_Write_Reg(0x4f,freq[6]);    /* VCO calibration low limit frequency setting (F counter middle by
              -te) */
- 159   1          ML7345_Write_Reg(0x50,freq[7]);    /* VCO calibration low limit frequency setting (F counter low byte)
+ 163   1          ML7345_Write_Reg(0x50,freq[7]);    /* VCO calibration low limit frequency setting (F counter low byte)
              - */
- 160   1          ML7345_Write_Reg(0x51,0x04);    /* 6 MHz,VCO calibration upper limit frequency setting */
- 161   1          ML7345_Write_Reg(0x52,0x5a);    /* VCO calibration low limit value indication and setting */
- 162   1          ML7345_Write_Reg(0x53,0x66);    /* VCO calibration upper limit value indication and setting */
- 163   1      
- 164   1          ML7345_Write_Reg(0x5c,0x15);    /* 0x10 Demodulator configulation 6 */
- 165   1          ML7345_Write_Reg(0x5d,0x1b);    /* 0x1b Demodulator configulation 7 */
- 166   1          ML7345_Write_Reg(0x5e,0x05);    /* 0x05 Demodulator configuration 8 */
-C51 COMPILER V9.60.0.0   ML7345                                                            03/30/2022 10:07:13 PAGE 4   
+ 164   1          ML7345_Write_Reg(0x51,0x04);    /* 6 MHz,VCO calibration upper limit frequency setting */
+ 165   1          ML7345_Write_Reg(0x52,0x5a);    /* VCO calibration low limit value indication and setting */
+ 166   1          ML7345_Write_Reg(0x53,0x66);    /* VCO calibration upper limit value indication and setting */
+C51 COMPILER V9.60.0.0   ML7345                                                            04/11/2022 14:25:25 PAGE 4   
 
- 167   1          ML7345_Write_Reg(0x5f,0x67);    /* 0x67 Demodulator configulation 9 */
- 168   1          ML7345_Write_Reg(0x60,0x0c);    /* Demodulator configulation 10 */
- 169   1      
- 170   1          SetReg_Rssi();  //2021.11.17 ROHM提出必要设置,否则读取RSSI偏差大。
- 171   1      
- 172   1          ML7345_Write_Reg(0x00,0x44); //bank2
- 173   1          ML7345_Write_Reg(0x2a,0x0f); //2019.11.25 ROHM提出设置,设置之后灵敏度提升了2dBm
- 174   1      
- 175   1          /* 以下寄存器值为发送功率必要设置，不然发送功率偏差大 */
+ 167   1      
+ 168   1          ML7345_Write_Reg(0x5c,0x15);    /* 0x10 Demodulator configulation 6 */
+ 169   1          ML7345_Write_Reg(0x5d,0x1b);    /* 0x1b Demodulator configulation 7 */
+ 170   1          ML7345_Write_Reg(0x5e,0x05);    /* 0x05 Demodulator configuration 8 */
+ 171   1          ML7345_Write_Reg(0x5f,0x67);    /* 0x67 Demodulator configulation 9 */
+ 172   1          ML7345_Write_Reg(0x60,0x0c);    /* Demodulator configulation 10 */
+ 173   1      
+ 174   1          SetReg_Rssi();  //2021.11.17 ROHM提出必要设置,否则读取RSSI偏差大。
+ 175   1      
  176   1          ML7345_Write_Reg(0x00,0x44); //bank2
- 177   1          ML7345_Write_Reg(0x4f,0x00);
+ 177   1          ML7345_Write_Reg(0x2a,0x0f); //2019.11.25 ROHM提出设置,设置之后灵敏度提升了2dBm
  178   1      
- 179   1          ML7345_Write_Reg(0x00,0x88); //bank3
- 180   1          ML7345_Write_Reg(0x2f,0x3f);
- 181   1          ML7345_Write_Reg(0x0c,0x41);
- 182   1          ML7345_Write_Reg(0x0d,0x33);
- 183   1          ML7345_Write_Reg(0x0e,0x54);
- 184   1          ML7345_Write_Reg(0x14,0x10);
- 185   1          ML7345_Write_Reg(0x24,0x03);
- 186   1          ML7345_Write_Reg(0x7e,0x00);
- 187   1      
- 188   1          if((PROFILE_CH_FREQ_32bit_200002EC == 429350000) || (PROFILE_CH_FREQ_32bit_200002EC == 429550000)) ML7
-             -345_DataRate_Set_4_8k();
- 189   1          else    ML7345_DataRate_Set_1_2k();
- 190   1          /*****************************************************/
+ 179   1          /* 以下寄存器值为发送功率必要设置，不然发送功率偏差大 */
+ 180   1          ML7345_Write_Reg(0x00,0x44); //bank2
+ 181   1          ML7345_Write_Reg(0x4f,0x00);
+ 182   1      
+ 183   1          ML7345_Write_Reg(0x00,0x88); //bank3
+ 184   1          ML7345_Write_Reg(0x2f,0x3f);
+ 185   1          ML7345_Write_Reg(0x0c,0x41);
+ 186   1          ML7345_Write_Reg(0x0d,0x33);
+ 187   1          ML7345_Write_Reg(0x0e,0x54);
+ 188   1          ML7345_Write_Reg(0x14,0x10);
+ 189   1          ML7345_Write_Reg(0x24,0x03);
+ 190   1          ML7345_Write_Reg(0x7e,0x00);
  191   1      
- 192   1          ML7345_Write_Reg(0x00, 0x11);     /* BANK_SEL(BANK0) */
- 193   1          ML7345_Write_Reg(0x6f, 0x01);     /* VCO_CAL_START(CAL start) */
- 194   1          while(1){
- 195   2              if(ML7345_Read_Reg(0x0Du)&0x02u){   /* Wait VCO calibration completion */
- 196   3                  break;
- 197   3              }
- 198   2          }
- 199   1          ML7345_AllStateFlag_Clear(); //清除所有标志
- 200   1          ML7345_GPIO0TxDoneInt_Enable();
- 201   1      }
- 202          /*
- 203          void ML7345_MeasurBER_Init(void)
- 204          {
- 205              ML7345_Write_Reg(ADDR_BANK_SEL,BANK1_SEL);
- 206              ML7345_Write_Reg(0x0e,0x00);
- 207          
- 208              ML7345_Write_Reg(ADDR_BANK_SEL,BANK3_SEL);
- 209              ML7345_Write_Reg(0x0d,0x33);
- 210          
- 211              ML7345_Write_Reg(ADDR_BANK_SEL,BANK0_SEL);
- 212              ML7345_Write_Reg(0x0c,0x40); //50   // DIO_SET, continuous output mode,DCLK is constantly output,no OU
-             -TPUT (NOT stop output)
- 213              ML7345_Write_Reg(0x4d,0x80); //80
+ 192   1          if((PROFILE_CH_FREQ_32bit_200002EC == 429350000) || (PROFILE_CH_FREQ_32bit_200002EC == 429550000)) ML7
+             -345_DataRate_Set_4_8k();
+ 193   1          else    ML7345_DataRate_Set_1_2k();
+ 194   1          /*****************************************************/
+ 195   1      
+ 196   1          ML7345_Write_Reg(0x00, 0x11);     /* BANK_SEL(BANK0) */
+ 197   1          ML7345_Write_Reg(0x6f, 0x01);     /* VCO_CAL_START(CAL start) */
+ 198   1          while(1){
+ 199   2              if(ML7345_Read_Reg(0x0Du)&0x02u){   /* Wait VCO calibration completion */
+ 200   3                  break;
+ 201   3              }
+ 202   2          }
+ 203   1          ML7345_AllStateFlag_Clear(); //清除所有标志
+ 204   1          ML7345_GPIO0TxDoneInt_Enable();
+ 205   1      }
+*** WARNING C280 IN LINE 44 OF user\src\ML7345.c: 'sync': unreferenced local variable
+ 206          /*
+ 207          void ML7345_MeasurBER_Init(void)
+ 208          {
+ 209              ML7345_Write_Reg(ADDR_BANK_SEL,BANK1_SEL);
+ 210              ML7345_Write_Reg(0x0e,0x00);
+ 211          
+ 212              ML7345_Write_Reg(ADDR_BANK_SEL,BANK3_SEL);
+ 213              ML7345_Write_Reg(0x0d,0x33);
  214          
- 215              ML7345_Write_Reg(0x4E,0x05);    //ML7345D GPIO0 DCLK
- 216              ML7345_Write_Reg(0x51,0x04);    //ML7345D GPIO3 DIO
- 217          }*/
+ 215              ML7345_Write_Reg(ADDR_BANK_SEL,BANK0_SEL);
+ 216              ML7345_Write_Reg(0x0c,0x40); //50   // DIO_SET, continuous output mode,DCLK is constantly output,no OU
+             -TPUT (NOT stop output)
+ 217              ML7345_Write_Reg(0x4d,0x80); //80
  218          
- 219          
- 220          void Tx_Data_Test(u8 mode)
- 221          {
- 222   1          ML7345_Write_Reg(0x00, 0x11);     /* BANK_SEL(BANK0) */
- 223   1          switch(mode)
- 224   1          {
- 225   2              /* 发送：载波 */
- 226   2              case 0: ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x21);break;
-C51 COMPILER V9.60.0.0   ML7345                                                            03/30/2022 10:07:13 PAGE 5   
+ 219              ML7345_Write_Reg(0x4E,0x05);    //ML7345D GPIO0 DCLK
+ 220              ML7345_Write_Reg(0x51,0x04);    //ML7345D GPIO3 DIO
+ 221          }*/
+ 222          
+ 223          
+ 224          void Tx_Data_Test(u8 mode)
+ 225          {
+C51 COMPILER V9.60.0.0   ML7345                                                            04/11/2022 14:25:25 PAGE 5   
 
- 227   2      
- 228   2              /* 发送：0101 */
- 229   2              case 1:ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x11);break;
- 230   2      
- 231   2              /* 发送：0 */
- 232   2              case 2:ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x09);break;
- 233   2      
- 234   2              /* 发送：1 */
- 235   2              case 3: ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x05);break;
- 236   2      
- 237   2               /* 发送：随机 */
- 238   2              default:
- 239   2                  ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x03);
- 240   2               break;
- 241   2          }
- 242   1          ML7345_SetAndGet_State(TX_ON);
- 243   1      }
- 244          
- 245          
- 246          void ML7345_TRX_Del(void)
- 247          {
- 248   1          idata u8 reg = 0;
- 249   1          
- 250   1          reg = ML7345_Read_Reg(ADDR_INT_SOURCE_GRP3);
- 251   1          if(((reg & 0x01) == 0x01) && (reg != 0xff))
- 252   1          {
- 253   2              Flag_TxDone = 1;
- 254   2              ML7345_StateFlag_Clear(TX_DONE_FLAG);
- 255   2              if(FLAG_APP_TX == 1)
- 256   2              {
- 257   3                  if(txphase_Repeat < 3 && Flag_TxDone == 1)
- 258   3                  {
- 259   4                      Flag_TxDone = 0;
- 260   4                      ML7345_AutoTx_Data(m_RFNormalBuf,txphase_end);
- 261   4                      txphase_Repeat++;
- 262   4                  }
- 263   3                  else if(txphase_Repeat == 3 && Flag_TxDone == 1)
- 264   3                  {
- 265   4                      Flag_TxDone = 0;
- 266   4                      FLAG_APP_TX = 0;
- 267   4                      if(FG_d_StopKey == 0)   PIN_TX_LED = 0;
- 268   4                      ML7345_SetAndGet_State(Force_TRX_OFF);
- 269   4                      ML7345_RESETN = 0;
- 270   4                      SpiGpio_UnInit();
- 271   4                      ML7345D_POWER = FG_NOT_allow_out;
- 272   4                  }
- 273   3              }
- 274   2          }
- 275   1      }
- 276          
- 277          void dd_set_ML7345D_Power_on(void)
- 278          {
- 279   1          if(ML7345D_POWER == FG_NOT_allow_out)
- 280   1              {
- 281   2                      ML7345D_POWER = FG_allow_out;  
- 282   2              delay_ms(2);
- 283   2              //RF_ML7345_Init(Fre_426_075,0x15,12);
- 284   2              }
- 285   1      }
- 286          /*
- 287          void dd_set_ML7345D_Power_on_Init(void)
- 288          {
-C51 COMPILER V9.60.0.0   ML7345                                                            03/30/2022 10:07:13 PAGE 6   
+ 226   1          ML7345_Write_Reg(0x00, 0x11);     /* BANK_SEL(BANK0) */
+ 227   1          switch(mode)
+ 228   1          {
+ 229   2              /* 发送：载波 */
+ 230   2              case 0: ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x21);break;
+ 231   2      
+ 232   2              /* 发送：0101 */
+ 233   2              case 1:ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x11);break;
+ 234   2      
+ 235   2              /* 发送：0 */
+ 236   2              case 2:ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x09);break;
+ 237   2      
+ 238   2              /* 发送：1 */
+ 239   2              case 3: ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x05);break;
+ 240   2      
+ 241   2               /* 发送：随机 */
+ 242   2              default:
+ 243   2                  ML7345_Write_Reg(ADDR_RF_TEST_MODE,0x03);
+ 244   2               break;
+ 245   2          }
+ 246   1          ML7345_SetAndGet_State(TX_ON);
+ 247   1      }
+ 248          
+ 249          
+ 250          void ML7345_TRX_Del(void)
+ 251          {
+ 252   1          idata u8 reg = 0;
+ 253   1          
+ 254   1          reg = ML7345_Read_Reg(ADDR_INT_SOURCE_GRP3);
+ 255   1          if(((reg & 0x01) == 0x01) && (reg != 0xff))
+ 256   1          {
+ 257   2              Flag_TxDone = 1;
+ 258   2              ML7345_StateFlag_Clear(TX_DONE_FLAG);
+ 259   2              if(FLAG_APP_TX == 1)
+ 260   2              {
+ 261   3                  if(txphase_Repeat < 3 && Flag_TxDone == 1)
+ 262   3                  {
+ 263   4                      Flag_TxDone = 0;
+ 264   4                      ML7345_AutoTx_Data(m_RFNormalBuf,txphase_end);
+ 265   4                      txphase_Repeat++;
+ 266   4                  }
+ 267   3                  else if(txphase_Repeat == 3 && Flag_TxDone == 1)
+ 268   3                  {
+ 269   4                      Flag_TxDone = 0;
+ 270   4                      FLAG_APP_TX = 0;
+ 271   4                      if(FG_d_StopKey == 0)   PIN_TX_LED = 0;
+ 272   4                      ML7345_SetAndGet_State(Force_TRX_OFF);
+ 273   4                      ML7345_RESETN = 0;
+ 274   4                      SpiGpio_UnInit();
+ 275   4                      ML7345D_POWER = FG_NOT_allow_out;
+ 276   4                  }
+ 277   3              }
+ 278   2          }
+ 279   1      }
+ 280          
+ 281          void dd_set_ML7345D_Power_on(void)
+ 282          {
+ 283   1          if(ML7345D_POWER == FG_NOT_allow_out)
+ 284   1              {
+ 285   2                      ML7345D_POWER = FG_allow_out;  
+ 286   2              delay_ms(2);
+ 287   2              //RF_ML7345_Init(Fre_426_075,0x15,12);
+C51 COMPILER V9.60.0.0   ML7345                                                            04/11/2022 14:25:25 PAGE 6   
 
- 289              if(ML7345D_POWER == FG_NOT_allow_out)
- 290                  {
- 291                          ML7345D_POWER = FG_allow_out;  
- 292                  delay_ms(2);
- 293                  RF_ML7345_Init(Fre_426_075,0x15,12);
- 294                  }
- 295          }*/
- 296          
+ 288   2              }
+ 289   1      }
+ 290          /*
+ 291          void dd_set_ML7345D_Power_on_Init(void)
+ 292          {
+ 293              if(ML7345D_POWER == FG_NOT_allow_out)
+ 294                  {
+ 295                          ML7345D_POWER = FG_allow_out;  
+ 296                  delay_ms(2);
+ 297                  RF_ML7345_Init(Fre_426_075,0x15,12);
+ 298                  }
+ 299          }*/
+ 300          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
@@ -341,4 +346,4 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
