@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   UART                                                              04/11/2022 14:25:24 PAGE 1   
+C51 COMPILER V9.60.0.0   UART                                                              04/15/2022 10:29:09 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE UART
@@ -62,7 +62,7 @@ line level    source
   52                  UART0_SetMode8bitUARTVar();                     // 8位 可变波特率
   53                  UART0_EnReception();                            // 使能UART1接收数据
   54                  
-C51 COMPILER V9.60.0.0   UART                                                              04/11/2022 14:25:24 PAGE 2   
+C51 COMPILER V9.60.0.0   UART                                                              04/15/2022 10:29:09 PAGE 2   
 
   55                  UART0_SetBRGFromS1BRG();                        // 设置波特率来源为 S1BRG
   56                  UART0_SetS1BRGBaudRateX2();                     // 设置2x波特率
@@ -126,7 +126,7 @@ line level    source
  114                  TM_SetT1LowByte(T1_BRGRL_9600_2X_24000000_1T);
  115          #endif
  116          
-C51 COMPILER V9.60.0.0   UART                                                              04/11/2022 14:25:24 PAGE 3   
+C51 COMPILER V9.60.0.0   UART                                                              04/15/2022 10:29:09 PAGE 3   
 
  117                  TM_EnableT1();
  118              INT_EnUART0();                      //      使能串口中断
@@ -190,7 +190,7 @@ line level    source
  176   1      }
  177          
  178          /* 发送数据 */
-C51 COMPILER V9.60.0.0   UART                                                              04/11/2022 14:25:24 PAGE 4   
+C51 COMPILER V9.60.0.0   UART                                                              04/15/2022 10:29:09 PAGE 4   
 
  179          void Send_Data(u8 *buff,u8 len)
  180          {
@@ -254,7 +254,7 @@ line level    source
  238          {
  239   1          xdata uni_rom_id UART_ID_data;
  240   1          xdata u8 send_ok[4] = {'(','O','K',')'};
-C51 COMPILER V9.60.0.0   UART                                                              04/11/2022 14:25:24 PAGE 5   
+C51 COMPILER V9.60.0.0   UART                                                              04/15/2022 10:29:09 PAGE 5   
 
  241   1          xdata u8 re_byte = 0;
  242   1          xdata u8 send_ack[10] = {0x28,0x57,0x47,0x29,0x00,0x00,0x00,0x00,0x00,0x00};
@@ -299,101 +299,133 @@ line level    source
  280   4                                      Send_Data(send_ack,10);
  281   4                              }                                 
  282   3                          break;
- 283   3                      case 'S':
- 284   3                              FG_test_mode = 0;
- 285   3                              dd_set_ML7345D_Power_on();
- 286   3                  PROFILE_CH_FREQ_32bit_200002EC = 426075000;
- 287   3                              RF_ML7345_Init(Fre_426_075,0x15,12);
- 288   3                  Tx_Data_Test(0);
- 289   3                              Send_Data(send_ok,4);
- 290   3                              break;
- 291   3                      case 'E':
- 292   3                              if(SIO_DATA[2] == 'N' && SIO_DATA[3] == 'D')
- 293   3                              {
- 294   4                      ML7345_SetAndGet_State(Force_TRX_OFF);
- 295   4                      SpiGpio_UnInit();
- 296   4                                      ML7345D_POWER = FG_NOT_allow_out;
- 297   4                                      FG_test_mode = 0; 
- 298   4                                      Send_Data(send_ok,4);
- 299   4                              }
- 300   3                              break;
- 301   3                      case 'F':
-C51 COMPILER V9.60.0.0   UART                                                              04/11/2022 14:25:24 PAGE 6   
+ 283   3              }
+ 284   2                  
+ 285   2              if(SIO_DATA[1] == 'T' && SIO_DATA[2] == 'E' && SIO_DATA[3] == 'S' && SIO_DATA[4] == 'T' && SIO_DAT
+             -A[5]==')')
+ 286   2              {
+ 287   3                  Flag_test_pc = 1;
+ 288   3                  FG_test_mode = 0;
+ 289   3                  PIN_TX_LED = 0;
+ 290   3                  P20 = 0;
+ 291   3                  Send_Data(send_ok,4);
+ 292   3              }
+ 293   2              if(Flag_test_pc == 1)
+ 294   2              {
+ 295   3                  switch(SIO_DATA[1])
+ 296   3                  {
+ 297   4                      case 'S':
+ 298   4                          FG_test_mode = 0;
+ 299   4                          dd_set_ML7345D_Power_on();
+ 300   4                          PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+C51 COMPILER V9.60.0.0   UART                                                              04/15/2022 10:29:09 PAGE 6   
 
- 302   3                              if(SIO_DATA[2]=='M')
- 303   3                              {
- 304   4                                      FG_test_mode = 1;
- 305   4                      dd_set_ML7345D_Power_on();
- 306   4                      PROFILE_CH_FREQ_32bit_200002EC = 426075000;
- 307   4                      RF_ML7345_Init(Fre_426_075,0x15,12);
- 308   4                      Tx_Data_Test(1);
- 309   4                                      Send_Data(send_ok,4);
- 310   4                              }
- 311   3                              else if (SIO_DATA[2]=='C' && SIO_DATA[3]=='?')
- 312   3                              {
- 313   4                                      send_ack[0] = '(';
- 314   4                                      send_ack[1] = 'F';
- 315   4                                      send_ack[2] = 'C';
- 316   4                                      send_ack[3] = ')';
- 317   4                                      send_ack[4] = hex_asc(rf_offset / 16);
- 318   4                                      send_ack[5] = hex_asc(rf_offset % 16);
- 319   4                                      Send_Data(send_ack,6);
- 320   4                              }
- 321   3                              else if (SIO_DATA[2]=='C' && FG_test_mode == 1)
- 322   3                              {
- 323   4                                      re_byte = asc_hex_2(SIO_buff[3],SIO_buff[4]);   
- 324   4                      ML7345_SetAndGet_State(Force_TRX_OFF);                          
- 325   4                                      if(re_byte <= 10) //frequency +
- 326   4                      {
- 327   5                          rf_offset = re_byte;
- 328   5                          IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rf_offset,&rf_offset,1);
- 329   5                          PROFILE_CH_FREQ_32bit_200002EC_uart = 426075000 + 150 * re_byte;
- 330   5                          ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_426_075);
- 331   5                          ML7345_Frequency_Set(Fre_426_075,1);
- 332   5                          Send_Data(send_ok,4);
- 333   5                      }
- 334   4                      else if(10 < re_byte && re_byte <= 20) //frequency -
- 335   4                      {
- 336   5                          rf_offset = re_byte;
- 337   5                          IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rf_offset,&rf_offset,1);
- 338   5                          re_byte = re_byte - 10;
- 339   5                          PROFILE_CH_FREQ_32bit_200002EC_uart = 426075000 - 150 * re_byte;
- 340   5                          ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_426_075);
- 341   5                          ML7345_Frequency_Set(Fre_426_075,1);
- 342   5                          Send_Data(send_ok,4);
- 343   5                      }
- 344   4                      Tx_Data_Test(1);
- 345   4                              }
- 346   3                              break;
- 347   3              case 'K':
- 348   3                  if(SIO_DATA[2]=='Y' && SIO_DATA[3]==')')
- 349   3                  {
- 350   4                      send_ack[0] = '(';
- 351   4                      send_ack[1] = 'K';
- 352   4                      send_ack[2] = 'Y';
- 353   4                      Key_Sta.un_var = 0;
- 354   4                      Key_Sta.Flag.un_var_bit0 = PIN_KEY_OPEN;
- 355   4                      Key_Sta.Flag.un_var_bit1 = PIN_KEY_STOP;
- 356   4                      Key_Sta.Flag.un_var_bit2 = PIN_KEY_CLOSE;
- 357   4                      Key_Sta.Flag.un_var_bit3 = PIN_KEY_LOGIN;
- 358   4                      send_ack[3] = hex_asc((Key_Sta.un_var & 0xff) / 16);
- 359   4                      send_ack[4] = hex_asc((Key_Sta.un_var & 0xff) % 16);
- 360   4                      send_ack[5] = ')';
- 361   4                      Send_Data(send_ack,6);
- 362   4                  }
- 363   3                  break;
-C51 COMPILER V9.60.0.0   UART                                                              04/11/2022 14:25:24 PAGE 7   
+ 301   4                          RF_ML7345_Init(Fre_426_075,0x15,12);
+ 302   4                          Tx_Data_Test(0);
+ 303   4                          Send_Data(send_ok,4);
+ 304   4                          break;
+ 305   4                      case 'E':
+ 306   4                          if(SIO_DATA[2] == 'N' && SIO_DATA[3] == 'D')
+ 307   4                          {
+ 308   5                              Flag_test_pc = 0;
+ 309   5                              ML7345_SetAndGet_State(Force_TRX_OFF);
+ 310   5                              SpiGpio_UnInit();
+ 311   5                              ML7345D_POWER = FG_NOT_allow_out;
+ 312   5                              FG_test_mode = 0; 
+ 313   5                              Send_Data(send_ok,4);
+ 314   5                          }
+ 315   4                          break;
+ 316   4                      case 'F':
+ 317   4                          if(SIO_DATA[2]=='M')
+ 318   4                          {
+ 319   5                              FG_test_mode = 1;
+ 320   5                              dd_set_ML7345D_Power_on();
+ 321   5                              PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+ 322   5                              RF_ML7345_Init(Fre_426_075,0x15,12);
+ 323   5                              Tx_Data_Test(1);
+ 324   5                              Send_Data(send_ok,4);
+ 325   5                          }
+ 326   4                          else if (SIO_DATA[2]=='C' && SIO_DATA[3]=='?')
+ 327   4                          {
+ 328   5                              send_ack[0] = '(';
+ 329   5                              send_ack[1] = 'F';
+ 330   5                              send_ack[2] = 'C';
+ 331   5                              send_ack[3] = ')';
+ 332   5                              send_ack[4] = hex_asc(rf_offset / 16);
+ 333   5                              send_ack[5] = hex_asc(rf_offset % 16);
+ 334   5                              Send_Data(send_ack,6);
+ 335   5                          }
+ 336   4                          else if (SIO_DATA[2]=='C' && FG_test_mode == 1)
+ 337   4                          {
+ 338   5                              re_byte = asc_hex_2(SIO_buff[3],SIO_buff[4]);   
+ 339   5                              ML7345_SetAndGet_State(Force_TRX_OFF);                          
+ 340   5                              if(re_byte <= 10) //frequency +
+ 341   5                              {
+ 342   6                                  rf_offset = re_byte;
+ 343   6                                  IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rf_offset,&rf_offset,1);
+ 344   6                                  PROFILE_CH_FREQ_32bit_200002EC_uart = 426075000 + 150 * re_byte;
+ 345   6                                  ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_426_075);
+ 346   6                                  ML7345_Frequency_Set(Fre_426_075,1);
+ 347   6                                  Send_Data(send_ok,4);
+ 348   6                              }
+ 349   5                              else if(10 < re_byte && re_byte <= 20) //frequency -
+ 350   5                              {
+ 351   6                                  rf_offset = re_byte;
+ 352   6                                  IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rf_offset,&rf_offset,1);
+ 353   6                                  re_byte = re_byte - 10;
+ 354   6                                  PROFILE_CH_FREQ_32bit_200002EC_uart = 426075000 - 150 * re_byte;
+ 355   6                                  ML7345_Frequency_Calcul(PROFILE_CH_FREQ_32bit_200002EC_uart,Fre_426_075);
+ 356   6                                  ML7345_Frequency_Set(Fre_426_075,1);
+ 357   6                                  Send_Data(send_ok,4);
+ 358   6                              }
+ 359   5                              Tx_Data_Test(1);
+ 360   5                          }
+ 361   4                          break;
+ 362   4                      case 'K':
+C51 COMPILER V9.60.0.0   UART                                                              04/15/2022 10:29:09 PAGE 7   
 
- 364   3                  
- 365   3                      default:
- 366   3                              break;          
- 367   3                      }
- 368   2              }
- 369   1      }
+ 363   4                          if(SIO_DATA[2]=='Y' && SIO_DATA[3]==')')
+ 364   4                          {
+ 365   5                              send_ack[0] = '(';
+ 366   5                              send_ack[1] = 'K';
+ 367   5                              send_ack[2] = 'Y';
+ 368   5                              Key_Sta.un_var = 0;
+ 369   5                              Key_Sta.Flag.un_var_bit0 = PIN_KEY_OPEN;
+ 370   5                              Key_Sta.Flag.un_var_bit1 = PIN_KEY_STOP;
+ 371   5                              Key_Sta.Flag.un_var_bit2 = PIN_KEY_CLOSE;
+ 372   5                              Key_Sta.Flag.un_var_bit3 = PIN_KEY_LOGIN;
+ 373   5                              send_ack[3] = hex_asc((Key_Sta.un_var & 0xff) / 16);
+ 374   5                              send_ack[4] = hex_asc((Key_Sta.un_var & 0xff) % 16);
+ 375   5                              send_ack[5] = ')';
+ 376   5                              Send_Data(send_ack,6);
+ 377   5                          }
+ 378   4                          break;
+ 379   4                      case 'P':
+ 380   4                          if(SIO_DATA[2]=='H' && SIO_DATA[5]==')')
+ 381   4                          {
+ 382   5                              if(SIO_DATA[3]=='2' && SIO_DATA[4]=='7')         {PIN_TX_LED = 1;   Send_Data(send
+             -_ok,4);}
+ 383   5                              else if(SIO_DATA[3]=='2' && SIO_DATA[4]=='0')    {P20 = 1;          Send_Data(send
+             -_ok,4);}
+ 384   5                          }
+ 385   4                          else if(SIO_DATA[2]=='L' && SIO_DATA[5]==')')
+ 386   4                          {
+ 387   5                              if(SIO_DATA[3]=='2' && SIO_DATA[4]=='7')         {PIN_TX_LED = 0;   Send_Data(send
+             -_ok,4);}
+ 388   5                              else if(SIO_DATA[3]=='2' && SIO_DATA[4]=='0')    {P20 = 0;          Send_Data(send
+             -_ok,4);}
+ 389   5                          }
+ 390   4                          break;
+ 391   4                      default:
+ 392   4                          break;          
+ 393   4                  }
+ 394   3              }
+ 395   2              }
+ 396   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1732    ----
+   CODE SIZE        =   2045    ----
    CONSTANT SIZE    =     14    ----
    XDATA SIZE       =    126    ----
    PDATA SIZE       =   ----    ----
