@@ -10,7 +10,7 @@
 #define STX0011      0  //0用于三点式送信机(STX0031), 1用于一点式送信机(STX0011)
 
 extern xdata u16 X_COUNT;
-extern xdata u16 X_ERR; //璁板綍閿欒鐨勪釜鏁?
+extern xdata u16 X_ERR; //璁板綍閿欒鐨勪釜鏁? 
 extern xdata u8  X_ERR_CNT;
 extern xdata u16 X_ERRTimer;
  

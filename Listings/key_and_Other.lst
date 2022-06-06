@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 1   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE KEY_AND_OTHER
@@ -62,7 +62,7 @@ line level    source
   52   2          else if(TIME_BEEP_freq)
   53   2          {
   54   3              --TIME_BEEP_freq;
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 2   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 2   
 
   55   3              TIME_BEEP_on=BASE_TIME_BEEP_on;
   56   3              TIME_BEEP_off=BASE_TIME_BEEP_off;
@@ -126,7 +126,7 @@ line level    source
  114          //              ||++++++ Stop
  115          //              |+++++++ Open
  116          //              ++++++++ 1
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 3   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 3   
 
  117          //
  118          const   uchar   ct_KeyDataTable[]
@@ -190,7 +190,7 @@ line level    source
  176   1              _SwIn( PIN_KEY_LOGIN ) ;        
  177   1              /*      Auto Tx Auto Tx Start sw                */
  178   1              _SwIn( 1 ) ;    
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 4   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 4   
 
  179   1              /*      Auto TxAuto Tx Stop sw          */
  180   1              _SwIn( 1 ) ;    
@@ -254,7 +254,7 @@ line level    source
  238   2              }
  239   1              key_Value=i;   // 2015.1.31修正3
  240   1              if(FG_10s==1)return;   // 2015.1.31修正3
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 5   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 5   
 
  241   1              
  242   1              if      ( i == 17)                      // Found ?
@@ -318,7 +318,7 @@ line level    source
  299   2              }
  300   1      }
  301          /*----------------------------------*/
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 6   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 6   
 
  302          /*                                                                      */
  303          /*              Open + Stop(5) function         */
@@ -382,7 +382,7 @@ line level    source
  361   3                      }
  362   2                      return ;
  363   2              }
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 7   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 7   
 
  364   1              
  365   1              _Pass3secKey( d_ReqCloseReg ) ;
@@ -446,7 +446,7 @@ line level    source
  423   2              }
  424   1      }
  425          /*------------------------------------------*/
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 8   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 8   
 
  426          /*                                                                                      */
  427          /*              Open/Stop/Close/Vent. function          */
@@ -510,7 +510,7 @@ line level    source
  485   4                                              if      ( mb_OpenSw || mb_CloseSw )                             // Close sw ?
  486   4                                              {
  487   5                                                      m_KeyOptSetMode = 10 ;                          // Yes
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 9   
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 9   
 
  488   5                                                      //_ReqBuzzer( d_BuzOpt5 ) ;
  489   5                                                      //_ReqBuzzer(103,103,100);
@@ -574,7 +574,7 @@ line level    source
  547   1      //          /********2015.1.31追加  按2次模式********/
  548   1      //      if      ( rom_KeyOpt || m_KindOfKey == d_VentKey  )// Single push option or Vent. key ?        
  549   1              {                                                                                               // Yes
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 10  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 10  
 
  550   2                      _DupliFuncClear() ;                                                     // Duplicate key function clear
  551   2                      _ReqTxdEdit( m_KeyNo,m_KeyNo ) ;
@@ -638,7 +638,7 @@ line level    source
  609   3                              }
  610   2                              break;
  611   2                                              
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 11  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 11  
 
  612   2              }  
  613   1      }
@@ -702,7 +702,7 @@ line level    source
  671          {
  672   1              m_KeyOptSetMode = d_Idle ;
  673   1              m_KeyOpenCount = 2 ;
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 12  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 12  
 
  674   1              m_KeyCloseCount = 2 ;
  675   1              //mb_OpenSw = d_Off ;
@@ -766,649 +766,655 @@ line level    source
  733   3                          Control_code=0x04;    //stop
  734   3                      break ;
  735   3                  case 3 :    
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 13  
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 13  
 
  736   3                          Control_code=0x02;    //close
  737   3                      break ;
  738   3                  case 4 :    
  739   3                          Control_code=0x01;    //vnet 换气
  740   3                      break ;
- 741   3                  case 10 :                 //Stop + Reg
- 742   3                          Control_code=0x14;
- 743   3                      break ; 
- 744   3                  case 5 :                      //Open + Stop    
- 745   3                          Control_code=0x0C;
+ 741   3                  case 5 :                      //Open + Stop    
+ 742   3                          Control_code=0x0C;
+ 743   3                          break ;     
+ 744   3                  case 6 :                   //Open + Close
+ 745   3                         Control_code=0x0A;
  746   3                          break ;     
- 747   3                  case 6 :                   //Open + Close
- 748   3                         Control_code=0x0A;
+ 747   3                  case 7 :                   //Open + Vent
+ 748   3                         Control_code=0x09;
  749   3                          break ;     
- 750   3                  case 7 :                   //Open + Vent
- 751   3                         Control_code=0x09;
- 752   3                          break ;     
+ 750   3                  case 8:                     //Open + Reg
+ 751   3                          Control_code=0x18;
+ 752   3                          break;
  753   3                  case 9 :                //Stop + Close
  754   3                         Control_code=0x06;
  755   3                          break ;     
- 756   3                  case 12 :              //Close + Vent.
- 757   3                         Control_code=0x03;
- 758   3                          break ;     
- 759   3              }
- 760   2              switch  ( buzreq )    // Jumo to key function
- 761   2              {
- 762   3                  case 1 :
- 763   3                         _ReqBuzzer(103,103,0);
- 764   3          //                  BASE_TIME_BEEP_on=103;
- 765   3          //                        BASE_TIME_BEEP_off=103;
- 766   3          //                  TIME_BEEP_freq=0;
- 767   3                      break ;
- 768   3                  case 2 :
- 769   3                         _ReqBuzzer(103,103,1);
+ 756   3                  case 10 :                 //Stop + Reg
+ 757   3                          Control_code=0x14;
+ 758   3                          break ;
+ 759   3                  case 11 :                 //Close + Reg
+ 760   3                          Control_code=0x12;
+ 761   3                          break ;
+ 762   3                  case 12 :              //Close + Vent.
+ 763   3                         Control_code=0x03;
+ 764   3                          break ;     
+ 765   3              }
+ 766   2              switch  ( buzreq )    // Jumo to key function
+ 767   2              {
+ 768   3                  case 1 :
+ 769   3                         _ReqBuzzer(103,103,0);
  770   3          //                  BASE_TIME_BEEP_on=103;
  771   3          //                        BASE_TIME_BEEP_off=103;
- 772   3          //                  TIME_BEEP_freq=1;
+ 772   3          //                  TIME_BEEP_freq=0;
  773   3                      break ;
- 774   3                  case 3 :    
- 775   3                        _ReqBuzzer(103,103,2);
+ 774   3                  case 2 :
+ 775   3                         _ReqBuzzer(103,103,1);
  776   3          //                  BASE_TIME_BEEP_on=103;
  777   3          //                        BASE_TIME_BEEP_off=103;
- 778   3          //                  TIME_BEEP_freq=2;
+ 778   3          //                  TIME_BEEP_freq=1;
  779   3                      break ;
- 780   3                  case 4 :    
- 781   3                        _ReqBuzzer(500,10,0);
- 782   3                        break ;
- 783   3                  case 20 :   
- 784   3                         _ReqBuzzer(1000,10,0);
- 785   3          //                  BASE_TIME_BEEP_on=1000;
- 786   3          //                        BASE_TIME_BEEP_off=1;
- 787   3          //                  TIME_BEEP_freq=0;
- 788   3                      break ;
- 789   3              }       
- 790   2              dd_set_ML7345D_Power_on();
- 791   2              PROFILE_CH_FREQ_32bit_200002EC = 426075000;
- 792   2              RF_ML7345_Init(Fre_426_075,0x15,12);    
- 793   2              SendTxData();
- 794   2              TIME_2s_RestTX = 25;       //2015.4.13修正        
- 795   2        }
- 796   1        else PIN_LED=0;
- 797   1      }
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 14  
+ 780   3                  case 3 :    
+ 781   3                        _ReqBuzzer(103,103,2);
+ 782   3          //                  BASE_TIME_BEEP_on=103;
+ 783   3          //                        BASE_TIME_BEEP_off=103;
+ 784   3          //                  TIME_BEEP_freq=2;
+ 785   3                      break ;
+ 786   3                  case 4 :    
+ 787   3                        _ReqBuzzer(500,10,0);
+ 788   3                        break ;
+ 789   3                  case 20 :   
+ 790   3                         _ReqBuzzer(1000,10,0);
+ 791   3          //                  BASE_TIME_BEEP_on=1000;
+ 792   3          //                        BASE_TIME_BEEP_off=1;
+ 793   3          //                  TIME_BEEP_freq=0;
+ 794   3                      break ;
+ 795   3              }       
+ 796   2              dd_set_ML7345D_Power_on();
+ 797   2              PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 14  
 
- 798          
- 799          //
- 800          /************************************************/
- 801          /*                                                                                              */
- 802          /*              Key duplicate function setting mode             */
- 803          /*                              Every 10ms                                              */
- 804          /*                                                                                              */
- 805          /*                        in  : none                                            */
- 806          /*                        out : none                                            */
+ 798   2              RF_ML7345_Init(Fre_426_075,0x15,12);    
+ 799   2              SendTxData();
+ 800   2              TIME_2s_RestTX = 25;       //2015.4.13修正        
+ 801   2        }
+ 802   1        else PIN_LED=0;
+ 803   1      }
+ 804          
+ 805          //
+ 806          /************************************************/
  807          /*                                                                                              */
- 808          /************************************************/
- 809          //
- 810          void    _DupliFuncSetMode( void )
- 811          {
- 812   1        u8 m_KeyOpt;
- 813   1              switch  ( m_KeyOptSetMode )
- 814   1              {
- 815   2                      case 1 :
- 816   2                              if      ( !mb_NoPushWait )                                      // No push ?
- 817   2                              {
- 818   3                                      m_KeyDupliSetTimeout = d_DupliTime1s ;  // Yes
- 819   3                                      ++m_KeyOptSetMode ;
- 820   3                                      return ;
- 821   3                              }
- 822   2                              if      ( !m_KeyDupliSetTimeout )                       // Pushing 9s over ?
+ 808          /*              Key duplicate function setting mode             */
+ 809          /*                              Every 10ms                                              */
+ 810          /*                                                                                              */
+ 811          /*                        in  : none                                            */
+ 812          /*                        out : none                                            */
+ 813          /*                                                                                              */
+ 814          /************************************************/
+ 815          //
+ 816          void    _DupliFuncSetMode( void )
+ 817          {
+ 818   1        u8 m_KeyOpt;
+ 819   1              switch  ( m_KeyOptSetMode )
+ 820   1              {
+ 821   2                      case 1 :
+ 822   2                              if      ( !mb_NoPushWait )                                      // No push ?
  823   2                              {
- 824   3                                      m_KeyOptSetMode = 10 ;                          // Yes
- 825   3                                      //_ReqBuzzer( d_BuzOpt5 ) ;
- 826   3                                      //_ReqBuzzer(103,103,100);
- 827   3                                      
- 828   3                              }
- 829   2                              break ;
- 830   2                              
- 831   2                      case 2 :
- 832   2                              if      ( !m_KeyDupliSetTimeout )                       // Wait 1s ok ?
- 833   2                              {                                                                               // Yes
- 834   3                                      ++m_KeyOptSetMode;
- 835   3                                      m_KeyDupliSetTimeout = d_DupliTime3s ;
- 836   3                                      //_ReqBuzzer( d_BuzOpt2 ) ;
- 837   3                                      _ReqBuzzer(103,103,0);
- 838   3                                      FG_LED_on=1;
- 839   3                              }
- 840   2                              
- 841   2                              if      ( m_KindOfKey != d_Idle && m_KindOfKey != d_KeyNoPush )
- 842   2                              {
- 843   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
- 844   3                              }
- 845   2                              break ;
+ 824   3                                      m_KeyDupliSetTimeout = d_DupliTime1s ;  // Yes
+ 825   3                                      ++m_KeyOptSetMode ;
+ 826   3                                      return ;
+ 827   3                              }
+ 828   2                              if      ( !m_KeyDupliSetTimeout )                       // Pushing 9s over ?
+ 829   2                              {
+ 830   3                                      m_KeyOptSetMode = 10 ;                          // Yes
+ 831   3                                      //_ReqBuzzer( d_BuzOpt5 ) ;
+ 832   3                                      //_ReqBuzzer(103,103,100);
+ 833   3                                      
+ 834   3                              }
+ 835   2                              break ;
+ 836   2                              
+ 837   2                      case 2 :
+ 838   2                              if      ( !m_KeyDupliSetTimeout )                       // Wait 1s ok ?
+ 839   2                              {                                                                               // Yes
+ 840   3                                      ++m_KeyOptSetMode;
+ 841   3                                      m_KeyDupliSetTimeout = d_DupliTime3s ;
+ 842   3                                      //_ReqBuzzer( d_BuzOpt2 ) ;
+ 843   3                                      _ReqBuzzer(103,103,0);
+ 844   3                                      FG_LED_on=1;
+ 845   3                              }
  846   2                              
- 847   2                      case 3 :                                                                        // Sw in wait
- 848   2                              if      ( !m_KeyDupliSetTimeout )
- 849   2                              {
- 850   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
- 851   3                                      return ;
- 852   3                              }
- 853   2                              
- 854   2                              if      ( m_KindOfKey == d_Idle || m_KindOfKey == d_KeyNoPush )
+ 847   2                              if      ( m_KindOfKey != d_Idle && m_KindOfKey != d_KeyNoPush )
+ 848   2                              {
+ 849   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
+ 850   3                              }
+ 851   2                              break ;
+ 852   2                              
+ 853   2                      case 3 :                                                                        // Sw in wait
+ 854   2                              if      ( !m_KeyDupliSetTimeout )
  855   2                              {
- 856   3                                      return ;
- 857   3                              }
- 858   2                              
- 859   2                              if      ( m_KeyOptSetOpenStop )                         // Setting by stop ?
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 15  
+ 856   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
+ 857   3                                      return ;
+ 858   3                              }
+ 859   2                              
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 15  
 
- 860   2                              {                                                                               // Yes
- 861   3                                      if      ( m_KindOfKey == d_StopKey )
- 862   3                                      {
- 863   4                                              m_KeyDupliSetTimeout = d_DupliTime1s ;
- 864   4                                              ++m_KeyOptSetMode ;
- 865   4                                              //mb_NoPushWait = d_On ;
- 866   4                                      }
- 867   3                                      else
- 868   3                                      {                                                                       // Error
- 869   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
- 870   4                                              return ;
- 871   4                                      }
- 872   3                              }
- 873   2                              else
- 874   2                              {
- 875   3                                      if      ( m_KindOfKey == d_OpenKey )
- 876   3                                      {
- 877   4                                              m_KeyDupliSetTimeout = d_DupliTime1s ;
- 878   4                                              ++m_KeyOptSetMode ;
- 879   4                                              
- 880   4                                      }
- 881   3                                      else
- 882   3                                      {                                                                       // Error
- 883   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
- 884   4                                              return ;
- 885   4                                      }
- 886   3                              }
- 887   2                              break ;
- 888   2                              
- 889   2                      case 4 :
- 890   2                              if      ( !m_KeyDupliSetTimeout )                       // Wait 1s ok ?
- 891   2                              {                                                                               // Yes
- 892   3                                      ++m_KeyOptSetMode ;
- 893   3                                      m_KeyDupliSetTimeout = d_DupliTime3s ;
- 894   3                                      //_ReqBuzzer( d_BuzOpt2 ) ;
- 895   3                                      _ReqBuzzer(103,103,0);
- 896   3                                      FG_LED_on=1;
- 897   3                              }
- 898   2      //                      
- 899   2      //                      if      ( m_KindOfKey != d_Idle && m_KindOfKey != d_KeyNoPush  )
- 900   2      //                      {                                                                               // Error
- 901   2      //                              _DupliFuncClear() ;                                     // Duplicate key function clear
- 902   2      //                      }
- 903   2                              break ;
- 904   2                              
- 905   2                      case 5 :                                                                        // Sw in wait
- 906   2                              if      ( !m_KeyDupliSetTimeout )
- 907   2                              {
- 908   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
- 909   3                                      return ;
- 910   3                              }
- 911   2                              
- 912   2                              if      ( m_KindOfKey == d_Idle || m_KindOfKey == d_KeyNoPush )
+ 860   2                              if      ( m_KindOfKey == d_Idle || m_KindOfKey == d_KeyNoPush )
+ 861   2                              {
+ 862   3                                      return ;
+ 863   3                              }
+ 864   2                              
+ 865   2                              if      ( m_KeyOptSetOpenStop )                         // Setting by stop ?
+ 866   2                              {                                                                               // Yes
+ 867   3                                      if      ( m_KindOfKey == d_StopKey )
+ 868   3                                      {
+ 869   4                                              m_KeyDupliSetTimeout = d_DupliTime1s ;
+ 870   4                                              ++m_KeyOptSetMode ;
+ 871   4                                              //mb_NoPushWait = d_On ;
+ 872   4                                      }
+ 873   3                                      else
+ 874   3                                      {                                                                       // Error
+ 875   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
+ 876   4                                              return ;
+ 877   4                                      }
+ 878   3                              }
+ 879   2                              else
+ 880   2                              {
+ 881   3                                      if      ( m_KindOfKey == d_OpenKey )
+ 882   3                                      {
+ 883   4                                              m_KeyDupliSetTimeout = d_DupliTime1s ;
+ 884   4                                              ++m_KeyOptSetMode ;
+ 885   4                                              
+ 886   4                                      }
+ 887   3                                      else
+ 888   3                                      {                                                                       // Error
+ 889   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
+ 890   4                                              return ;
+ 891   4                                      }
+ 892   3                              }
+ 893   2                              break ;
+ 894   2                              
+ 895   2                      case 4 :
+ 896   2                              if      ( !m_KeyDupliSetTimeout )                       // Wait 1s ok ?
+ 897   2                              {                                                                               // Yes
+ 898   3                                      ++m_KeyOptSetMode ;
+ 899   3                                      m_KeyDupliSetTimeout = d_DupliTime3s ;
+ 900   3                                      //_ReqBuzzer( d_BuzOpt2 ) ;
+ 901   3                                      _ReqBuzzer(103,103,0);
+ 902   3                                      FG_LED_on=1;
+ 903   3                              }
+ 904   2      //                      
+ 905   2      //                      if      ( m_KindOfKey != d_Idle && m_KindOfKey != d_KeyNoPush  )
+ 906   2      //                      {                                                                               // Error
+ 907   2      //                              _DupliFuncClear() ;                                     // Duplicate key function clear
+ 908   2      //                      }
+ 909   2                              break ;
+ 910   2                              
+ 911   2                      case 5 :                                                                        // Sw in wait
+ 912   2                              if      ( !m_KeyDupliSetTimeout )
  913   2                              {
- 914   3                                      return ;
- 915   3                              }
- 916   2                              
- 917   2                              if      ( m_KeyOptSetOpenStop )                         // Setting by stop ?
- 918   2                              {                                                                               // Yes
- 919   3                                      if      ( m_KindOfKey == d_StopKey )
- 920   3                                      {
- 921   4                                              m_KeyDupliSetTimeout = d_DupliTime1s ;
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 16  
+ 914   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
+ 915   3                                      return ;
+ 916   3                              }
+ 917   2                              
+ 918   2                              if      ( m_KindOfKey == d_Idle || m_KindOfKey == d_KeyNoPush )
+ 919   2                              {
+ 920   3                                      return ;
+ 921   3                              }
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 16  
 
- 922   4                                              ++m_KeyOptSetMode ;
- 923   4                                              mb_NoPushWait = d_On ;
- 924   4                                      }
- 925   3                                      else
- 926   3                                      {                                                                       // Error
- 927   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
- 928   4                                              return ;
- 929   4                                      }
- 930   3                              }
- 931   2                              else
- 932   2                              {
- 933   3                                      if      ( m_KindOfKey == d_OpenKey )
- 934   3                                      {
- 935   4                                              m_KeyDupliSetTimeout = d_DupliTime1s ;
- 936   4                                              ++m_KeyOptSetMode ;
- 937   4                                      }
- 938   3                                      else
- 939   3                                      {                                                                       // Error
- 940   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
- 941   4                                              return ;
- 942   4                                      }
- 943   3                              }
- 944   2                              break ;
- 945   2                              
- 946   2                      case 6 :
- 947   2                              if      ( !m_KeyDupliSetTimeout )                       // Wait 1s ok ?
- 948   2                              {                                                                               // Yes
- 949   3                                      ++m_KeyOptSetMode ;
- 950   3                                      m_KeyDupliSetTimeout = d_DupliTime3s ;
- 951   3                                      //_ReqBuzzer( d_BuzOpt3 ) ;
- 952   3                                      _ReqBuzzer(103,103,2);
- 953   3                                      FG_LED_on=1;                            
- 954   3                              }
- 955   2                              
- 956   2      //                      if      ( m_KindOfKey != d_Idle && m_KindOfKey != d_KeyNoPush )
- 957   2      //                      {                                                                               // Error
- 958   2      //                              _DupliFuncClear() ;                                     // Duplicate key function clear
- 959   2      //                      }
- 960   2                              break ;
+ 922   2                              
+ 923   2                              if      ( m_KeyOptSetOpenStop )                         // Setting by stop ?
+ 924   2                              {                                                                               // Yes
+ 925   3                                      if      ( m_KindOfKey == d_StopKey )
+ 926   3                                      {
+ 927   4                                              m_KeyDupliSetTimeout = d_DupliTime1s ;
+ 928   4                                              ++m_KeyOptSetMode ;
+ 929   4                                              mb_NoPushWait = d_On ;
+ 930   4                                      }
+ 931   3                                      else
+ 932   3                                      {                                                                       // Error
+ 933   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
+ 934   4                                              return ;
+ 935   4                                      }
+ 936   3                              }
+ 937   2                              else
+ 938   2                              {
+ 939   3                                      if      ( m_KindOfKey == d_OpenKey )
+ 940   3                                      {
+ 941   4                                              m_KeyDupliSetTimeout = d_DupliTime1s ;
+ 942   4                                              ++m_KeyOptSetMode ;
+ 943   4                                      }
+ 944   3                                      else
+ 945   3                                      {                                                                       // Error
+ 946   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
+ 947   4                                              return ;
+ 948   4                                      }
+ 949   3                              }
+ 950   2                              break ;
+ 951   2                              
+ 952   2                      case 6 :
+ 953   2                              if      ( !m_KeyDupliSetTimeout )                       // Wait 1s ok ?
+ 954   2                              {                                                                               // Yes
+ 955   3                                      ++m_KeyOptSetMode ;
+ 956   3                                      m_KeyDupliSetTimeout = d_DupliTime3s ;
+ 957   3                                      //_ReqBuzzer( d_BuzOpt3 ) ;
+ 958   3                                      _ReqBuzzer(103,103,2);
+ 959   3                                      FG_LED_on=1;                            
+ 960   3                              }
  961   2                              
- 962   2                      case 7 :                                                                        // Sw in wait
- 963   2                              if      ( !m_KeyDupliSetTimeout )
- 964   2                              {
- 965   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
- 966   3                                      return ;
- 967   3                              }
- 968   2                              
- 969   2                              if      ( m_KindOfKey == d_Idle || m_KindOfKey == d_KeyNoPush )
+ 962   2      //                      if      ( m_KindOfKey != d_Idle && m_KindOfKey != d_KeyNoPush )
+ 963   2      //                      {                                                                               // Error
+ 964   2      //                              _DupliFuncClear() ;                                     // Duplicate key function clear
+ 965   2      //                      }
+ 966   2                              break ;
+ 967   2                              
+ 968   2                      case 7 :                                                                        // Sw in wait
+ 969   2                              if      ( !m_KeyDupliSetTimeout )
  970   2                              {
- 971   3                                      return ;
- 972   3                              }
- 973   2                              
- 974   2                              if      ( m_KeyOptSetOpenStop )                         // Setting by stop ?
- 975   2                              {                                                                               // Yes
- 976   3                                      if      ( m_KindOfKey == d_StopKey )
- 977   3                                      {
- 978   4                                              m_KeyDupliSetTimeout = d_DupliTime10s ;
- 979   4                                              ++m_KeyOptSetMode ;
- 980   4                                              mb_NoPushWait = d_On ;
- 981   4                                      }
- 982   3                                      else
- 983   3                                      {                                                                       // Error
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 17  
+ 971   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
+ 972   3                                      return ;
+ 973   3                              }
+ 974   2                              
+ 975   2                              if      ( m_KindOfKey == d_Idle || m_KindOfKey == d_KeyNoPush )
+ 976   2                              {
+ 977   3                                      return ;
+ 978   3                              }
+ 979   2                              
+ 980   2                              if      ( m_KeyOptSetOpenStop )                         // Setting by stop ?
+ 981   2                              {                                                                               // Yes
+ 982   3                                      if      ( m_KindOfKey == d_StopKey )
+ 983   3                                      {
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 17  
 
- 984   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
- 985   4                                              return ;
- 986   4                                      }
- 987   3                              }
- 988   2                              else
- 989   2                              {
- 990   3                                      if      ( m_KindOfKey == d_OpenKey )
- 991   3                                      {
- 992   4                                              m_KeyDupliSetTimeout = d_DupliTime10s ;
- 993   4                                              ++m_KeyOptSetMode ;
- 994   4                                      }
- 995   3                                      else
- 996   3                                      {                                                                       // Error
- 997   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
- 998   4                                              return ;
- 999   4                                      }
-1000   3                              }
-1001   2                              break ;
-1002   2                              
-1003   2                      case 8 :                                                                        // Sw in wait
-1004   2                      case 9 :                                                                        // Sw in wait
-1005   2                              if      ( !m_KeyDupliSetTimeout )
-1006   2                              {
-1007   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
-1008   3                                      return ;
-1009   3                              }
-1010   2                              
-1011   2                              if      ( m_KindOfKey == d_Idle || m_KindOfKey == d_KeyNoPush )
+ 984   4                                              m_KeyDupliSetTimeout = d_DupliTime10s ;
+ 985   4                                              ++m_KeyOptSetMode ;
+ 986   4                                              mb_NoPushWait = d_On ;
+ 987   4                                      }
+ 988   3                                      else
+ 989   3                                      {                                                                       // Error
+ 990   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
+ 991   4                                              return ;
+ 992   4                                      }
+ 993   3                              }
+ 994   2                              else
+ 995   2                              {
+ 996   3                                      if      ( m_KindOfKey == d_OpenKey )
+ 997   3                                      {
+ 998   4                                              m_KeyDupliSetTimeout = d_DupliTime10s ;
+ 999   4                                              ++m_KeyOptSetMode ;
+1000   4                                      }
+1001   3                                      else
+1002   3                                      {                                                                       // Error
+1003   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
+1004   4                                              return ;
+1005   4                                      }
+1006   3                              }
+1007   2                              break ;
+1008   2                              
+1009   2                      case 8 :                                                                        // Sw in wait
+1010   2                      case 9 :                                                                        // Sw in wait
+1011   2                              if      ( !m_KeyDupliSetTimeout )
 1012   2                              {
-1013   3                                      return ;
-1014   3                              }
-1015   2                              
-1016   2                              if      ( m_KeyOptSetOpenStop )                         // Setting by stop ?
-1017   2                              {                                                                               // Yes
-1018   3                                      if      ( m_KindOfKey == d_StopKey )
-1019   3                                      {
-1020   4                                              if      ( m_KeyOptSetMode == 9 )
-1021   4                                              {
-1022   5                                                      m_KeyOpt = rom_KeyOpt ;
-1023   5                                                      if      ( m_KeyOpt )
-1024   5                                                      {
-1025   6                                                              m_KeyOpt = 0 ;
-1026   6                                                      }
-1027   5                                                      else
-1028   5                                                      {
-1029   6                                                              m_KeyOpt = 1 ;
-1030   6                                                      }
-1031   5                                                      rom_KeyOpt = m_KeyOpt;
-1032   5                              IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rom_KeyOpt,&rom_KeyOpt,1);
-1033   5                                                      //KeyOpt_EEPROM_write();
-1034   5                                                      //_FlashWriteID() ;                             // Write data to flash rom
-1035   5                                                      
-1036   5                                                      //_ReqBuzzer( d_BuzOpt4 ) ;
-1037   5                                                      _ReqBuzzer(103,103,4);
-1038   5                                                      FG_LED_on=1;    
-1039   5                                                      FG_d_StopKey=0;
-1040   5                                                      TB_5s=TB_20s;//20;
-1041   5                                                      _DupliFuncClear() ;                             // Duplicate key function clear
-1042   5                                                      return ;
-1043   5                                              }
-1044   4                                              ++m_KeyOptSetMode ;
-1045   4                                      }
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 18  
+1013   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
+1014   3                                      return ;
+1015   3                              }
+1016   2                              
+1017   2                              if      ( m_KindOfKey == d_Idle || m_KindOfKey == d_KeyNoPush )
+1018   2                              {
+1019   3                                      return ;
+1020   3                              }
+1021   2                              
+1022   2                              if      ( m_KeyOptSetOpenStop )                         // Setting by stop ?
+1023   2                              {                                                                               // Yes
+1024   3                                      if      ( m_KindOfKey == d_StopKey )
+1025   3                                      {
+1026   4                                              if      ( m_KeyOptSetMode == 9 )
+1027   4                                              {
+1028   5                                                      m_KeyOpt = rom_KeyOpt ;
+1029   5                                                      if      ( m_KeyOpt )
+1030   5                                                      {
+1031   6                                                              m_KeyOpt = 0 ;
+1032   6                                                      }
+1033   5                                                      else
+1034   5                                                      {
+1035   6                                                              m_KeyOpt = 1 ;
+1036   6                                                      }
+1037   5                                                      rom_KeyOpt = m_KeyOpt;
+1038   5                              IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rom_KeyOpt,&rom_KeyOpt,1);
+1039   5                                                      //KeyOpt_EEPROM_write();
+1040   5                                                      //_FlashWriteID() ;                             // Write data to flash rom
+1041   5                                                      
+1042   5                                                      //_ReqBuzzer( d_BuzOpt4 ) ;
+1043   5                                                      _ReqBuzzer(103,103,4);
+1044   5                                                      FG_LED_on=1;    
+1045   5                                                      FG_d_StopKey=0;
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 18  
 
-1046   3                                      else
-1047   3                                      {                                                                       // Error
-1048   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
-1049   4                                              return ;
-1050   4                                      }
-1051   3                              }
-1052   2                              else
-1053   2                              {
-1054   3                                      if      ( m_KindOfKey == d_OpenKey )
-1055   3                                      {
-1056   4                                              if      ( m_KeyOptSetMode == 9 )
-1057   4                                              {
-1058   5                                                      m_KeyOpt = rom_KeyOpt ;
-1059   5                                                      if      ( m_KeyOpt )
-1060   5                                                      {
-1061   6                                                              m_KeyOpt = 0 ;
-1062   6                                                      }
-1063   5                                                      else
-1064   5                                                      {
-1065   6                                                              m_KeyOpt = 1 ;
-1066   6                                                      }
-1067   5                                                      rom_KeyOpt=m_KeyOpt;
-1068   5                              IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rom_KeyOpt,&rom_KeyOpt,1);
-1069   5                                                      //KeyOpt_EEPROM_write();                                // Write data to flash rom
-1070   5                                                      
-1071   5                                                      //_ReqBuzzer( d_BuzOpt4 ) ;
-1072   5                                                      _ReqBuzzer(103,103,4);
-1073   5                                                      FG_LED_on=1;
-1074   5                                                      FG_d_StopKey=0;
-1075   5                                                      _DupliFuncClear() ;                             // Duplicate key function clear
+1046   5                                                      TB_5s=TB_20s;//20;
+1047   5                                                      _DupliFuncClear() ;                             // Duplicate key function clear
+1048   5                                                      return ;
+1049   5                                              }
+1050   4                                              ++m_KeyOptSetMode ;
+1051   4                                      }
+1052   3                                      else
+1053   3                                      {                                                                       // Error
+1054   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
+1055   4                                              return ;
+1056   4                                      }
+1057   3                              }
+1058   2                              else
+1059   2                              {
+1060   3                                      if      ( m_KindOfKey == d_OpenKey )
+1061   3                                      {
+1062   4                                              if      ( m_KeyOptSetMode == 9 )
+1063   4                                              {
+1064   5                                                      m_KeyOpt = rom_KeyOpt ;
+1065   5                                                      if      ( m_KeyOpt )
+1066   5                                                      {
+1067   6                                                              m_KeyOpt = 0 ;
+1068   6                                                      }
+1069   5                                                      else
+1070   5                                                      {
+1071   6                                                              m_KeyOpt = 1 ;
+1072   6                                                      }
+1073   5                                                      rom_KeyOpt=m_KeyOpt;
+1074   5                              IAP_WriteBuf_With_Protect_Verify(addr_eeprom_sys+Addr_rom_KeyOpt,&rom_KeyOpt,1);
+1075   5                                                      //KeyOpt_EEPROM_write();                                // Write data to flash rom
 1076   5                                                      
-1077   5                                                      return ;
-1078   5                                              }
-1079   4                                              ++m_KeyOptSetMode ;
-1080   4                                      }
-1081   3                                      else
-1082   3                                      {                                                                       // Error
-1083   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
-1084   4                                              return ;
-1085   4                                      }
-1086   3                              }
-1087   2                              break ;
-1088   2                              
-1089   2                      case 10 :
-1090   2                              if      ( !mb_NoPushWait )                                      // No push ?
-1091   2                              {
-1092   3                                      //_BuzIdle() ;
-1093   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
-1094   3                                      return ;
-1095   3                              }
-1096   2                              break ;
-1097   2                              
-1098   2              }
-1099   1      }
-1100          /****************************************/
-1101          /*                                                                              */
-1102          /*              Registration mode procedure             */
-1103          /*                                                                              */
-1104          /*                        in  : none                            */
-1105          /*                        out : none                            */
-1106          /*                                                                              */
-1107          /****************************************/
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 19  
+1077   5                                                      //_ReqBuzzer( d_BuzOpt4 ) ;
+1078   5                                                      _ReqBuzzer(103,103,4);
+1079   5                                                      FG_LED_on=1;
+1080   5                                                      FG_d_StopKey=0;
+1081   5                                                      _DupliFuncClear() ;                             // Duplicate key function clear
+1082   5                                                      
+1083   5                                                      return ;
+1084   5                                              }
+1085   4                                              ++m_KeyOptSetMode ;
+1086   4                                      }
+1087   3                                      else
+1088   3                                      {                                                                       // Error
+1089   4                                              _DupliFuncClear() ;                             // Duplicate key function clear
+1090   4                                              return ;
+1091   4                                      }
+1092   3                              }
+1093   2                              break ;
+1094   2                              
+1095   2                      case 10 :
+1096   2                              if      ( !mb_NoPushWait )                                      // No push ?
+1097   2                              {
+1098   3                                      //_BuzIdle() ;
+1099   3                                      _DupliFuncClear() ;                                     // Duplicate key function clear
+1100   3                                      return ;
+1101   3                              }
+1102   2                              break ;
+1103   2                              
+1104   2              }
+1105   1      }
+1106          /****************************************/
+1107          /*                                                                              */
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 19  
 
-1108          //
-1109          void    _RegistrationMode( void )
-1110          {
-1111   1              if      ( !_GetRegMode() )                                                      // Reg. mode Idle ?
-1112   1              {                                                                                               // Yes
-1113   2                      return ;
-1114   2              }
-1115   1      
-1116   1              if(FG_PWRON==0){
-1117   2              FG_PWRON=1;
-1118   2              PIN_POWER_CONTROL=1;
-1119   2              }       
-1120   1              if(m_TimerRegMode){
-1121   2                TB_5s=51;//TB_51s;//51;  //5.1秒
-1122   2                time_led++;
-1123   2                if(time_led>=500){time_led=0;PIN_LED=!PIN_LED;}         
-1124   2              }
-1125   1              else {
-1126   2                      //_ReqBuzzer(500,250,3);
-1127   2                      _ReqBuzzer(500,250,2);
-1128   2                      PIN_LED=0;
-1129   2                      m_RegMode = d_Idle ;
+1108          /*              Registration mode procedure             */
+1109          /*                                                                              */
+1110          /*                        in  : none                            */
+1111          /*                        out : none                            */
+1112          /*                                                                              */
+1113          /****************************************/
+1114          //
+1115          void    _RegistrationMode( void )
+1116          {
+1117   1              if      ( !_GetRegMode() )                                                      // Reg. mode Idle ?
+1118   1              {                                                                                               // Yes
+1119   2                      return ;
+1120   2              }
+1121   1      
+1122   1              if(FG_PWRON==0){
+1123   2              FG_PWRON=1;
+1124   2              PIN_POWER_CONTROL=1;
+1125   2              }       
+1126   1              if(m_TimerRegMode){
+1127   2                TB_5s=51;//TB_51s;//51;  //5.1秒
+1128   2                time_led++;
+1129   2                if(time_led>=500){time_led=0;PIN_LED=!PIN_LED;}         
 1130   2              }
-1131   1              /*      Led control     */
-1132   1      //      if      ( mb_LedOnOff )                                                         // Led on timing ?
-1133   1      //      {                                                                                               // Yes
-1134   1      //              _LedOnOff( d_LedOn ) ;                                          // Led on
-1135   1      //      }
-1136   1      //      else
-1137   1      //      {
-1138   1      //              _LedOnOff( d_LedOff ) ;                                         // Led off
-1139   1      //      }
-1140   1              
-1141   1              switch  ( m_KindOfKey )
-1142   1              {
-1143   2                      case    d_OpenKey :
-1144   2                              if      ( ++m_RegID[m_RegDigit] > '9' )         // No. up
-1145   2                              {
-1146   3                                      m_RegID[m_RegDigit] = '0' ;
-1147   3                              }
-1148   2                              //_ReqBuzzer(d_BuzOpen) ;
-1149   2                              _ReqBuzzer(103,103,0);
-1150   2                              m_TimerRegMode = d_Time1min ;                   // 1min. set (1s base)
-1151   2                              break ;
-1152   2                              
-1153   2                      case    d_StopKey :                                             // Next digit
-1154   2                              if      ( ++m_RegDigit > 8 )
-1155   2                              {
-1156   3                                      m_RegDigit= 8 ;
-1157   3                              }
-1158   2      /*              Add on 2007/5/28                */
-1159   2                              else
-1160   2                              {
-1161   3                                      //_ReqBuzzer(d_BuzStop) ;
-1162   3                                _ReqBuzzer(103,103,1);
+1131   1              else {
+1132   2                      //_ReqBuzzer(500,250,3);
+1133   2                      _ReqBuzzer(500,250,2);
+1134   2                      PIN_LED=0;
+1135   2                      m_RegMode = d_Idle ;
+1136   2              }
+1137   1              /*      Led control     */
+1138   1      //      if      ( mb_LedOnOff )                                                         // Led on timing ?
+1139   1      //      {                                                                                               // Yes
+1140   1      //              _LedOnOff( d_LedOn ) ;                                          // Led on
+1141   1      //      }
+1142   1      //      else
+1143   1      //      {
+1144   1      //              _LedOnOff( d_LedOff ) ;                                         // Led off
+1145   1      //      }
+1146   1              
+1147   1              switch  ( m_KindOfKey )
+1148   1              {
+1149   2                      case    d_OpenKey :
+1150   2                              if      ( ++m_RegID[m_RegDigit] > '9' )         // No. up
+1151   2                              {
+1152   3                                      m_RegID[m_RegDigit] = '0' ;
+1153   3                              }
+1154   2                              //_ReqBuzzer(d_BuzOpen) ;
+1155   2                              _ReqBuzzer(103,103,0);
+1156   2                              m_TimerRegMode = d_Time1min ;                   // 1min. set (1s base)
+1157   2                              break ;
+1158   2                              
+1159   2                      case    d_StopKey :                                             // Next digit
+1160   2                              if      ( ++m_RegDigit > 8 )
+1161   2                              {
+1162   3                                      m_RegDigit= 8 ;
 1163   3                              }
-1164   2      /*********************************/
-1165   2      /*              Deleted on 2007/5/28            */
-1166   2      //                      _ReqBuzzer(d_BuzStop) ;
-1167   2      /*********************************/
-1168   2                              m_TimerRegMode = d_Time1min ;                   // 1min. set (1s base)
-1169   2                              break ;
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 20  
+1164   2      /*              Add on 2007/5/28                */
+1165   2                              else
+1166   2                              {
+1167   3                                      //_ReqBuzzer(d_BuzStop) ;
+1168   3                                _ReqBuzzer(103,103,1);
+1169   3                              }
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 20  
 
-1170   2                              
-1171   2                      case    d_CloseKey :
-1172   2                              _IdClear() ;                                                    // ID clear
-1173   2                              //_ReqBuzzer(d_BuzReg) ;
-1174   2                              _ReqBuzzer(1000,10,0);
-1175   2                              m_TimerRegMode = d_Time1min ;                   // 1min. set (1s base)
-1176   2                              break ;
-1177   2                              
-1178   2                      case    d_RegKey :                                              // Send ID
-1179   2      /*              Add on 2007/5/28                */
-1180   2                              if      ( m_RegDigit < 8 )
-1181   2                              {
-1182   3                                      return ;
-1183   3                              }
-1184   2      /*********************************/
-1185   2      
-1186   2                              //_SetRegModeIdle() ;
-1187   2                              //m_RegMode = d_Idle ;
-1188   2                              ID_data_add.IDC = (ulong)atol(m_RegID) ;
-1189   2      /*              Modified on 2007/5/28           */
-1190   2      //                      if      ( m_RFID.ID > 16777215 )                        // Over ?
-1191   2                              if      ( ID_data_add.IDC > 16777214 )                  // Over ?
-1192   2      /*********************************/
-1193   2                              {
-1194   3                                      //_ReqBuzzer(d_BuzRegEnd) ;
-1195   3                                      _ReqBuzzer(100,100,3);            
-1196   3                              }
-1197   2                              else
-1198   2                              {
-1199   3                                      _ReqTxdEdit(20,20) ;
-1200   3                                    
-1201   3                              }
-1202   2                              m_RegMode = d_Idle ;
-1203   2                              break ;
-1204   2              }
-1205   1      }
-1206          //
-1207          
-1208          
-1209          
-1210          u32 atol (unsigned char* m_RegID_x)
-1211          {
-1212   1        u8 i,j;
-1213   1        u32 m_ID=0;
-1214   1          
-1215   1        for(i=0;i<8;i++){
-1216   2          j=m_RegID_x[i]-'0';
-1217   2          m_ID=m_ID*10+j;
-1218   2        }
-1219   1        return(m_ID);
-1220   1      }
-1221          
-1222          
-1223          /************************************************/
-1224          /*                                                                                              */
-1225          /*                              Set registration mode                   */
-1226          /*                                                                                              */
-1227          /*              in  : mode( 0:Idle/1:Append/2:Delete )  */
-1228          /*              out : none                                                              */
-1229          /*                                                                                              */
-1230          /************************************************/
-1231          //
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 21  
+1170   2      /*********************************/
+1171   2      /*              Deleted on 2007/5/28            */
+1172   2      //                      _ReqBuzzer(d_BuzStop) ;
+1173   2      /*********************************/
+1174   2                              m_TimerRegMode = d_Time1min ;                   // 1min. set (1s base)
+1175   2                              break ;
+1176   2                              
+1177   2                      case    d_CloseKey :
+1178   2                              _IdClear() ;                                                    // ID clear
+1179   2                              //_ReqBuzzer(d_BuzReg) ;
+1180   2                              _ReqBuzzer(1000,10,0);
+1181   2                              m_TimerRegMode = d_Time1min ;                   // 1min. set (1s base)
+1182   2                              break ;
+1183   2                              
+1184   2                      case    d_RegKey :                                              // Send ID
+1185   2      /*              Add on 2007/5/28                */
+1186   2                              if      ( m_RegDigit < 8 )
+1187   2                              {
+1188   3                                      return ;
+1189   3                              }
+1190   2      /*********************************/
+1191   2      
+1192   2                              //_SetRegModeIdle() ;
+1193   2                              //m_RegMode = d_Idle ;
+1194   2                              ID_data_add.IDC = (ulong)atol(m_RegID) ;
+1195   2      /*              Modified on 2007/5/28           */
+1196   2      //                      if      ( m_RFID.ID > 16777215 )                        // Over ?
+1197   2                              if      ( ID_data_add.IDC > 16777214 )                  // Over ?
+1198   2      /*********************************/
+1199   2                              {
+1200   3                                      //_ReqBuzzer(d_BuzRegEnd) ;
+1201   3                                      _ReqBuzzer(100,100,3);            
+1202   3                              }
+1203   2                              else
+1204   2                              {
+1205   3                                      _ReqTxdEdit(20,20) ;
+1206   3                                    
+1207   3                              }
+1208   2                              m_RegMode = d_Idle ;
+1209   2                              break ;
+1210   2              }
+1211   1      }
+1212          //
+1213          
+1214          
+1215          
+1216          u32 atol (unsigned char* m_RegID_x)
+1217          {
+1218   1        u8 i,j;
+1219   1        u32 m_ID=0;
+1220   1          
+1221   1        for(i=0;i<8;i++){
+1222   2          j=m_RegID_x[i]-'0';
+1223   2          m_ID=m_ID*10+j;
+1224   2        }
+1225   1        return(m_ID);
+1226   1      }
+1227          
+1228          
+1229          /************************************************/
+1230          /*                                                                                              */
+1231          /*                              Set registration mode                   */
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 21  
 
-1232          void    _SetRegistrationMode( uchar mode )
-1233          {
-1234   1              if      (_GetRegMode())                                                 // Reg. mode Idle ?
-1235   1              {                                                                                               // No
-1236   2                      return ;
-1237   2              }
-1238   1              
-1239   1              m_RegMode = mode ;
-1240   1      //      m_RFAddDelCode = 0x00 ;                                         // Set delete
-1241   1      //      if      ( m_RegMode == d_RegAppend )                    // Append ?
-1242   1      //      {                                                                                       // Yes
-1243   1      //              m_RFAddDelCode = 0xFF ;                                 // Set Append
-1244   1      //      }
-1245   1              
-1246   1              _IdClear() ;                                                            // ID clear
-1247   1              
-1248   1      //      _LedOnOff( d_LedOn ) ;                                          // Led on
-1249   1      //      m_BlkTimer = d_Time500ms ;                                      // Blink start
-1250   1      //      mb_LedOnOff = d_On ;
-1251   1      //      
-1252   1      //      _ReqBuzzer(d_BuzReg) ;
-1253   1              _ReqBuzzer(1000,10,0);
-1254   1              m_TimerRegMode = d_Time1min ;                           // 1min. set (1s base)
-1255   1      }
-1256          u8 _GetRegMode(void)
-1257          {
-1258   1              return(m_RegMode) ;
-1259   1      }
-1260          /********************************************/
-1261          /*                                                                                      */
-1262          /*                                      ID clear                                */
-1263          /*                                                                                      */
-1264          /********************************************/
-1265          //
-1266          void _IdClear(void)
-1267          {
-1268   1              register        uchar   i ;
-1269   1              
-1270   1              m_RegDigit = 0 ;                                                        // Digit pointer clear
-1271   1              //m_RFID.ID  = 0 ;                                                      // ID Number clear
-1272   1              for     ( i=0; i<8; i++ )                                               // ID clear
-1273   1              {
-1274   2                      m_RegID[i] = '0' ;
-1275   2              }
-1276   1              m_RegID[8] = 0 ;                                                        // NULL set
-1277   1              
-1278   1      }
-1279          
-1280          //
-1281          /*--------------------------------------*/
-1282          /*                                      */
-1283          /*                      Sw data input   */
-1284          /*                                      */
-1285          /*                        in  : sw      */
-1286          /*                        out : none    */
-1287          /*                                      */
-1288          /*--------------------------------------*/
-1289          //
-1290          void _SwIn(u8 sw)
-1291          {
-1292   1              m_KeyNew<<= 1 ;
-1293   1              if      ( sw )
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 22  
+1232          /*                                                                                              */
+1233          /*              in  : mode( 0:Idle/1:Append/2:Delete )  */
+1234          /*              out : none                                                              */
+1235          /*                                                                                              */
+1236          /************************************************/
+1237          //
+1238          void    _SetRegistrationMode( uchar mode )
+1239          {
+1240   1              if      (_GetRegMode())                                                 // Reg. mode Idle ?
+1241   1              {                                                                                               // No
+1242   2                      return ;
+1243   2              }
+1244   1              
+1245   1              m_RegMode = mode ;
+1246   1      //      m_RFAddDelCode = 0x00 ;                                         // Set delete
+1247   1      //      if      ( m_RegMode == d_RegAppend )                    // Append ?
+1248   1      //      {                                                                                       // Yes
+1249   1      //              m_RFAddDelCode = 0xFF ;                                 // Set Append
+1250   1      //      }
+1251   1              
+1252   1              _IdClear() ;                                                            // ID clear
+1253   1              
+1254   1      //      _LedOnOff( d_LedOn ) ;                                          // Led on
+1255   1      //      m_BlkTimer = d_Time500ms ;                                      // Blink start
+1256   1      //      mb_LedOnOff = d_On ;
+1257   1      //      
+1258   1      //      _ReqBuzzer(d_BuzReg) ;
+1259   1              _ReqBuzzer(1000,10,0);
+1260   1              m_TimerRegMode = d_Time1min ;                           // 1min. set (1s base)
+1261   1      }
+1262          u8 _GetRegMode(void)
+1263          {
+1264   1              return(m_RegMode) ;
+1265   1      }
+1266          /********************************************/
+1267          /*                                                                                      */
+1268          /*                                      ID clear                                */
+1269          /*                                                                                      */
+1270          /********************************************/
+1271          //
+1272          void _IdClear(void)
+1273          {
+1274   1              register        uchar   i ;
+1275   1              
+1276   1              m_RegDigit = 0 ;                                                        // Digit pointer clear
+1277   1              //m_RFID.ID  = 0 ;                                                      // ID Number clear
+1278   1              for     ( i=0; i<8; i++ )                                               // ID clear
+1279   1              {
+1280   2                      m_RegID[i] = '0' ;
+1281   2              }
+1282   1              m_RegID[8] = 0 ;                                                        // NULL set
+1283   1              
+1284   1      }
+1285          
+1286          //
+1287          /*--------------------------------------*/
+1288          /*                                      */
+1289          /*                      Sw data input   */
+1290          /*                                      */
+1291          /*                        in  : sw      */
+1292          /*                        out : none    */
+1293          /*                                      */
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 22  
 
-1294   1              {
-1295   2                      m_KeyNew |= d_On ;
-1296   2              }
-1297   1      }
-1298          
-1299          void _ReqBuzzer(u16 BEEP_on_SET,u8 BEEP_off_SET,u8 BEEP_freq_SET)
-1300          {
-1301   1          if(FG_BAT==0)
-1302   1          {
-1303   2              BASE_TIME_BEEP_on=BEEP_on_SET;
-1304   2              BASE_TIME_BEEP_off=BEEP_off_SET;
-1305   2              TIME_BEEP_on=BASE_TIME_BEEP_on;
-1306   2              TIME_BEEP_off=BASE_TIME_BEEP_off;
-1307   2              TIME_BEEP_freq=BEEP_freq_SET;
-1308   2          }
-1309   1      }
-1310          
-1311          #if (STX0011 == 1)
+1294          /*--------------------------------------*/
+1295          //
+1296          void _SwIn(u8 sw)
+1297          {
+1298   1              m_KeyNew<<= 1 ;
+1299   1              if      ( sw )
+1300   1              {
+1301   2                      m_KeyNew |= d_On ;
+1302   2              }
+1303   1      }
+1304          
+1305          void _ReqBuzzer(u16 BEEP_on_SET,u8 BEEP_off_SET,u8 BEEP_freq_SET)
+1306          {
+1307   1          if(FG_BAT==0)
+1308   1          {
+1309   2              BASE_TIME_BEEP_on=BEEP_on_SET;
+1310   2              BASE_TIME_BEEP_off=BEEP_off_SET;
+1311   2              TIME_BEEP_on=BASE_TIME_BEEP_on;
+1312   2              TIME_BEEP_off=BASE_TIME_BEEP_off;
+1313   2              TIME_BEEP_freq=BEEP_freq_SET;
+1314   2          }
+1315   1      }
+1316          
+1317          #if (STX0011 == 1)
               xdata u8 key_cnt = 0;
               #endif
-1314          void test_mode_control(void)
-1315          {
-1316   1      
-1317   1          while(PIN_test_mode == 0)
-1318   1          { 
-1319   2              if(Flag_test_mode == 0)
-1320   2                      {
-1321   3                              Flag_test_mode = 1;
-1322   3                              PIN_POWER_CONTROL = 1;
-1323   3                  PIN_TX_LED = 1;
-1324   3                              Init_Uart0_T1(); 
-1325   3                  INT_EnAll(); 
-1326   3                  Beep_On();
-1327   3                  TIME_BEEP_off = 200; 
-1328   3                  Flag_beep = 0;
-1329   3                      }
-1330   2              if(TIME_BEEP_off == 0 && Flag_beep == 0) 
-1331   2              { 
-1332   3                  Flag_beep = 1;           
-1333   3                  Beep_Off();
-1334   3              }
-1335   2              ClearWDT(); // Service the WDT 
-1336   2              if((PIN_KEY_OPEN==0)&&(FG_KEY_OPEN==0))
-1337   2              {
-1338   3                  FG_KEY_OPEN = 1;
-1339   3                  dd_set_ML7345D_Power_on();
-1340   3                  PROFILE_CH_FREQ_32bit_200002EC = 426075000;
-1341   3                  RF_ML7345_Init(Fre_426_075,0x15,12);
-1342   3                  FG_test_mode = 0;
-1343   3                  Tx_Data_Test(0);
-1344   3              }
-1345   2              if(PIN_KEY_OPEN == 1) FG_KEY_OPEN = 0;
-1346   2      
-1347   2              if((PIN_KEY_STOP == 0)&&(FG_KEY_STOP == 0))
-1348   2              {
-1349   3                  FG_KEY_STOP = 1;
-1350   3                  ML7345_RESETN = 0;
-1351   3                  SpiGpio_UnInit(); 
-1352   3                  ML7345D_POWER = FG_NOT_allow_out;
-1353   3                  FG_test_mode = 0;
-1354   3              }
-1355   2              if(PIN_KEY_STOP == 1)   FG_KEY_STOP = 0; 
-C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     05/05/2022 13:07:46 PAGE 23  
+1320          void test_mode_control(void)
+1321          {
+1322   1      
+1323   1          while(PIN_test_mode == 0)
+1324   1          { 
+1325   2              if(Flag_test_mode == 0)
+1326   2                      {
+1327   3                              Flag_test_mode = 1;
+1328   3                              PIN_POWER_CONTROL = 1;
+1329   3                  PIN_TX_LED = 1;
+1330   3                              Init_Uart0_T1(); 
+1331   3                  INT_EnAll(); 
+1332   3                  Beep_On();
+1333   3                  TIME_BEEP_off = 200; 
+1334   3                  Flag_beep = 0;
+1335   3                      }
+1336   2              if(TIME_BEEP_off == 0 && Flag_beep == 0) 
+1337   2              { 
+1338   3                  Flag_beep = 1;           
+1339   3                  Beep_Off();
+1340   3              }
+1341   2              ClearWDT(); // Service the WDT 
+1342   2              if((PIN_KEY_OPEN==0)&&(FG_KEY_OPEN==0))
+1343   2              {
+1344   3                  FG_KEY_OPEN = 1;
+1345   3                  dd_set_ML7345D_Power_on();
+1346   3                  PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+1347   3                  RF_ML7345_Init(Fre_426_075,0x15,12);
+1348   3                  FG_test_mode = 0;
+1349   3                  Tx_Data_Test(0);
+1350   3              }
+1351   2              if(PIN_KEY_OPEN == 1) FG_KEY_OPEN = 0;
+1352   2      
+1353   2              if((PIN_KEY_STOP == 0)&&(FG_KEY_STOP == 0))
+1354   2              {
+1355   3                  FG_KEY_STOP = 1;
+C51 COMPILER V9.60.0.0   KEY_AND_OTHER                                                     06/06/2022 10:32:29 PAGE 23  
 
-1356   2      #if (STX0011 == 1)
+1356   3                  ML7345_RESETN = 0;
+1357   3                  SpiGpio_UnInit(); 
+1358   3                  ML7345D_POWER = FG_NOT_allow_out;
+1359   3                  FG_test_mode = 0;
+1360   3              }
+1361   2              if(PIN_KEY_STOP == 1)   FG_KEY_STOP = 0; 
+1362   2      #if (STX0011 == 1)
                       if(key_cnt >= 2)
                       {
                           key_cnt = 0;
@@ -1419,37 +1425,37 @@ line level    source
                           FG_test_mode = 0;
                       }
               #endif
-1367   2              if((PIN_KEY_CLOSE == 0) && (FG_KEY_CLOSE == 0))
-1368   2              {
-1369   3                  FG_KEY_CLOSE = 1;
-1370   3                  dd_set_ML7345D_Power_on();
-1371   3                  PROFILE_CH_FREQ_32bit_200002EC = 426075000;
-1372   3                  RF_ML7345_Init(Fre_426_075,0x15,12);
-1373   3                  Tx_Data_Test(1);
-1374   3                  FG_test_mode = 1;
-1375   3      #if (STX0011 == 1)
+1373   2              if((PIN_KEY_CLOSE == 0) && (FG_KEY_CLOSE == 0))
+1374   2              {
+1375   3                  FG_KEY_CLOSE = 1;
+1376   3                  dd_set_ML7345D_Power_on();
+1377   3                  PROFILE_CH_FREQ_32bit_200002EC = 426075000;
+1378   3                  RF_ML7345_Init(Fre_426_075,0x15,12);
+1379   3                  Tx_Data_Test(1);
+1380   3                  FG_test_mode = 1;
+1381   3      #if (STX0011 == 1)
                           key_cnt++;
               #endif
-1378   3              }
-1379   2              if(PIN_KEY_CLOSE == 1)    FG_KEY_CLOSE=0;  
-1380   2      
-1381   2              PC_PRG();              // PC控制  
-1382   2          }  
-1383   1          if(Flag_test_mode == 1)
-1384   1          {
-1385   2              Flag_test_mode = 0;
-1386   2              UART1_end();
-1387   2          }
-1388   1          PIN_POWER_CONTROL = 0;
-1389   1          PIN_TX_LED = 0;
-1390   1          FG_KEY_OPEN = 0;
-1391   1          FG_KEY_STOP = 0;
-1392   1          FG_KEY_CLOSE = 0;  
-1393   1      }
+1384   3              }
+1385   2              if(PIN_KEY_CLOSE == 1)    FG_KEY_CLOSE=0;  
+1386   2      
+1387   2              PC_PRG();              // PC控制  
+1388   2          }  
+1389   1          if(Flag_test_mode == 1)
+1390   1          {
+1391   2              Flag_test_mode = 0;
+1392   2              UART1_end();
+1393   2          }
+1394   1          PIN_POWER_CONTROL = 0;
+1395   1          PIN_TX_LED = 0;
+1396   1          FG_KEY_OPEN = 0;
+1397   1          FG_KEY_STOP = 0;
+1398   1          FG_KEY_CLOSE = 0;  
+1399   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   5528    ----
+   CODE SIZE        =   5550    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
