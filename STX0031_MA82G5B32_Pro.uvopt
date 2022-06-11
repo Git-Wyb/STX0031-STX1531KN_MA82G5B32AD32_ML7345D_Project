@@ -133,7 +133,7 @@
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>TempBuf</ItemText>
+          <ItemText>Adc_Value</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
@@ -148,12 +148,12 @@
         <Ww>
           <count>3</count>
           <WinNumber>1</WinNumber>
-          <ItemText>TIME_BEEP_on</ItemText>
+          <ItemText>RAM_BAT_AVG</ItemText>
         </Ww>
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>txphase_Repeat</ItemText>
+          <ItemText>flag_ad</ItemText>
         </Ww>
         <Ww>
           <count>5</count>

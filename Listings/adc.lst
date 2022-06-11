@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   ADC                                                               06/06/2022 10:32:29 PAGE 1   
+C51 COMPILER V9.60.0.0   ADC                                                               06/11/2022 15:35:40 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE ADC
@@ -13,7 +13,7 @@ line level    source
    3          
    4          void Init_Adc(void)
    5          {
-   6   1          PORT_SetP1AInputOnly(BIT0);                 //设置P10仅输入，做ADC输入通道
+   6   1          PORT_SetP1AInputOnly(BIT0|BIT1|BIT2|BIT3|BIT4);             //设置P10仅输入，做ADC输入通道
    7   1          
    8   1              ADC_Enable();                                           // 使能ADC
    9   1              ADC_SetClock_SYSCLKDiv2();                      // ADC转换时钟为 SYSCLK       转换率= ADC_CLK/30
@@ -29,64 +29,144 @@ line level    source
   19   1          INT_EnADC();                        // 开启中断
   20   1      }
   21          
-  22          
-  23          
-  24          void INT_ADC(void) interrupt INT_VECTOR_ADC
-  25          {
-  26   1          xdata WordTypeDef wAdcValue;
-  27   1          wAdcValue.B.BHigh = ADCDH;
-  28   1          wAdcValue.B.BLow = ADCDL;
-  29   1          RAM_BAT_SUM += (wAdcValue.W & 0x0FFF);
-  30   1          RAM_BAT_CNT++;
-  31   1          ADCON0 = ADCON0 & (~ADCI);                                  // 清标志位
-  32   1          ADC_SoftStart();
-  33   1          if(RAM_BAT_CNT >= 20)
-  34   1          {
-  35   2              INT_DisADC();                               //关闭ADC中断
-  36   2              ADC_Disable();                              //关闭ADC
-  37   2                      RAM_BAT_CNT = 0;
-  38   2                      RAM_BAT_AVG = RAM_BAT_SUM / 20;
-  39   2              BAT_Voltage_value = 921600 / RAM_BAT_AVG;   //采集电压0.9V.//0.9 * 1024 = 921.6
-  40   2                      RAM_BAT_SUM = 0;
-  41   2          }
-  42   1      }
-  43          
-  44          
-  45          void Adc_Start(void)
-  46          {
-  47   1          ADC_SoftStart();
-  48   1      }
-  49          
-  50          void AD_control(void)
-  51          {
-  52   1          if(TIME_power_on_AD)
-  53   1          {
-  54   2            if(BAT_Voltage_value>2400)BAT_out=0;
-C51 COMPILER V9.60.0.0   ADC                                                               06/06/2022 10:32:29 PAGE 2   
+  22          void Adc_Channel_Scan(u8 ch)
+  23          {
+  24   1          switch(ch)
+  25   1          {
+  26   2              case 0:
+  27   2                  ADC_SetChannel_AIN0();                              // 选择通道为AIN0(P10)
+  28   2                  break;
+  29   2              
+  30   2              case 1:
+  31   2                  ADC_SetChannel_AIN1();                              // 选择通道为AIN1(P11)
+  32   2                  break;
+  33   2              
+  34   2              case 2:
+  35   2                  ADC_SetChannel_AIN2();                              // 选择通道为AIN2(P12)
+  36   2                  break;
+  37   2              
+  38   2              case 3:
+  39   2                  ADC_SetChannel_AIN3();                              // 选择通道为AIN2(P13)
+  40   2                  break;
+  41   2              
+  42   2              case 4:
+  43   2                  ADC_SetChannel_AIN4();                              // 选择通道为AIN2(P14)
+  44   2                  break;
+  45   2              
+  46   2              default:
+  47   2                  break;
+  48   2          }
+  49   1      }
+  50          
+  51          void INT_ADC(void) interrupt INT_VECTOR_ADC
+  52          {
+  53   1          xdata WordTypeDef wAdcValue;
+  54   1          wAdcValue.B.BHigh = ADCDH;
+C51 COMPILER V9.60.0.0   ADC                                                               06/11/2022 15:35:40 PAGE 2   
 
-  55   2            else if((BAT_Voltage_value<=2400)&&(BAT_Voltage_value>2200))BAT_out=1;
-  56   2            else BAT_out=2; 
-  57   2          }
-  58   1      }
-  59          /*
-  60          u16 Get_Adc_Value(void)
-  61          {
-  62                  xdata WordTypeDef wAdcValue;
-  63                  ADCON0 = ADCON0|ADCS;                                                   // 置位ADCS,启动ADC
-  64              while((ADCON0&ADCI)==0);                                    // 等待ADC转换完成
-  65              wAdcValue.B.BHigh=ADCDH;
-  66              wAdcValue.B.BLow=ADCDL;
-  67                  ADCON0 = ADCON0&(~ADCI);                                        // 清标志位
-  68                  return wAdcValue.W&0x0FFF;
-  69          }*/
+  55   1          wAdcValue.B.BLow = ADCDL;
+  56   1          RAM_BAT_SUM += (wAdcValue.W & 0x0FFF);
+  57   1          RAM_BAT_CNT++;
+  58   1          ADCON0 = ADCON0 & (~ADCI);                                  // 清标志位
+  59   1          ADC_SoftStart();
+  60   1          if(RAM_BAT_CNT >= 20)
+  61   1          {
+  62   2              Flag_adc_over = 1;
+  63   2              INT_DisADC();                               //关闭ADC中断
+  64   2              ADC_Disable();                              //关闭ADC
+  65   2                      RAM_BAT_CNT = 0;
+  66   2              RAM_BAT_AVG = RAM_BAT_SUM / 20;
+  67   2              if(channel == 0)
+  68   2              {
+  69   3                  BAT_Voltage_value = 921600 / RAM_BAT_AVG;   //采集电压0.9V.//0.9 * 1024 = 921.6
+  70   3                  RAM_BAT_SUM = 0;
+  71   3                  channel = 1;
+  72   3                  Adc_Channel_Scan(channel);
+  73   3              }
+  74   2              else if(channel == 1)
+  75   2              {
+  76   3                  RAM_BAT_AVG = RAM_BAT_SUM / 20;
+  77   3                  Adc_Value = (RAM_BAT_AVG * BAT_Voltage_value) / 1024;
+  78   3                  if(Adc_Value < 1200)   Flag_KEY_STOP = 0;
+  79   3                  else                   Flag_KEY_STOP = 1;
+  80   3                  RAM_BAT_SUM = 0;
+  81   3                  channel = 2;
+  82   3                  Adc_Channel_Scan(channel);
+  83   3              }
+  84   2              else if(channel == 2)
+  85   2              {
+  86   3                  RAM_BAT_AVG = RAM_BAT_SUM / 20;
+  87   3                  Adc_Value = (RAM_BAT_AVG * BAT_Voltage_value) / 1024;
+  88   3                  if(Adc_Value < 1200)    Flag_KEY_OPEN = 0;
+  89   3                  else                    Flag_KEY_OPEN = 1;
+  90   3                  RAM_BAT_SUM = 0;
+  91   3                  channel = 3;
+  92   3                  Adc_Channel_Scan(channel);
+  93   3              }
+  94   2              else if(channel == 3)
+  95   2              {
+  96   3                  RAM_BAT_AVG = RAM_BAT_SUM / 20;
+  97   3                  Adc_Value = (RAM_BAT_AVG * BAT_Voltage_value) / 1024;
+  98   3                  if(Adc_Value < 1200)    Flag_KEY_CLOSE = 0;
+  99   3                  else                    Flag_KEY_CLOSE = 1;
+ 100   3                  RAM_BAT_SUM = 0;
+ 101   3                  channel = 4;
+ 102   3                  Adc_Channel_Scan(channel); 
+ 103   3              } 
+ 104   2              else if(channel == 4)
+ 105   2              {
+ 106   3                  RAM_BAT_AVG = RAM_BAT_SUM / 20;
+ 107   3                  Adc_Value = (RAM_BAT_AVG * BAT_Voltage_value) / 1024;
+ 108   3                  if(Adc_Value < 1200)    Flag_KEY_LOGIN = 0;
+ 109   3                  else                    Flag_KEY_LOGIN = 1;
+ 110   3                  RAM_BAT_SUM = 0;
+ 111   3                  channel = 1;
+ 112   3                  Adc_Channel_Scan(channel);
+ 113   3              }
+ 114   2          }
+ 115   1      }
+ 116          void Adc_Open(void)
+C51 COMPILER V9.60.0.0   ADC                                                               06/11/2022 15:35:40 PAGE 3   
+
+ 117          {
+ 118   1          ADC_Enable();
+ 119   1          INT_EnADC();
+ 120   1          Adc_Start(); 
+ 121   1      }
+ 122          
+ 123          void Adc_Start(void)
+ 124          {
+ 125   1          ADC_SoftStart();
+ 126   1      }
+ 127          
+ 128          void AD_control(void)
+ 129          {
+ 130   1          if(TIME_power_on_AD)
+ 131   1          {
+ 132   2            if(BAT_Voltage_value>2400)BAT_out=0;
+ 133   2            else if((BAT_Voltage_value<=2400)&&(BAT_Voltage_value>2200))BAT_out=1;
+ 134   2            else BAT_out=2; 
+ 135   2          }
+ 136   1      }
+ 137          /*
+ 138          u16 Get_Adc_Value(void)
+ 139          {
+ 140                  xdata WordTypeDef wAdcValue;
+ 141                  ADCON0 = ADCON0|ADCS;                                                   // 置位ADCS,启动ADC
+ 142              while((ADCON0&ADCI)==0);                                    // 等待ADC转换完成
+ 143              wAdcValue.B.BHigh=ADCDH;
+ 144              wAdcValue.B.BLow=ADCDL;
+ 145                  ADCON0 = ADCON0&(~ADCI);                                        // 清标志位
+ 146                  return wAdcValue.W&0x0FFF;
+ 147          }*/
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    379    ----
+   CODE SIZE        =   1203    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      2    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----    ----
+   DATA SIZE        =      1    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

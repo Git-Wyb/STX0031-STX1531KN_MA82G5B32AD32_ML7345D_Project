@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   TIMER                                                             06/06/2022 10:32:27 PAGE 1   
+C51 COMPILER V9.60.0.0   TIMER                                                             06/11/2022 15:35:38 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE TIMER
@@ -62,7 +62,7 @@ line level    source
   52   1              TM_EnableT0();                                                  // 使能T0
   53   1          INT_EnTIMER0();                     //      使能T0中断
   54   1      }
-C51 COMPILER V9.60.0.0   TIMER                                                             06/06/2022 10:32:27 PAGE 2   
+C51 COMPILER V9.60.0.0   TIMER                                                             06/11/2022 15:35:38 PAGE 2   
 
   55          
   56          
@@ -93,80 +93,91 @@ line level    source
   81   2          }
   82   1          else if(TIME_BEEP_off)      
   83   1              --TIME_BEEP_off;
-  84   1      }
-  85          
-  86          
-  87          void Init_PCA_PWM(void)
-  88          {
-  89   1          PCA_SetCLOCK_SYSCLK();          // PCA时钟为SysClk
-  90   1          PCA_CH6_SetMode_PWM();          // PWM模式
-  91   1          PCA_CH6_SetPWM_16Bit();         //
-  92   1          PCA_SetPWM_EdgeAligned();       // 边沿对齐
-  93   1          
-  94   1          // 设置PWM占空比比较值
-  95   1              PCA_CH6_SetValue(PCA_CH(Duty_Cycle),PCA_CL(Duty_Cycle));
-  96   1          
-  97   1          // 设置定时器计数值 PWM频率
-  98   1              PCA_SetCounter(PCA_C-PCA_RELOAD);
-  99   1              PCA_SetCounterReload(PCA_C-PCA_RELOAD);
- 100   1      }
- 101          
- 102          void Init_Beep(void)
- 103          {
- 104   1          Init_PCA_PWM();
- 105   1      }
- 106          
- 107          void Beep_On(void)
- 108          {
- 109   1          PCA_EnPCACounter();
- 110   1      }
- 111          
- 112          void Beep_Off(void)
- 113          {
- 114   1          PCA_DisPCACounter();
- 115   1          P20 = 0;
+  84   1          
+  85   1          if(time_adc)    --time_adc;
+  86   1          else
+  87   1          {
+  88   2              if(Flag_adc_over == 1)
+  89   2              {
+  90   3                  Flag_adc_over = 0;
+  91   3                  time_adc = 6;
+  92   3                  Adc_Open();
+  93   3              }
+  94   2          }
+  95   1      }
+  96          
+  97          
+  98          void Init_PCA_PWM(void)
+  99          {
+ 100   1          PCA_SetCLOCK_SYSCLK();          // PCA时钟为SysClk
+ 101   1          PCA_CH6_SetMode_PWM();          // PWM模式
+ 102   1          PCA_CH6_SetPWM_16Bit();         //
+ 103   1          PCA_SetPWM_EdgeAligned();       // 边沿对齐
+ 104   1          
+ 105   1          // 设置PWM占空比比较值
+ 106   1              PCA_CH6_SetValue(PCA_CH(Duty_Cycle),PCA_CL(Duty_Cycle));
+ 107   1          
+ 108   1          // 设置定时器计数值 PWM频率
+ 109   1              PCA_SetCounter(PCA_C-PCA_RELOAD);
+ 110   1              PCA_SetCounterReload(PCA_C-PCA_RELOAD);
+ 111   1      }
+ 112          
+ 113          void Init_Beep(void)
+ 114          {
+ 115   1          Init_PCA_PWM();
  116   1      }
-C51 COMPILER V9.60.0.0   TIMER                                                             06/06/2022 10:32:27 PAGE 3   
+C51 COMPILER V9.60.0.0   TIMER                                                             06/11/2022 15:35:38 PAGE 3   
 
  117          
- 118          
- 119          /*************************************************
- 120          函数名称:     void DelayXus(u16 xUs)
- 121          功能描述:       延时程序，单位为us
- 122          调用函数:        
- 123          输入参数:     u8 Us -> *1us  (1~255)
- 124          输出参数:     
- 125          *************************************************/
- 126          void DelayXus(u8 xUs)
- 127          {
- 128   1              while(xUs!=0)
- 129   1              {
- 130   2                      _nop_();
- 131   2                      _nop_();
- 132   2                      xUs--;
- 133   2              }
- 134   1      }
- 135          
- 136          
- 137          /*************************************************
- 138          函数名称:     void DelayXms(u16 xMs)
- 139          功能描述:     延时程序，单位为ms
- 140          输入参数:     u16 xMs -> *1ms  (1~65535)
- 141          输出参数:     
- 142          *************************************************/
- 143          
- 144          void delay_ms(u8 ms) //
- 145          {
- 146   1          while(ms--)
- 147   1          {
- 148   2              DelayXus(100);
- 149   2              DelayXus(100);
- 150   2          }
- 151   1      }
+ 118          void Beep_On(void)
+ 119          {
+ 120   1          PCA_EnPCACounter();
+ 121   1      }
+ 122          
+ 123          void Beep_Off(void)
+ 124          {
+ 125   1          PCA_DisPCACounter();
+ 126   1          P20 = 0;
+ 127   1      }
+ 128          
+ 129          
+ 130          /*************************************************
+ 131          函数名称:     void DelayXus(u16 xUs)
+ 132          功能描述:       延时程序，单位为us
+ 133          调用函数:        
+ 134          输入参数:     u8 Us -> *1us  (1~255)
+ 135          输出参数:     
+ 136          *************************************************/
+ 137          void DelayXus(u8 xUs)
+ 138          {
+ 139   1              while(xUs!=0)
+ 140   1              {
+ 141   2                      _nop_();
+ 142   2                      _nop_();
+ 143   2                      xUs--;
+ 144   2              }
+ 145   1      }
+ 146          
+ 147          
+ 148          /*************************************************
+ 149          函数名称:     void DelayXms(u16 xMs)
+ 150          功能描述:     延时程序，单位为ms
+ 151          输入参数:     u16 xMs -> *1ms  (1~65535)
+ 152          输出参数:     
+ 153          *************************************************/
+ 154          
+ 155          void delay_ms(u8 ms) //
+ 156          {
+ 157   1          while(ms--)
+ 158   1          {
+ 159   2              DelayXus(100);
+ 160   2              DelayXus(100);
+ 161   2          }
+ 162   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    325    ----
+   CODE SIZE        =    423    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =      2    ----
    PDATA SIZE       =   ----    ----
