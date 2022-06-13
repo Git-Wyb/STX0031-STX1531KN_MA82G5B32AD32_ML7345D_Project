@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   MAIN                                                              06/11/2022 15:35:37 PAGE 1   
+C51 COMPILER V9.60.0.0   MAIN                                                              06/13/2022 14:10:35 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
@@ -38,43 +38,44 @@ line level    source
   27   1          Init_Beep();
   28   1          test_mode_control();
   29   1          Init_Interrupt();
-  30   1          INT_EnAll();
+  30   1          INT_EnAll(); 
   31   1          Adc_Start();
   32   1          TIME_power_on_AD = 30;
   33   1              
   34   1          while(1) 
   35   1          {
-  36   2              ClearWDT(); 
-  37   2              key_check();
-  38   2              time_control();
-  39   2              AD_control();
-  40   2      
-  41   2              //if((TB_5s==0)&&(m_KeyOptSetMode==0)&&(m_KeyDupli1stTimer==0)&&(FG_PWRON==1)){
-  42   2              if((TB_5s==0)&&(m_KeyOptSetMode==0)&&(FG_PWRON==1)&&(key_Value!=2)&&(FLAG_APP_TX==0))//2015.4.13修
+  36   2              ClearWDT();
+  37   2              ADC_Inquire();        
+  38   2              key_check();
+  39   2              time_control(); 
+  40   2              AD_control();
+  41   2      
+  42   2              //if((TB_5s==0)&&(m_KeyOptSetMode==0)&&(m_KeyDupli1stTimer==0)&&(FG_PWRON==1)){
+  43   2              if((TB_5s==0)&&(m_KeyOptSetMode==0)&&(FG_PWRON==1)&&(key_Value!=2)&&(FLAG_APP_TX==0))//2015.4.13修
              -正
-  43   2              {  
-  44   3                  FG_PWRON=0;
-  45   3                  PIN_POWER_CONTROL=0;
-  46   3                  FG_10s=1;    // 2015.1.31修正3
-  47   3                /*******************2015.1.31修正2************************/
-  48   3                  while(1){
-  49   4                     if(FG_Complex_Single_shot==1)ClearWDT(); // Service the WDT
-  50   4                      else if((FG_Complex_Single_shot==0)&&(m_KeyNo>=1)&&(m_KeyNo<=4)){
-  51   5                          key_check();
-  52   5                          ClearWDT(); // Service the WDT
-C51 COMPILER V9.60.0.0   MAIN                                                              06/11/2022 15:35:37 PAGE 2   
+  44   2              {  
+  45   3                  FG_PWRON=0;
+  46   3                  PIN_POWER_CONTROL=0;
+  47   3                  FG_10s=1;    // 2015.1.31修正3
+  48   3                /*******************2015.1.31修正2************************/
+  49   3                  while(1){
+  50   4                     if(FG_Complex_Single_shot==1)ClearWDT(); // Service the WDT
+  51   4                      else if((FG_Complex_Single_shot==0)&&(m_KeyNo>=1)&&(m_KeyNo<=4)){
+  52   5                          key_check();
+C51 COMPILER V9.60.0.0   MAIN                                                              06/13/2022 14:10:35 PAGE 2   
 
-  53   5                      }
-  54   4                  }
-  55   3              }
-  56   2          }
-  57   1      }
-  58          
+  53   5                          ClearWDT(); // Service the WDT
+  54   5                      }
+  55   4                  }
+  56   3              }
+  57   2          }
+  58   1      }
   59          
+  60          
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    259    ----
+   CODE SIZE        =    262    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
