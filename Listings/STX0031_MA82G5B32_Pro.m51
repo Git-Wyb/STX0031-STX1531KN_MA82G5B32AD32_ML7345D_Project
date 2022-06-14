@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/14/2022  09:10:22  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    06/14/2022  10:30:49  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 2
 
 
             DATA    0008H     0011H     UNIT         ?DT?KEY_AND_OTHER
@@ -119,7 +119,7 @@ LINK MAP OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
             XDATA   03CAH     0002H     UNIT         ?XD?SPI
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 3
 
 
             CODE    0000H     0003H     ABSOLUTE     
@@ -179,7 +179,7 @@ LINK MAP OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
             CODE    40BDH     0041H     UNIT         ?PR?WAITSTATUS_COMPLETE?ML7345_HAL
             CODE    40FEH     003EH     UNIT         ?PR?INIT_PORT?GPIO
             CODE    413CH     003DH     UNIT         ?PR?_SEND_DATA?UART
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 4
 
 
             CODE    4179H     003DH     UNIT         ?PR?_CLEARSPECIALMULTIKEYSTATE?KEY_AND_OTHER
@@ -239,7 +239,7 @@ SEGMENT
 ---------------------
 ?PR?INT_INT0?GPIO
   +--> ?PR?ML7345_TRX_DEL?ML7345
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 5
 
 
 
@@ -299,7 +299,7 @@ SEGMENT
 
 ?PR?ML7345_RESETN_SET?ML7345_HAL
   +--> ?PR?_DELAY_MS?TIMER
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 6
 
 
 
@@ -359,7 +359,7 @@ SEGMENT
   +--> ?PR?_ML7345_FREQUENCY_CALCUL?ML7345_HAL
 
 ?PR?_INIT_RAM?RAM
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 7
 
 
   +--> ?PR?_SETKEYCHATTERCOUNT?KEY_AND_OTHER
@@ -419,7 +419,7 @@ SEGMENT
   +--> ?PR?ML7345_DATARATE_SET_4_8K?ML7345_HAL
   +--> ?PR?_ML7345_READ_REG?SPI
 
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 8
 
 
 ?PR?INIT_INTERRUPT?GPIO
@@ -479,7 +479,7 @@ SEGMENT
   +--> ?PR?_ML7345_AUTOTX_DATA?ML7345_HAL
 
 ?PR?_SETTXDATA?EXIT_FUN
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 9
 
 
   +--> ?PR?_SETFIXEDLENGTHCODE?EXIT_FUN
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   D:00C0H         PUBLIC        XICON
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 10
 
 
   D:00B0H         PUBLIC        P3
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 11
 
 
   -------         MODULE        SYS
@@ -659,7 +659,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   D:0091H         PUBLIC        P1M0
   D:0095H         PUBLIC        P2M0
   D:00B1H         PUBLIC        P3M0
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 12
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 12
 
 
   D:0090H         PUBLIC        P1
@@ -719,7 +719,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:4111H         LINE#         28
   C:4114H         LINE#         29
   C:4116H         LINE#         32
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 13
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 13
 
 
   C:411CH         LINE#         35
@@ -779,7 +779,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:46EAH         LINE#         147
   C:46EDH         LINE#         148
   C:46EFH         LINE#         149
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 14
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 14
 
 
   -------         ENDPROC       INIT_INTERRUPT
@@ -839,7 +839,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:4571H         LINE#         45
   C:457AH         LINE#         47
   C:457DH         LINE#         49
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 15
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 15
 
 
   C:4580H         LINE#         50
@@ -899,7 +899,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:000AH         LINE#         127
   -------         ENDPROC       BEEP_OFF
   -------         PROC          _DELAYXUS
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 16
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 16
 
 
   D:005BH         SYMBOL        xUs
@@ -959,7 +959,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   B:00B0H.5       PUBLIC        P35
   B:00A0H.7       PUBLIC        P27
   C:3864H         PUBLIC        INT_UART0
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 17
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 17
 
 
   X:03AAH         PUBLIC        UartLen
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   -------         PROC          INT_UART0
   -------         DO            
   I:007DH         SYMBOL        dat
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 18
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 18
 
 
   -------         ENDDO         
@@ -1079,7 +1079,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:4159H         LINE#         184
   C:4170H         LINE#         185
   C:4178H         LINE#         186
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 19
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 19
 
 
   -------         ENDPROC       _SEND_DATA
@@ -1139,7 +1139,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:075FH         LINE#         247
   C:0772H         LINE#         248
   C:0772H         LINE#         249
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 20
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 20
 
 
   C:0772H         LINE#         251
@@ -1199,7 +1199,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:097CH         LINE#         311
   C:097EH         LINE#         312
   C:098AH         LINE#         313
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 21
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 21
 
 
   C:0995H         LINE#         314
@@ -1259,7 +1259,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:0BD4H         LINE#         368
   C:0BD9H         LINE#         369
   C:0BF2H         LINE#         370
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 22
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 22
 
 
   C:0C0BH         LINE#         371
@@ -1319,7 +1319,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   D:0098H         PUBLIC        S0CON
   D:0098H         PUBLIC        S1CON
   D:00C8H         PUBLIC        T2CON
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 23
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 23
 
 
   D:00D0H         PUBLIC        PSW
@@ -1379,7 +1379,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:2366H         LINE#         140
   C:2369H         LINE#         141
   C:236CH         LINE#         142
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 24
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 24
 
 
   C:236FH         LINE#         143
@@ -1439,7 +1439,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:24F4H         LINE#         207
   C:250DH         LINE#         208
   C:250DH         LINE#         209
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 25
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 25
 
 
   C:2513H         LINE#         210
@@ -1499,7 +1499,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:17A2H         LINE#         289
   C:17CDH         LINE#         290
   C:17E4H         LINE#         292
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 26
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 26
 
 
   C:180FH         LINE#         293
@@ -1559,7 +1559,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:45F6H         LINE#         24
   -------         ENDPROC       INIT_SPI
   -------         PROC          _SPI1_SENDRECV_DATA
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 27
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 27
 
 
   D:0061H         SYMBOL        SPI_DATA
@@ -1619,7 +1619,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:3CB4H         LINE#         77
   C:3CB4H         LINE#         78
   C:3CB9H         LINE#         79
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 28
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 28
 
 
   C:3CBEH         LINE#         80
@@ -1679,7 +1679,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   X:0237H         PUBLIC        m_ChatterCount
   X:0239H         PUBLIC        key_Value
   I:0071H         PUBLIC        RAM_RegSW_type
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 29
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 29
 
 
   X:023BH         PUBLIC        Key_Sta
@@ -1739,7 +1739,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:3BF3H         LINE#         107
   C:3BFBH         LINE#         108
   C:3C03H         LINE#         110
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 30
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 30
 
 
   C:3C0FH         LINE#         111
@@ -1799,7 +1799,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:1106H         LINE#         46
   C:1109H         LINE#         47
   C:110CH         LINE#         48
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 31
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 31
 
 
   C:110CH         LINE#         49
@@ -1859,7 +1859,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:1279H         LINE#         119
   C:1280H         LINE#         120
   C:1287H         LINE#         121
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 32
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 32
 
 
   C:128EH         LINE#         123
@@ -1919,7 +1919,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:14CAH         LINE#         201
   C:14CAH         LINE#         202
   C:14CCH         LINE#         203
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 33
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 33
 
 
   C:14CFH         LINE#         204
@@ -1979,7 +1979,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   -------         ENDPROC       ML7345_TRX_DEL
   -------         PROC          DD_SET_ML7345D_POWER_ON
   C:46CBH         LINE#         281
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 34
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 34
 
 
   C:46CBH         LINE#         282
@@ -2039,7 +2039,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   -------         ENDDO         
   C:34EDH         LINE#         31
   C:34EFH         LINE#         32
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 35
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 35
 
 
   C:34EFH         LINE#         33
@@ -2099,7 +2099,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:42FCH         LINE#         88
   C:42FDH         LINE#         89
   C:4305H         LINE#         90
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 36
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 36
 
 
   C:4305H         LINE#         91
@@ -2159,7 +2159,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:393BH         LINE#         153
   C:3942H         LINE#         154
   C:3949H         LINE#         155
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 37
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 37
 
 
   C:3950H         LINE#         156
@@ -2219,7 +2219,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:2E9FH         LINE#         351
   C:2EACH         LINE#         353
   C:2EB3H         LINE#         354
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 38
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 38
 
 
   C:2EB3H         LINE#         355
@@ -2279,7 +2279,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:2051H         LINE#         590
   C:2084H         LINE#         591
   C:20B2H         LINE#         592
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 39
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 39
 
 
   -------         ENDPROC       _ML7345_FREQUENCY_CALCUL
@@ -2339,7 +2339,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:460CH         LINE#         17
   C:460FH         LINE#         20
   -------         ENDPROC       INIT_ADC
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 40
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 40
 
 
   -------         PROC          ADC_INQUIRE
@@ -2399,7 +2399,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:2B72H         LINE#         82
   C:2B72H         LINE#         83
   C:2B7CH         LINE#         84
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 41
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 41
 
 
   C:2B7EH         LINE#         86
@@ -2459,7 +2459,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   -------         MODULE        KEY_AND_OTHER
   C:0000H         SYMBOL        _ICE_DUMMY_
   C:4705H         PUBLIC        _FuncAutoTxStop
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 42
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 42
 
 
   D:0090H         PUBLIC        P1
@@ -2519,7 +2519,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:2561H         LINE#         22
   C:257BH         LINE#         23
   C:2595H         LINE#         24
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 43
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 43
 
 
   C:25AFH         LINE#         25
@@ -2579,7 +2579,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:3AD3H         LINE#         86
   C:3AEFH         LINE#         87
   C:3AEFH         LINE#         88
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 44
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 44
 
 
   C:3AFBH         LINE#         89
@@ -2639,7 +2639,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:19F6H         LINE#         225
   C:19F8H         LINE#         226
   C:1A10H         LINE#         227
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 45
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 45
 
 
   C:1A10H         LINE#         228
@@ -2699,7 +2699,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:1B67H         LINE#         289
   C:1B68H         LINE#         290
   C:1B68H         LINE#         291
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 46
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 46
 
 
   C:1B6BH         LINE#         292
@@ -2759,7 +2759,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:3EF6H         LINE#         366
   -------         ENDPROC       _FUNCCLOSEREG
   -------         PROC          _FUNCVENTREG
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 47
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 47
 
 
   C:3EF7H         LINE#         373
@@ -2819,7 +2819,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:36DDH         LINE#         436
   C:36E3H         LINE#         437
   C:36E6H         LINE#         438
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 48
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 48
 
 
   C:36F2H         LINE#         439
@@ -2879,7 +2879,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:217EH         LINE#         502
   C:217EH         LINE#         503
   C:2188H         LINE#         504
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 49
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 49
 
 
   C:218DH         LINE#         505
@@ -2939,7 +2939,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:22FDH         LINE#         604
   C:2305H         LINE#         605
   C:2312H         LINE#         606
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 50
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 50
 
 
   C:231AH         LINE#         607
@@ -2999,7 +2999,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:453BH         LINE#         679
   C:4543H         LINE#         681
   C:4543H         LINE#         682
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 51
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 51
 
 
   -------         ENDPROC       _DUPLIFUNCCLEAR
@@ -3059,7 +3059,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:2CA9H         LINE#         745
   C:2CAFH         LINE#         746
   C:2CB1H         LINE#         747
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 52
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 52
 
 
   C:2CB1H         LINE#         748
@@ -3119,7 +3119,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:0D4BH         LINE#         822
   C:0D53H         LINE#         823
   C:0D53H         LINE#         824
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 53
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 53
 
 
   C:0D5DH         LINE#         825
@@ -3179,7 +3179,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:0E5EH         LINE#         899
   C:0E68H         LINE#         901
   C:0E73H         LINE#         902
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 54
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 54
 
 
   C:0E7FH         LINE#         903
@@ -3239,7 +3239,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:0F7EH         LINE#         984
   C:0F88H         LINE#         985
   C:0F8EH         LINE#         986
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 55
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 55
 
 
   C:0F9AH         LINE#         987
@@ -3299,7 +3299,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:1079H         LINE#         1060
   C:1086H         LINE#         1061
   C:1086H         LINE#         1062
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 56
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 56
 
 
   C:1093H         LINE#         1063
@@ -3359,7 +3359,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:2F69H         LINE#         1149
   C:2F69H         LINE#         1150
   C:2F82H         LINE#         1151
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 57
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 57
 
 
   C:2F82H         LINE#         1152
@@ -3419,7 +3419,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   -------         PROC          __SETREGISTRATIONMODE
   D:0069H         SYMBOL        mode
   C:44F7H         LINE#         1238
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 58
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 58
 
 
   C:44F9H         LINE#         1239
@@ -3479,7 +3479,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:4033H         LINE#         1314
   C:4033H         LINE#         1315
   -------         ENDPROC       __REQBUZZER
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 59
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 59
 
 
   -------         PROC          TEST_MODE_CONTROL
@@ -3539,7 +3539,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:293EH         LINE#         1390
   C:2941H         LINE#         1391
   C:2951H         LINE#         1392
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 60
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 60
 
 
   C:2951H         LINE#         1393
@@ -3599,7 +3599,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:32DEH         LINE#         59
   C:32E4H         LINE#         60
   -------         ENDPROC       SENDTXDATA
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 61
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 61
 
 
   -------         PROC          _SETTXDATA
@@ -3659,7 +3659,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
   C:3DE6H         LINE#         110
   C:3DECH         LINE#         111
   C:3DF1H         LINE#         112
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 62
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 62
 
 
   C:3DF8H         LINE#         113
@@ -3719,7 +3719,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\STX0031_MA82G5B32_Pro (MAIN)
 
   -------         MODULE        ?C?LMUL
   C:0547H         PUBLIC        ?C?LMUL
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  09:10:22  PAGE 63
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  06/14/2022  10:30:49  PAGE 63
 
 
   -------         ENDMOD        ?C?LMUL
